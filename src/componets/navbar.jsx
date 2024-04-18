@@ -86,13 +86,13 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                         cursor:"pointer"
                     }} onClick={()=>{
                         handleScroll(upComingRef)
-                    }}>Upcoming Predictions</p>
+                    }}>Upcoming Markets</p>
                     <p style={{
                     fontWeight:"500",
                     cursor:"pointer"
                     }} onClick={()=>{
                         handleScroll(popularRef)
-                    }}>Popular Market</p>
+                    }}>Popular Markets</p>
                     <p style={{
                     fontWeight:"500",
                     cursor:"pointer"
