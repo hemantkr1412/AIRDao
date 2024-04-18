@@ -157,7 +157,7 @@ const HowItWorks = ({howItWorksRef}) =>{
                     }}>7%</h1>
                     <p style={{
                         textAlign:"center"
-                    }}> Platform</p>
+                    }}> Platform Fee</p>
                 </div>
                 <div  className="horizontalLineBox">
                         

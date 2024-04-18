@@ -23,6 +23,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
     <>
         <div className="navbar">
             <div style={{
+
                 display: 'flex',
                 alignItems: 'center',
                 height: '80px',
@@ -78,7 +79,8 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                 height: '5vh',
                 backgroundColor: 'white',
                 gap:"2.5rem",
-                boxShadow:"20px 20px black",
+                // boxShadow:"1px 2px 2px black",
+                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
                 
             }}>
                     <p style={{
@@ -97,6 +99,12 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     fontWeight:"500",
                     cursor:"pointer"
                     }} onClick={()=>{
+                        handleScroll(recentRef)
+                    }}>Recent Markets</p>
+                    <p style={{
+                    fontWeight:"500",
+                    cursor:"pointer"
+                    }} onClick={()=>{
                         handleScroll(howItWorksRef)
                     }}>How it Works</p>
                     <p style={{
@@ -104,7 +112,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     cursor:"pointer"
                     }} onClick={()=>{
                         handleScroll(roadMapref)
-                    }}>Road Map</p>
+                    }}>RoadMap</p>
                     <p style={{
                     fontWeight:"500",
                     cursor:"pointer"

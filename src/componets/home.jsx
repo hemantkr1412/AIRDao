@@ -27,7 +27,7 @@ const Home = () =>{
                 <div>
                     <img src="creatives.png" alt="creative" className="creativeImg" style={{
                         width:"100%",
-                        height:"100%"
+                        height:"auto"
                     }}/>
                 </div>
             </div>
