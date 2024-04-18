@@ -100,10 +100,17 @@ padding: 2%;
     background-color: white;
 } 
 
+.startDateMobile{
+    display: none;
+}
+
 
 @media screen and (max-width: 380px) {
   .startDate{
    display: none;
+}
+.startDateMobile{
+    display: block;
 }
 
 }

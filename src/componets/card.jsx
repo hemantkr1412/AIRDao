@@ -32,6 +32,7 @@ const Card = ({isPopular,isRecent,isUpcominng}) =>{
                             marginTop:"0.5rem",
                             fontSize:"0.9rem",
                         }}>Resolution Date : 1 June 2024</div>
+                        {isUpcominng && <p className="startDateMobile" >Start Date: 22 April 2024</p>}
                     </div>
                 </div>
                 {isUpcominng && <p className="startDate" >Start Date: 22 April 2024</p>}
