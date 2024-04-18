@@ -101,6 +101,14 @@ padding: 2%;
 } 
 
 
+@media screen and (max-width: 380px) {
+  .startDate{
+   margin-right: 20px;
+}
+
+}
+
+
 @media screen and (max-width: 1475px) {
 .cardContainer{
     width: 400px;
