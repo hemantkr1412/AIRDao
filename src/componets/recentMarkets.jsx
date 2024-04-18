@@ -5,7 +5,8 @@ const RecentMarkets = ({recentRef}) =>{
             backgroundColor: '#F3F3F3',
             width:"100%",
             height:"auto",
-            marginTop:"3rem"
+            paddingTop:"3rem"
+            
         }}>
             <div style={{
                 width:"96%",

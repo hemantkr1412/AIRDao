@@ -5,7 +5,7 @@ const UpcomingMarkets = ({upComingRef}) =>{
             backgroundColor: '#F3F3F3',
             width:"100%",
             height:"auto",
-            marginTop:"2rem"
+            paddingTop:"3rem"
         }}>
             <div style={{
                 width:"96%",
@@ -38,7 +38,9 @@ const UpcomingMarkets = ({upComingRef}) =>{
                
             </div> 
             <div style={{
-                padding:"2%",
+                paddingLeft:"2%",
+                paddingRight:"2%",
+                paddingTop:"1rem",
                 display:"flex",
                 justifyContent:"space-between",
                 flexWrap:"wrap",

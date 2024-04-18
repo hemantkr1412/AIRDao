@@ -19,7 +19,12 @@ function App() {
     const tokenDetailsRef = useRef(null);
 
      const handleScroll = (ref) => {
-       ref.current.scrollIntoView({ behavior: "smooth" });
+      //  ref.current.scrollIntoView({ behavior: "smooth" });
+      console.log(ref.current.offsetTop);
+      window.scrollTo({
+        top: ref.current.offsetTop-100,
+        behavior: "smooth",
+      });
      };
 
 

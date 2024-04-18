@@ -43,7 +43,7 @@ const Footer = () => {
                             
                         }}/>
                         </a>
-                         <a href="t.me/xenplay2024" target="_blank" >
+                         <a href="https://t.me/xenplay2024" target="_blank" rel="noreferrer">
                         <img src="Vector8.png" alt="vector" style={{
                             width:"20px",
                             height:"20px",

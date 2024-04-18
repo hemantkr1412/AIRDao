@@ -2,11 +2,10 @@ import "./navbar.css";
 const HowItWorks = ({howItWorksRef}) =>{
     return (
         <div  ref={howItWorksRef} style={{
-            
             width:"100%",
             backgroundColor:"white",
             // padding:"2%"
-             paddingTop:"2rem",
+           paddingTop:"3rem",
             paddingBottom:"2rem"
         }}>
             <h1 style={{

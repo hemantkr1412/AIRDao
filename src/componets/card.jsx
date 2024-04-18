@@ -3,8 +3,9 @@ import "./navbar.css";
 const Card = ({isPopular,isRecent,isUpcominng}) =>{
     return(
         <div className="cardContainer" style={{
-            opacity: isRecent && "0.7",
-            backgroundColor:"white"
+            // opacity: isRecent && "0.7",
+            backgroundColor:"white",
+             opacity: isRecent && "0.7"
         }}>
            
            <div style={{
@@ -19,18 +20,20 @@ const Card = ({isPopular,isRecent,isUpcominng}) =>{
                     <img src="profile.jpg" alt="profile" style={{
                         width:"70px",
                         height:"70px",
-                        borderRadius:"50%"
+                        borderRadius:"50%",
                     }} />
                     </div>
                     <div>
                         <div style={{
                             fontSize:"1rem",
-                            fontWeight:"600"
+                            fontWeight:"600",
+                           
                         }}>Presidential Election Winner 2024</div>
                         <div style={{
                             color:"rgb(112, 112, 112)",
                             marginTop:"0.5rem",
                             fontSize:"0.9rem",
+                           
                         }}>Resolution Date : 1 June 2024</div>
                         {isUpcominng && <p className="startDateMobile" >Start Date: 22 April 2024</p>}
                     </div>
@@ -49,7 +52,8 @@ const Card = ({isPopular,isRecent,isUpcominng}) =>{
                     flexDirection:"column",
                     gap:"1rem",
                     overflowY:"scroll",
-                    scrollbarWidth: "none"
+                    scrollbarWidth: "none",
+                   
                     
                 }}>
                     <div style={{
