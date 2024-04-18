@@ -25,7 +25,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
             <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                height: '8vh',
+                height: '80px',
                 backgroundColor: 'black',
                 justifyContent:"space-between"
             }}>
@@ -35,9 +35,10 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
 
                 <img src="logoxenPlay.png" alt="logo" style={{
                     width:"200px",
-                    height:"8vh"
+                    height:"60px"
                 }}/>
                 </div>
+                
                 <div style={{
                     display:"flex",
                     color:"white",
@@ -69,7 +70,9 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                 alignItems: 'center',
                 height: '5vh',
                 backgroundColor: 'white',
-                gap:"2.5rem"
+                gap:"2.5rem",
+                boxShadow:"10px 10px black",
+                
             }}>
                     <p style={{
                         fontWeight:"500",
@@ -133,7 +136,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
             height:"50px"
           }}/>
           
-          {!isToggled ?   <img className="maunuicon" src="close.svg"  alt="Close" onClick={handleClickMenu} style={{
+          {!isToggled ?   <img className="maunuicon" src="cancel.png"  alt="Close" onClick={handleClickMenu} style={{
             width:"30px",
             height:"30px"
           }}/>

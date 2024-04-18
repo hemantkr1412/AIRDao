@@ -47,11 +47,7 @@ const UpcomingMarkets = ({upComingRef}) =>{
                 <Card isUpcominng={true}/>
                 <Card isUpcominng={true}/>
                 <Card isUpcominng={true}/>
-                <Card isUpcominng={true}/>
-                <Card isUpcominng={true}/>
-                <Card isUpcominng={true}/>
-                <Card isUpcominng={true}/>
-                <Card isUpcominng={true}/>
+                
             </div>
 
         </div>

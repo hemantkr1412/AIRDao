@@ -1,12 +1,10 @@
+import "./navbar.css";
+
 const Card = ({isPopular,isRecent,isUpcominng}) =>{
     return(
-        <div style={{
-            width:"420px",
-            height:"280px",
-            backgroundColor:"white",
-            borderRadius:"10px",
-            opacity: isRecent && "0.7"
-          
+        <div className="cardContainer" style={{
+            opacity: isRecent && "0.7",
+            backgroundColor:"white"
         }}>
            
            <div style={{
@@ -26,18 +24,17 @@ const Card = ({isPopular,isRecent,isUpcominng}) =>{
                     </div>
                     <div>
                         <div style={{
-                            fontSize:"1.2rem",
+                            fontSize:"1rem",
                             fontWeight:"600"
                         }}>Presidential Election Winner 2024</div>
                         <div style={{
                             color:"rgb(112, 112, 112)",
-                            marginTop:"0.5rem"
+                            marginTop:"0.5rem",
+                            fontSize:"0.9rem",
                         }}>Resolution Date : 1 June 2024</div>
                     </div>
                 </div>
-                {isUpcominng && <p style={{
-                    textAlign:"center",
-                }}>Start Date: 22 April 2024</p>}
+                {isUpcominng && <p className="startDate" >Start Date: 22 April 2024</p>}
                 {
                     !isUpcominng && <p style={{
                     textAlign:"center",

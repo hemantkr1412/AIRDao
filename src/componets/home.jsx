@@ -25,7 +25,10 @@ const Home = () =>{
             </div>
             <div className="herosectionSubDiv2">
                 <div>
-                    <img src="creatives.png" alt="creative" className="creativeImg"/>
+                    <img src="creatives.png" alt="creative" className="creativeImg" style={{
+                        width:"100%",
+                        height:"100%"
+                    }}/>
                 </div>
             </div>
         </div>

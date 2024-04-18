@@ -47,11 +47,7 @@ const RecentMarkets = ({recentRef}) =>{
                 <Card isRecent={true}/>
                 <Card isRecent={true}/>
                 <Card isRecent={true}/>
-                <Card isRecent={true}/>
-                <Card isRecent={true}/>
-                <Card isRecent={true}/>
-                <Card isRecent={true}/>
-                <Card isRecent={true}/>
+                
             </div>
 
         </div>

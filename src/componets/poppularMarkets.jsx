@@ -47,11 +47,7 @@ const PopularMarkets = ({popularRef}) =>{
                 <Card isPopular={true} />
                 <Card isPopular={true}/>
                 <Card isPopular={true}/>
-                <Card isPopular={true}/>
-                <Card isPopular={true}/>
-                <Card isPopular={true}/>
-                <Card isPopular={true}/>
-                <Card isPopular={true}/>
+                
             </div>
 
         </div>
