@@ -35,18 +35,22 @@ const Footer = () => {
                            color:"white" ,
                            fontSize:"1rem",
                         }}>Join the community</p>
+                        <a href="https://x.com/xenplay24" target="_blank" >
                         <img src="Vector7.png" alt="vector"  style={{
                             width:"20px",
                             height:"20px",
                             marginTop:"1rem",
                             
                         }}/>
+                        </a>
+                         <a href="t.me/xenplay2024" target="_blank" >
                         <img src="Vector8.png" alt="vector" style={{
                             width:"20px",
                             height:"20px",
                             marginTop:"1rem",
                             marginLeft:"0.5rem"
                         }}/>
+                        </a>
                     </div>
                 </div>
                 <div style={{

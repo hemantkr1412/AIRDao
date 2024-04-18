@@ -33,10 +33,14 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     paddingLeft:"1rem"
                 }}>
 
-                <img src="logoxenPlay.png" alt="logo" style={{
+                <a href="/" style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
+                    color:"white",
+                    textDecoration:"none"
+                  }} ><img src="logoxenPlay.png" alt="logo" style={{
                     width:"200px",
-                    height:"60px"
+                    height:"70px"
                 }}/>
+                </a>
                 </div>
                 
                 <div style={{
@@ -48,8 +52,11 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     paddingRight:"3rem",
                     alignItems: 'center',
                 }}>
-                    <div>Home</div>
-                    <div>Markets</div>
+                    <div><a href="/" style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
+                    color:"white",
+                    textDecoration:"none"
+                  }} >Home</a></div>
+                    <div >Markets</div>
                     <div>
                         <button style={{
                             backgroundColor:"white",
@@ -71,7 +78,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                 height: '5vh',
                 backgroundColor: 'white',
                 gap:"2.5rem",
-                boxShadow:"10px 10px black",
+                boxShadow:"20px 20px black",
                 
             }}>
                     <p style={{
@@ -165,7 +172,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                 padding:"1rem",
                 color:"black"
             }}>
-                    <p style={{fontWeight:"600",fontSize:"1.1rem"}} >Home</p>
+                    <a href="/" style={{fontWeight:"600",fontSize:"1.1rem" ,cursor:"pointer"}} >Home</a>
                     <p style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
                     "1rem"}}>Markets</p>
                     <p style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
