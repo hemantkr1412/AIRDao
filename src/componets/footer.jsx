@@ -35,7 +35,7 @@ const Footer = () => {
                            color:"white" ,
                            fontSize:"1rem",
                         }}>Join the community</p>
-                        <a href="https://x.com/xenplay24" target="_blank" >
+                        <a href="https://x.com/xenplay24" target="_blank" rel="noreferrer">
                         <img src="Vector7.png" alt="vector"  style={{
                             width:"20px",
                             height:"20px",
