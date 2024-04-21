@@ -1,36 +1,79 @@
-import "./navbar.css";
+import "./navbar.css"
+import HeroSection from "./herosection";
+import UpcomingMarkets from "./upcomingMarkets";
+import PopularMarkets from "./poppularMarkets";
+import RecentMarkets from "./recentMarkets";
+import HowItWorks from "./howItWorks";
+import RoadMap from "./roadMap";
+import TokenDetails from "./tokenDetails";
 
-
-const Home = () =>{
-
+const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadMapref,tokenDetailsRef}) => {
+    
     return (
-        <div className="herosection" style={{
-            backgroundColor: '#F3F3F3',
-            width:"100%",
-        }}>
-            <div className="herosectionSubDiv">
-                <h3 style={{
-                    fontSize:"2rem"
-                }}>Forecasting the Future</h3>
-                <p>Welcome to XENPLAY, the premier destination for<br/> predictive insights on the X1 Chain!</p>
-                <button style={{
-                    marginTop:"1.2rem",
-                    width:"150px",
-                    height:"50px",
-                    backgroundColor:"#3E6FD9",
-                    borderRadius:"5px",
-                    color:"white",
-                    border:"none"
-                }}>Start Prediction</button>
+        <div>
+            <div 
+
+            className="subNavbar"
+
+            style={{
+                width:"100%",
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '40px',
+                backgroundColor: 'white',
+                position:"fixed",
+                zIndex: 100,
+
+                gap:"2.5rem",
+                // boxShadow:"1px 2px 2px black",
+                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                top:"5rem"
+                
+            }}>
+                    <p style={{
+                        fontWeight:"500",
+                        cursor:"pointer"
+                    }} onClick={()=>{
+                        handleScroll(upComingRef)
+                    }}>Upcoming Markets</p>
+                    <p style={{
+                    fontWeight:"500",
+                    cursor:"pointer"
+                    }} onClick={()=>{
+                        handleScroll(popularRef)
+                    }}>Popular Markets</p>
+                    <p style={{
+                    fontWeight:"500",
+                    cursor:"pointer"
+                    }} onClick={()=>{
+                        handleScroll(recentRef)
+                    }}>Recent Markets</p>
+                    <p style={{
+                    fontWeight:"500",
+                    cursor:"pointer"
+                    }} onClick={()=>{
+                        handleScroll(howItWorksRef)
+                    }}>How it Works</p>
+                    <p style={{
+                    fontWeight:"500",
+                    cursor:"pointer"
+                    }} onClick={()=>{
+                        handleScroll(roadMapref)
+                    }}>RoadMap</p>
+                    <p style={{
+                    fontWeight:"500",
+                    cursor:"pointer"
+                    }} onClick={()=>{
+                        handleScroll(tokenDetailsRef)
+                    }}>Token Details</p>
             </div>
-            <div className="herosectionSubDiv2">
-                <div>
-                    <img src="creatives.png" alt="creative" className="creativeImg" style={{
-                        width:"100%",
-                        height:"auto"
-                    }}/>
-                </div>
-            </div>
+            <HeroSection  />
+            <UpcomingMarkets upComingRef={upComingRef} />
+            <PopularMarkets popularRef={popularRef} />
+            <RecentMarkets recentRef={recentRef} />
+            <HowItWorks howItWorksRef={howItWorksRef} />
+            <RoadMap roadMapref={roadMapref} />
+            <TokenDetails tokenDetailsRef={tokenDetailsRef} />
         </div>
     )
 }

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import "./navbar.css";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadMapref,tokenDetailsRef}) => {
+    const navigate = useNavigate()
     const [isToggled, setToggle] = useState(true);
 
     useEffect(() => {
@@ -53,11 +55,18 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     paddingRight:"3rem",
                     alignItems: 'center',
                 }}>
-                    <div><a href="/" style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
+                    <div onClick={()=>{
+                      navigate('/')
+                    }} 
+                    style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
                     color:"white",
-                    textDecoration:"none"
-                  }} >Home</a></div>
-                    <div >Markets</div>
+                  }} 
+                    >Home</div>
+                        <div onClick={()=>{
+                      navigate("/markets")
+                    }} style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
+                    color:"white",
+                  }} >Markets</div>
                     <div>
                         <button style={{
                             backgroundColor:"white",
@@ -72,7 +81,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     </div>
                 </div>
             </div>
-            <div style={{
+            {/* <div style={{
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -119,7 +128,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     }} onClick={()=>{
                         handleScroll(tokenDetailsRef)
                     }}>Token Details</p>
-            </div>
+            </div> */}
         </div>
         <div className="navmanu" style={{
       position: "fixed",
@@ -181,8 +190,10 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                 color:"black"
             }}>
                     <a href="/" style={{fontWeight:"600",fontSize:"1.1rem" ,cursor:"pointer"}} >Home</a>
-                    <p style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
-                    "1rem"}}>Markets</p>
+                    <p onClick={()=>{
+                      navigate("/markets")
+                    }} style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
+                    "1rem",cursor:"pointer"}}>Markets</p>
                     <p style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
                     "1rem"}}>Connect Wallet</p>
             </div>

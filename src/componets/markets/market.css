@@ -1,0 +1,215 @@
+.startDate{
+   text-align: center;
+}
+
+.cardContainer2{
+    /* width: 24%; */
+    height: 280px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+} 
+
+.cardMainBox{
+    display: grid;
+     grid-template-columns: repeat(3, 1fr);
+}
+
+.startDateMobile{
+    display: none;
+}
+
+.subNavbar{
+    display: flex;
+}
+
+.tokenInfoContainer{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    
+}
+.valueContainer{
+width: 25%;
+}
+.sideNav{
+    width: 15%;
+    
+}
+
+.marketContainer{
+    width: 85%;
+}
+.filterSearchMobile{
+    display: none;
+}
+.marketSubNav{
+    display: flex;
+}
+
+@media screen and (max-width: 450px) {
+  .startDate{
+   display: none;
+}
+.startDateMobile{
+    display: block;
+}
+.subNavbar{
+    display: none;
+}
+
+}
+
+
+@media screen and (max-width: 1475px) {
+/* .cardContainer2{
+    width: 400px;
+    height: 280px;
+    border-radius: 10px;
+    background-color: white;
+}    */
+
+}
+
+@media screen and (max-width: 1330px) {
+/* .cardContainer2{
+    width: 350px;
+    height: 280px;
+    border-radius: 10px;
+    background-color: white;
+}    */
+.startDate{
+   margin-left: 22px;
+}
+
+}
+
+
+
+@media screen and (max-width: 1250px) {
+/* .cardContainer2{
+    width: 350px;
+    height: 280px;
+    border-radius: 10px;
+    background-color: white;
+}    */
+
+.cardMainBox{
+    display: grid;
+     grid-template-columns: repeat(2, 1fr);
+}
+
+}
+
+@media screen and (max-width: 1160px) {
+/* .cardContainer2{
+    width: 500px;
+    height: 280px;
+    border-radius: 10px;
+    background-color: white;
+}    */
+
+.cardMainBox{
+    display: grid;
+     grid-template-columns: repeat(2, 1fr);
+}
+
+}
+
+@media screen and (max-width: 1070px) {
+/* .cardContainer2{
+    width: 450px;
+    height: 280px;
+    border-radius: 10px;
+    background-color: white;
+}    */
+.cardMainBox{
+    display: grid;
+     grid-template-columns: repeat(2, 1fr);
+}
+
+}
+
+@media screen and (max-width: 975px) {
+/* .cardContainer2{
+    width: 420px;
+    height: 280px;
+    border-radius: 10px;
+    background-color: white;
+}    */
+.cardMainBox{
+    display: grid;
+     grid-template-columns: repeat(2, 1fr);
+}
+}
+
+
+@media screen and (max-width: 915px) {
+/* .cardContainer2{
+    width: 390px;
+    height: 280px;
+    border-radius: 10px;
+    background-color: white;
+}    */
+
+.cardMainBox{
+    display: grid;
+     grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@media screen and (max-width: 850px) {
+/* .cardContainer2{
+    width: 350px;
+    height: 280px;
+    border-radius: 10px;
+    background-color: white;
+}    */
+.cardMainBox{
+    display: grid;
+     grid-template-columns: repeat(1, 1fr);
+}
+
+}
+
+@media screen and (max-width: 770px) {
+.cardContainer2{
+    width: 100%;
+    height: 280px;
+    border-radius: 10px;
+    background-color: white;
+}   
+.cardMainBox{
+    display: grid;
+     grid-template-columns: repeat(1, 1fr);
+}
+.tokenInfoContainer{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.valueContainer{
+width: 90%;
+}
+.sideNav{
+    display: none;
+    
+}
+.marketContainer{
+    width: 100%;
+}
+.filterSearchMobile{
+    width: 93%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-top: 5rem;
+  
+}
+.marketSubNav{
+    display: none;
+}
+
+}

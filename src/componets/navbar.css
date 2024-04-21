@@ -110,6 +110,9 @@ padding: 2%;
     display: none;
 }
 
+.subNavbar{
+    display: flex;
+}
 
 @media screen and (max-width: 450px) {
   .startDate{
@@ -117,6 +120,9 @@ padding: 2%;
 }
 .startDateMobile{
     display: block;
+}
+.subNavbar{
+    display: none;
 }
 
 }

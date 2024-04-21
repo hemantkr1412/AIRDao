@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
 import "./App.css";
-import Home from "./componets/home";
 import Navbar from "./componets/navbar";
-import UpcomingMarkets from "./componets/upcomingMarkets";
-import PopularMarkets from "./componets/poppularMarkets";
-import RecentMarkets from "./componets/recentMarkets";
-import HowItWorks from "./componets/howItWorks";
-import RoadMap from "./componets/roadMap";
-import TokenDetails from "./componets/tokenDetails";
 import Footer from "./componets/footer";
+import Markets from "./componets/markets/markets";
+import Home from "./componets/home";
+
+// router
+import { Route, Routes } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
+
 
 function App() {
     const upComingRef = useRef(null);
@@ -19,7 +19,6 @@ function App() {
     const tokenDetailsRef = useRef(null);
 
      const handleScroll = (ref) => {
-      //  ref.current.scrollIntoView({ behavior: "smooth" });
       console.log(ref.current.offsetTop);
       window.scrollTo({
         top: ref.current.offsetTop-100,
@@ -34,23 +33,41 @@ function App() {
         backgroundColor: "#F3F3F3",
       }}
     >
-      <Navbar
-        handleScroll={handleScroll}
-        upComingRef={upComingRef}
-        popularRef={popularRef}
-        recentRef={recentRef}
-        howItWorksRef={howItWorksRef}
-        roadMapref={roadMapref}
-        tokenDetailsRef={tokenDetailsRef}
-      />
-      <Home />
-      <UpcomingMarkets upComingRef={upComingRef} />
-      <PopularMarkets popularRef={popularRef} />
-      <RecentMarkets recentRef={recentRef} />
-      <HowItWorks howItWorksRef={howItWorksRef} />
-      <RoadMap roadMapref={roadMapref} />
-      <TokenDetails tokenDetailsRef={tokenDetailsRef} />
-      <Footer />
+      <HashRouter>
+        <Navbar
+          handleScroll={handleScroll}
+          upComingRef={upComingRef}
+          popularRef={popularRef}
+          recentRef={recentRef}
+          howItWorksRef={howItWorksRef}
+          roadMapref={roadMapref}
+          tokenDetailsRef={tokenDetailsRef}
+        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                handleScroll={handleScroll}
+                upComingRef={upComingRef}
+                popularRef={popularRef}
+                recentRef={recentRef}
+                howItWorksRef={howItWorksRef}
+                roadMapref={roadMapref}
+                tokenDetailsRef={tokenDetailsRef}
+              />
+            }
+          />
+          <Route
+            path="/markets"
+            element={
+              <Markets
+              />
+            }
+            />
+        </Routes>
+        <Footer />
+      </HashRouter>
     </div>
   );
 }
