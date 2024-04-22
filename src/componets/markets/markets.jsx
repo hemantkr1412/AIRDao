@@ -69,7 +69,7 @@ const Markets = ()=>{
                     marginTop:"5rem",
                     // position:"sticky",
                     // boxShadow:"1px 2px 2px black",
-                    // boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
+                    boxShadow: "rgba(0, 0, 0, 0.35) 5px 2px 5px"
                     
                 }}>
                         <p style={{
@@ -138,8 +138,9 @@ const Markets = ()=>{
                         height:"120px",
                         backgroundColor:"white",
                         borderRadius:"5px",
-                        boxShadow:"#3E6FD9 0px 8px 23px",
-                        padding:"1rem"
+                        // boxShadow:"#3E6FD9 0px 8px 23px",
+                        padding:"1rem",
+                        border:"2px solid #3E6FD9"
                     }}>
                         <div style={{
                             display:"flex",
@@ -163,14 +164,15 @@ const Markets = ()=>{
                         height:"120px",
                         backgroundColor:"white",
                         borderRadius:"5px",
-                        boxShadow:"#C985FF 0px 8px 24px",
+                        // boxShadow:"#C985FF 0px 8px 24px",
+                        border:"2px solid #C985FF",
                         padding:"1rem"
                     }}>
                          <div style={{
                             display:"flex",
                             justifyContent:"space-between"
                         }}>
-                            <h3>Total Fees generated</h3>
+                            <h3>Total Fees Generated</h3>
                             <img src="bi_cash.svg" alt="filter" style={{
                                 width:"30px",
                                 height:"auto"
@@ -187,7 +189,9 @@ const Markets = ()=>{
                         height:"120px",
                         backgroundColor:"white",
                         borderRadius:"5px",
-                         boxShadow:"#8EC656 0px 8px 24px",
+                        //  boxShadow:"#8EC656 0px 8px 24px",
+                        border:"2px solid #8EC656",
+
                          padding:"1rem"
                     }}>
                         <div style={{

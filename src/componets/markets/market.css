@@ -8,6 +8,7 @@
     border-radius: 10px;
     background-color: white;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border: 2px solid rgba(112, 112, 112,0.3);
 } 
 
 .cardMainBox{
