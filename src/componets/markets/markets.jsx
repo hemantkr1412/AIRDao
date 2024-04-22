@@ -138,7 +138,7 @@ const Markets = ()=>{
                         height:"120px",
                         backgroundColor:"white",
                         borderRadius:"5px",
-                        boxShadow:"5px 5px 3px #3E6FD9",
+                        boxShadow:"#3E6FD9 0px 8px 23px",
                         padding:"1rem"
                     }}>
                         <div style={{
@@ -163,7 +163,7 @@ const Markets = ()=>{
                         height:"120px",
                         backgroundColor:"white",
                         borderRadius:"5px",
-                        boxShadow:"5px 5px 3px #C985FF",
+                        boxShadow:"#C985FF 0px 8px 24px",
                         padding:"1rem"
                     }}>
                          <div style={{
@@ -187,7 +187,7 @@ const Markets = ()=>{
                         height:"120px",
                         backgroundColor:"white",
                         borderRadius:"5px",
-                         boxShadow:"5px 5px 3px #8EC656",
+                         boxShadow:"#8EC656 0px 8px 24px",
                          padding:"1rem"
                     }}>
                         <div style={{
