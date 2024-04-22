@@ -165,7 +165,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
             height:"30px"
           }}/>
           :
-          <img  src="Group.png"  alt="Menu" onClick={handleClickMenu} style={{
+          <img  src="Group.svg"  alt="Menu" onClick={handleClickMenu} style={{
             width:"50px",
             height:"40px"
           }}/>
@@ -192,6 +192,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     <a href="/" style={{fontWeight:"600",fontSize:"1.1rem" ,cursor:"pointer"}} >Home</a>
                     <p onClick={()=>{
                       navigate("/markets")
+                      handleClickMenu()
                     }} style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
                     "1rem",cursor:"pointer"}}>Markets</p>
                     <p style={{fontWeight:"600",fontSize:"1.1rem",marginTop:

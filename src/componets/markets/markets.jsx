@@ -12,7 +12,7 @@ const Markets = ()=>{
             minHeight:"95vh",
             display:"flex",
         }}>
-            <div
+            {/* <div
             className="sideNav"
              style={{
                  minHeight:"95vh",
@@ -51,7 +51,7 @@ const Markets = ()=>{
                 }} />
             </div>
 
-            </div>
+            </div> */}
             <div  
             className="marketContainer"
             style={{

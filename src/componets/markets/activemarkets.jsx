@@ -25,6 +25,16 @@ const ActiveMarket = ({popularRef}) =>{
                     }}>Active Markets</p>
                 </div>
                 <div>
+                    <input type="text" placeholder="Search" style={{
+                    width:"200px",
+                    height:"10px",
+                    borderRadius:"5px",
+                    border:"1px solid grey",
+                    padding:"1rem",
+                    // backgroundColor:"white",
+                    marginRight:"1rem"
+                    
+                }} />
                     <select style={{
                         width:"200px",
                         height:"50px",
