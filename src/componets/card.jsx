@@ -168,6 +168,8 @@ const Card = ({isPopular,isRecent,isUpcominng}) =>{
                 borderTop:"1px solid rgba(112, 112, 112,0.5)",
                 display:"flex",
                 paddingLeft:"1rem",
+                paddingRight:"1rem",
+                justifyContent:"space-between",
                 gap:'3rem'
             }}> 
                 {
