@@ -47,6 +47,10 @@ width: 25%;
     display: flex;
 }
 
+.inpt{
+    display: inline;
+}
+
 @media screen and (max-width: 450px) {
   .startDate{
    display: none;
@@ -209,6 +213,9 @@ width: 90%;
   
 }
 .marketSubNav{
+    display: none;
+}
+.inpt{
     display: none;
 }
 

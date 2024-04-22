@@ -25,7 +25,7 @@ const ActiveMarket = ({popularRef}) =>{
                     }}>Active Markets</p>
                 </div>
                 <div>
-                    <input type="text" placeholder="Search" style={{
+                    <input className="inpt" type="text" placeholder="Search" style={{
                     width:"200px",
                     height:"10px",
                     borderRadius:"5px",
