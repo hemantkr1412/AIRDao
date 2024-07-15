@@ -36,7 +36,7 @@ const TokenDetails = ({tokenDetailsRef}) => {
                         alignItems:"center"
                     }}>
                         <div>
-                            <img src="icon.png" alt="icon" style={{
+                            <img src="Icon.png" alt="icon" style={{
                                 width:"80px",
                                 height:"80px",
                                 alignContent:"center"
@@ -69,7 +69,7 @@ const TokenDetails = ({tokenDetailsRef}) => {
                         alignItems:"center"
                     }}>
                         <div>
-                            <img src="icon.png" alt="icon" style={{
+                            <img src="Icon.png" alt="icon" style={{
                                 width:"80px",
                                 height:"80px",
                                 alignContent:"center"

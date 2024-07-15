@@ -21,7 +21,7 @@ const HowItWorks = ({howItWorksRef}) =>{
                         <h1 style={{
                         textAlign:"center"
                         }}>01</h1>
-                        <img className="imageContainer" src="card.png" alt="Card" style={{
+                        <img className="imageContainer" src="Card.png" alt="Card" style={{
                         width:"100%"
                         }}/>
                         <p style={{
@@ -111,7 +111,7 @@ const HowItWorks = ({howItWorksRef}) =>{
                 <div style={{
                     width:"18%"
                 }}>
-                    <img src="card.png" alt="Card" style={{
+                    <img src="Card.png" alt="Card" style={{
                         width:"100%"
                     }}/>
                 </div>
