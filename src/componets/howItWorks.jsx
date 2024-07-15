@@ -40,7 +40,7 @@ const HowItWorks = ({howItWorksRef}) =>{
                         }}>
                             02
                         </h1>
-                        <img className="imageContainer" src="card 1.png" alt="Card" style={{
+                        <img className="imageContainer" src="card1.png" alt="Card" style={{
                         width:"100%"
                         }}/>
                         <p style={{
@@ -57,7 +57,7 @@ const HowItWorks = ({howItWorksRef}) =>{
                         }}>
                             03
                         </h1>
-                        <img className="imageContainer" src="card 2.png" alt="Card" style={{
+                        <img className="imageContainer" src="card2.png" alt="Card" style={{
                         width:"100%"
                         }}/>
                         <p style={{
@@ -74,7 +74,7 @@ const HowItWorks = ({howItWorksRef}) =>{
                         }}>
                             04
                         </h1>
-                        <img className="imageContainer" src="card 3.png" alt="Card" style={{
+                        <img className="imageContainer" src="card3.png" alt="Card" style={{
                         width:"100%"
                         }}/>
                         <p style={{
@@ -91,7 +91,7 @@ const HowItWorks = ({howItWorksRef}) =>{
                         }}>
                             05
                         </h1>
-                        <img className="imageContainer" src="card 4.png" alt="Card" style={{
+                        <img className="imageContainer" src="card4.png" alt="Card" style={{
                         width:"100%"
                         }}/>
                         <p style={{
