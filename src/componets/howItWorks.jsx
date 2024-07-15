@@ -118,28 +118,28 @@ const HowItWorks = ({howItWorksRef}) =>{
                  <div style={{
                     width:"18%"
                 }}>
-                    <img src="card 1.png" alt="Card" style={{
+                    <img src="card.png" alt="Card" style={{
                         width:"100%"
                     }}/>
                 </div>
                  <div style={{
                     width:"18%"
                 }}>
-                    <img src="card 2.png" alt="Card" style={{
+                    <img src="card2.png" alt="Card" style={{
                         width:"100%"
                     }}/>
                 </div>
                  <div style={{
                     width:"18%"
                 }}>
-                    <img src="card 3.png" alt="Card" style={{
+                    <img src="card3.png" alt="Card" style={{
                         width:"100%"
                     }}/>
                 </div>
                  <div style={{
                     width:"18%"
                 }}>
-                    <img src="card 4.png" alt="Card" style={{
+                    <img src="card4.png" alt="Card" style={{
                         width:"100%"
                     }}/>
                 </div>
