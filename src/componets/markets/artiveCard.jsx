@@ -1,6 +1,7 @@
 import "./market.css";
 
-const Card = ({isPopular,isRecent,isUpcominng}) =>{
+const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
+    console.log(event)
     return(
         <div className="cardContainer2" style={{
             backgroundColor:"white",
@@ -15,34 +16,80 @@ const Card = ({isPopular,isRecent,isUpcominng}) =>{
                     gap:"1rem"
                 }}>
                     <div>
-                    <img src="profile.jpg" alt="profile" style={{
+                    <img src={event.avatar} alt="profile" style={{
                         width:"70px",
                         height:"70px",
                         borderRadius:"50%",
                     }} />
                     </div>
                     <div>
-                        <div style={{
+                    <div style={{
                             fontSize:"1rem",
                             fontWeight:"600",
                            
-                        }}>Presidential Election Winner 2024</div>
-                        <div style={{
+                        }}>
+                        {event.event_name}
+                    </div>
+                    <div style={{
                             color:"rgb(112, 112, 112)",
                             marginTop:"0.5rem",
                             fontSize:"0.9rem",
                            
-                        }}>Resolution Date : 1 June 2024</div>
-                        {isUpcominng && <p className="startDateMobile" >Start Date: 22 April 2024</p>}
+                        }}>Resolution Date : {event.resolution_date}</div>
                     </div>
+                    
+                    
+                    
+                    
                 </div>
-                {isUpcominng && <p className="startDate" >Start Date: 22 April 2024</p>}
+                {isUpcominng && <p className="startDate" >Start Date:  {event.start_date}</p>}
                 {
                     !isUpcominng && <p style={{
                     textAlign:"center",
                 }}>.</p>
                 }
-                <div style={{
+                {
+                    event.possible_results.length === 2 &&
+                    <div style={{
+                    marginTop:"0.5rem",
+                    width:"100%",
+                    height:"120px",
+                    display:"flex",
+                    justifyContent:"space-around",
+                    gap:"1rem",
+                    overflowY:"scroll",
+                    scrollbarWidth: "none",
+                   
+                    
+                    }}>
+                        <button style={{
+                                marginTop:"20px",
+                                backgroundColor:"red",
+                                color:"white",
+                                width:"120px",
+                                height:"35px",
+                                borderRadius:"5px",
+                                border:"none"
+                            }}
+                            >Vote Yes</button>
+                        <button style={{
+                                marginTop:"20px",
+                                backgroundColor:"green",
+                                color:"white",
+                                width:"120px",
+                                height:"35px",
+                                borderRadius:"5px",
+                                border:"none"
+                            }}
+                            >Vote No</button>
+                    
+
+                    </div>
+
+                }
+                {
+                    event.possible_results.length !== 2 &&
+                    <div style={{
                     marginTop:"0.5rem",
                     width:"100%",
                     height:"120px",
@@ -54,18 +101,21 @@ const Card = ({isPopular,isRecent,isUpcominng}) =>{
                    
                     
                 }}>
-                    <div style={{
+                  
+                    {event.possible_results.map((result)=> {
+                        return(
+                             <div style={{
                         display:"flex",
                         justifyContent:"space-between",
                     }}>
-                        <div style={{
+                            <div style={{
                             display:"flex",
                             alignItems:"center",
                         }}>
                             <p style={{
                                 fontSize:"1.1rem",
                                 color:"rgb(112, 112, 112)"
-                            }}>D Trump</p>
+                            }}>{result.result}</p>
                         
                         </div>
                         <div style={{
@@ -88,78 +138,14 @@ const Card = ({isPopular,isRecent,isUpcominng}) =>{
                             >Vote</button>
 
                         </div>
-                    </div>
-                    <div style={{
-                        display:"flex",
-                        justifyContent:"space-between",
-                    }}>
-                        <div style={{
-                            display:"flex",
-                            alignItems:"center",
-                        }}>
-                            <p style={{
-                                fontSize:"1.1rem",
-                                color:"rgb(112, 112, 112)"
-                            }}>D Trump</p>
+                        </div>
+                        )
+                    })}
                         
-                        </div>
-                        <div style={{
-                            display:"flex",
-                            alignItems:"center",
-                        }}>
-                           {(isPopular || isRecent) && <div style={{
-                                fontSize:"1.1rem",
-                                color:"red",
-                                marginRight:"0.5rem",
-                            }}>20%</div>}
-                            <button style={{
-                                backgroundColor:"#F2F2F2",
-                                color:"black",
-                                width:"120px",
-                                height:"35px",
-                                borderRadius:"5px",
-                                border:"none"
-                            }}
-                            >Vote</button>
-
-                        </div>
-                    </div>
-                    <div style={{
-                        display:"flex",
-                        justifyContent:"space-between",
-                    }}>
-                        <div style={{
-                            display:"flex",
-                            alignItems:"center",
-                        }}>
-                            <p style={{
-                                fontSize:"1.1rem",
-                                color:"rgb(112, 112, 112)"
-                            }}>D Trump</p>
-                        
-                        </div>
-                        <div style={{
-                            display:"flex",
-                            alignItems:"center",
-                        }}>
-                            {(isPopular || isRecent)  && <div style={{
-                                fontSize:"1.1rem",
-                                color:"red",
-                                marginRight:"0.5rem",
-                            }}>10%</div>}
-                            <button style={{
-                                backgroundColor:"#F2F2F2",
-                                color:"black",
-                                width:"120px",
-                                height:"35px",
-                                borderRadius:"5px",
-                                border:"none"
-                            }}
-                            >Vote</button>
-
-                        </div>
-                    </div>
                 </div>
+
+                }
+                
             </div>
 
             <div style={{
@@ -180,7 +166,7 @@ const Card = ({isPopular,isRecent,isUpcominng}) =>{
                             color:"rgb(112, 112, 112)",
                             marginTop:"0.5rem",
                             textAlign:"center"
-                        }}>Last Date: 22 May 2024</p>
+                        }}>Last Date: {event.end_date}</p>
             </div>
         </div>
     )

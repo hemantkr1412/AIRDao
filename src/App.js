@@ -5,6 +5,7 @@ import Footer from "./componets/footer";
 import Markets from "./componets/markets/markets";
 import Home from "./componets/home";
 
+
 // router
 import { Route, Routes } from "react-router-dom";
 import { HashRouter } from "react-router-dom";
@@ -65,6 +66,7 @@ function App() {
               />
             }
             />
+         
         </Routes>
         <Footer />
       </HashRouter>

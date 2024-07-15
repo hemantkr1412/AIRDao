@@ -1,6 +1,6 @@
 import "./navbar.css";
 
-const Card = ({isPopular,isRecent,isUpcominng}) =>{
+const Card = ({isPopular,isRecent,isUpcominng,eventItem}) =>{
     return(
         <div className="cardContainer" style={{
             // opacity: isRecent && "0.7",
@@ -28,23 +28,120 @@ const Card = ({isPopular,isRecent,isUpcominng}) =>{
                             fontSize:"1rem",
                             fontWeight:"600",
                            
-                        }}>Presidential Election Winner 2024</div>
+                        }}>{eventItem.event_name}</div>
                         <div style={{
                             color:"rgb(112, 112, 112)",
                             marginTop:"0.5rem",
                             fontSize:"0.9rem",
                            
-                        }}>Resolution Date : 1 June 2024</div>
-                        {isUpcominng && <p className="startDateMobile" >Start Date: 22 April 2024</p>}
+                        }}>Resolution Date :{eventItem.resolution_date}</div>
+                        {isUpcominng && <p className="startDateMobile" >Start Date:  {eventItem.start_date}</p>}
                     </div>
                 </div>
-                {isUpcominng && <p className="startDate" >Start Date: 22 April 2024</p>}
+                {isUpcominng && <p className="startDate" >Start Date:  {eventItem.start_date}</p>}
                 {
                     !isUpcominng && <p style={{
                     textAlign:"center",
                 }}>.</p>
                 }
-                <div style={{
+                {
+                    eventItem.possible_results.length === 2 &&
+                    <div style={{
+                    marginTop:"0.5rem",
+                    width:"100%",
+                    height:"120px",
+                    display:"flex",
+                    justifyContent:"space-around",
+                    gap:"1rem",
+                    overflowY:"scroll",
+                    scrollbarWidth: "none",
+                   
+                    
+                    }}>
+                        <button style={{
+                                marginTop:"20px",
+                                backgroundColor:"red",
+                                color:"white",
+                                width:"120px",
+                                height:"35px",
+                                borderRadius:"5px",
+                                border:"none"
+                            }}
+                            >Vote Yes</button>
+                        <button style={{
+                                marginTop:"20px",
+                                backgroundColor:"green",
+                                color:"white",
+                                width:"120px",
+                                height:"35px",
+                                borderRadius:"5px",
+                                border:"none"
+                            }}
+                            >Vote No</button>
+                    
+
+                    </div>
+
+                }
+                {
+                    eventItem.possible_results.length !== 2 &&
+                    <div style={{
+                    marginTop:"0.5rem",
+                    width:"100%",
+                    height:"120px",
+                    display:"flex",
+                    flexDirection:"column",
+                    gap:"1rem",
+                    overflowY:"scroll",
+                    scrollbarWidth: "none",
+                   
+                    
+                }}>
+                  
+                    {eventItem.possible_results.map((result)=> {
+                        return(
+                             <div style={{
+                        display:"flex",
+                        justifyContent:"space-between",
+                    }}>
+                            <div style={{
+                            display:"flex",
+                            alignItems:"center",
+                        }}>
+                            <p style={{
+                                fontSize:"1.1rem",
+                                color:"rgb(112, 112, 112)"
+                            }}>{result.result}</p>
+                        
+                        </div>
+                        <div style={{
+                            display:"flex",
+                            alignItems:"center",
+                        }}>
+                           {(isPopular || isRecent) && <div style={{
+                                fontSize:"1.1rem",
+                                color:"green",
+                                marginRight:"0.5rem",
+                            }}>70%</div>}
+                            <button style={{
+                                backgroundColor:"#F2F2F2",
+                                color:"black",
+                                width:"120px",
+                                height:"35px",
+                                borderRadius:"5px",
+                                border:"none"
+                            }}
+                            >Vote</button>
+
+                        </div>
+                        </div>
+                        )
+                    })}
+                        
+                </div>
+
+                }
+                {/* <div style={{
                     marginTop:"0.5rem",
                     width:"100%",
                     height:"120px",
@@ -161,7 +258,7 @@ const Card = ({isPopular,isRecent,isUpcominng}) =>{
 
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
 
             <div style={{
@@ -182,7 +279,7 @@ const Card = ({isPopular,isRecent,isUpcominng}) =>{
                             color:"rgb(112, 112, 112)",
                             marginTop:"0.5rem",
                             textAlign:"center"
-                        }}>Last Date: 22 May 2024</p>
+                        }}>Last Date: {eventItem.end_date}</p>
             </div>
         </div>
     )

@@ -69,7 +69,7 @@ const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadM
             </div>
             <HeroSection  />
             <UpcomingMarkets upComingRef={upComingRef} />
-            <PopularMarkets popularRef={popularRef} />
+            {/* <PopularMarkets popularRef={popularRef} /> */}
             <RecentMarkets recentRef={recentRef} />
             <HowItWorks howItWorksRef={howItWorksRef} />
             <RoadMap roadMapref={roadMapref} />

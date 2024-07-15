@@ -1,5 +1,8 @@
 import Card from "./card";
+import useEvent from "./useEvent";
 const PopularMarkets = ({popularRef}) =>{
+    const uSeEvent = useEvent()
+    
     return(
         <div ref={popularRef} style={{
             backgroundColor: '#F3F3F3',

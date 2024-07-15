@@ -1,5 +1,8 @@
 import Card from "./card";
+import useEvent from "./useEvent";
 const RecentMarkets = ({recentRef}) =>{
+    const event = useEvent();
+    console.log(event.recentEvent,"Recent Market");
     return(
         <div ref={recentRef} style={{
             backgroundColor: '#F3F3F3',
@@ -45,9 +48,24 @@ const RecentMarkets = ({recentRef}) =>{
                 flexWrap:"wrap",
                 gap:"2rem",
             }}>
+                {/* <Card isRecent={true}/>
                 <Card isRecent={true}/>
-                <Card isRecent={true}/>
-                <Card isRecent={true}/>
+                <Card isRecent={true}/> */}
+                {
+                    event.recentEvent.map(
+                        (eventItem,index)=> {
+                            return(
+                                <div key={index+1}>
+                                    <Card 
+                                        eventItem={eventItem}
+                                        isRecent={true}
+                                        event={eventItem}
+                                    />
+                                </div>
+                            )
+                        }
+                    )
+                }
                 
             </div>
 
