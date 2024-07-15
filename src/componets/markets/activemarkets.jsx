@@ -15,7 +15,7 @@ const ActiveMarket = ({popularRef}) =>{
 
     
     const populateEvent = async()=>{
-        await fetch( "http://52.66.253.239/api/v1/event/")
+        await fetch( "https://xenplay.xyz/api/v1/event/")
         .then((response) => response.json())
         .then((data) => {
           // console.log(data);

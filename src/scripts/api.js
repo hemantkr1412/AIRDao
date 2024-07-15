@@ -1,4 +1,4 @@
-const API_URL = "http://52.66.253.239/api/v1/";
+const API_URL = "https://xenplay.xyz/api/v1/event/";
 
 
 
