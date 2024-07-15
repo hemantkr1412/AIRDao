@@ -118,7 +118,7 @@ const HowItWorks = ({howItWorksRef}) =>{
                  <div style={{
                     width:"18%"
                 }}>
-                    <img src="card.png" alt="Card" style={{
+                    <img src="card1.png" alt="Card" style={{
                         width:"100%"
                     }}/>
                 </div>
