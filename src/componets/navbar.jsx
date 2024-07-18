@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadMapref,tokenDetailsRef}) => {
     const navigate = useNavigate()
     const [isToggled, setToggle] = useState(true);
+    const [isDropdown,setIsDropdown] = useState(false);
 
     useEffect(() => {
     const getDocument = document.querySelector("#menu");
@@ -99,9 +100,44 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                             borderRadius:"5px",
                             border:"none",
                             marginRight:"3rem",
-                        }}>
+                            cursor:"pointer"
+                        }}
+
+                        onClick={() => setIsDropdown(!isDropdown)}
+                        >
                             Connect Wallet
+                            <img src="downArrow.svg" alt="down-arrow" style={{
+                              marginLeft:"0.4rem",
+                              rotate:isDropdown?"180deg":"0deg"
+                            }}/>
                         </button>
+                        {isDropdown&& <div style={{
+                          position:"absolute",
+                          marginTop:"10px",
+                          width:"140px",
+                          backgroundColor:"white",
+                          display:"flex",
+                          flexDirection:"column",
+                          borderRadius:"10px",
+                          cursor:"pointer"
+                      
+                        }}>
+                          <p style={{
+                            padding:"1rem",
+                            borderBottom: "1px solid rgba(164, 164, 164, 1)"
+                          }}>
+                            Phantom
+                          </p>
+                          {/* <hr /> */}
+                          <p style={{
+                            padding:"1rem",
+
+                          }}>
+                            Solfare
+                          </p>
+
+
+                        </div>}
                     </div>
             </div>
         </div>
