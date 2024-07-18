@@ -14,6 +14,8 @@ const UpcomingMarkets = ({upComingRef}) =>{
             <ActiveMarket
             event={event.upcomingEvent}
             title={"Upcoming"}
+            
+
             />
     
 

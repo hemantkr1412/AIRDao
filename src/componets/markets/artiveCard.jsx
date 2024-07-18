@@ -42,7 +42,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                     </div>
                     <div style={{
                             color:"rgb(112, 112, 112)",
-                            marginTop:"0.5rem",
+                            // marginTop:"0.5rem",
                             fontSize:"0.9rem",
                            
                         }}>Resolution Date : {formatDate(event.resolution_date)}</div>
