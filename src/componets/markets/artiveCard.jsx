@@ -1,7 +1,9 @@
+
 import "./market.css";
 
 const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
-    console.log(event)
+    // console.log(event)
+
     return(
         <div className="cardContainer2" style={{
             backgroundColor:"white",
@@ -24,6 +26,14 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                     </div>
                     <div>
                     <div style={{
+                            color:"rgb(112, 112, 112)",
+                            marginTop:"0.5rem",
+                            fontSize:"0.9rem",
+                           
+                        }}>
+                    Event ID : 00{event.id}
+                    </div> 
+                    <div style={{
                             fontSize:"1rem",
                             fontWeight:"600",
                            
@@ -35,14 +45,14 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                             marginTop:"0.5rem",
                             fontSize:"0.9rem",
                            
-                        }}>Resolution Date : {event.resolution_date}</div>
+                        }}>Resolution Date : {formatDate(event.resolution_date)}</div>
                     </div>
                     
                     
                     
                     
                 </div>
-                {isUpcominng && <p className="startDate" >Start Date:  {event.start_date}</p>}
+                {isUpcominng && <p className="startDate" >Start Date:  {formatDate(event.start_date)}</p>}
                 {
                     !isUpcominng && <p style={{
                     textAlign:"center",
@@ -62,16 +72,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                    
                     
                     }}>
-                        <button style={{
-                                marginTop:"20px",
-                                backgroundColor:"red",
-                                color:"white",
-                                width:"120px",
-                                height:"35px",
-                                borderRadius:"5px",
-                                border:"none"
-                            }}
-                            >Vote Yes</button>
+                        <div>
                         <button style={{
                                 marginTop:"20px",
                                 backgroundColor:"green",
@@ -79,9 +80,38 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                                 width:"120px",
                                 height:"35px",
                                 borderRadius:"5px",
-                                border:"none"
+                                border:"none",
+                                cursor:"pointer"
                             }}
-                            >Vote No</button>
+                            >Vote Yes </button>
+                            <p  style={{
+                                fontSize:"1.1rem",
+                                color:"blue",
+                                marginTop:"0.5rem",
+                                textAlign:"center",
+                                fontWeight:"600"
+                            }}>70%</p>
+                        </div>
+                        <div>
+                        <button style={{
+                                marginTop:"20px",
+                                backgroundColor:"red",
+                                color:"white",
+                                width:"120px",
+                                height:"35px",
+                                borderRadius:"5px",
+                                border:"none",
+                                 cursor:"pointer"
+                            }}
+                            >Vote No </button>
+                            <p style={{
+                                fontSize:"1.1rem",
+                                color:"blue",
+                                marginTop:"0.5rem",
+                                textAlign:"center",
+                                fontWeight:"600"
+                            }}>30%</p>
+                        </div>
                     
 
                     </div>
@@ -114,8 +144,10 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                         }}>
                             <p style={{
                                 fontSize:"1.1rem",
-                                color:"rgb(112, 112, 112)"
+                                color:"black",
+                                fontWeight:"500"
                             }}>{result.result}</p>
+                    
                         
                         </div>
                         <div style={{
@@ -127,13 +159,14 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                                 color:"green",
                                 marginRight:"0.5rem",
                             }}>70%</div>}
-                            <button style={{
-                                backgroundColor:"#F2F2F2",
-                                color:"black",
+                            <button 
+                            className="votMultiButon"
+                            style={{
                                 width:"120px",
                                 height:"35px",
                                 borderRadius:"5px",
-                                border:"none"
+                                border:"none",
+                                cursor:"pointer"
                             }}
                             >Vote</button>
 
@@ -166,10 +199,28 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                             color:"rgb(112, 112, 112)",
                             marginTop:"0.5rem",
                             textAlign:"center"
-                        }}>Last Date: {event.end_date}</p>
+                        }}>Last Date:  {formatDate(event.end_date)}</p>
             </div>
         </div>
     )
 }
 
 export default Card;
+
+
+const formatDate = (dateString) => {
+    // console.log(dateString);
+    const date = new Date(dateString);
+    const options = {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'UTC',
+        hour12: false
+    };
+    const formattedDate = date.toLocaleDateString('en-CA', options).replace(/, /g, ' ');
+    const [datePart, timePart] = formattedDate.split(' ');
+    return `${datePart} UTC : ${timePart}`;
+};

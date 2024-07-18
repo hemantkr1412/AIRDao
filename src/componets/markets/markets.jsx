@@ -1,6 +1,33 @@
 
 import ActiveMarket from "./activemarkets";
+import useEvent from "../useEvent";
+import { useEffect, useState } from "react";
 const Markets = ()=>{
+
+    const event = useEvent();
+    const [filteredEvent,setFiltredEvent] = useState(event.activeEvent);
+    const [categoryName,setCategoryName] = useState("All");
+
+
+    useEffect(()=>{
+        // console.log("###############")
+        setFiltredEvent(event.activeEvent);
+        // console.log(event.activeEvent);
+        
+    },[event.activeEvent])
+
+    const handleCategory = (category) => {
+        setCategoryName(category)
+        if(category === 'All'){
+            setFiltredEvent(event.activeEvent);
+        }else{
+            const newFilteredEvent = event.activeEvent.filter((event) => event.category.name === category);
+            setFiltredEvent(newFilteredEvent);
+        }
+
+    };
+
+    
     return(
     <div style={{width:"100%",
         minHeight:"100vh",
@@ -12,46 +39,7 @@ const Markets = ()=>{
             minHeight:"95vh",
             display:"flex",
         }}>
-            {/* <div
-            className="sideNav"
-             style={{
-                 minHeight:"95vh",
-                 backgroundColor:"white"
-
-            }}> 
-            <div style={{
-                marginTop:"6rem",
-                display:"flex",
-                justifyContent:"space-between",
-                padding:"2rem",
-            }}>
-                <p style={{
-                    fontWeight:"500",
-                    color:"rgba(0, 0, 0, 0.5)",
-                    fontSize:"1.1rem"
-
-                }}>Filter</p> 
-                <img src="filter.svg" alt="filter" style={{
-                    width:"30px",
-                    height:"auto"
-                }} />
-            </div>
-            <div style={{
-                display:"flex",
-                justifyContent:"space-between",
-                padding:"1rem",
-            }}>
-                <input type="text" placeholder="Search" style={{
-                    width:"90%",
-                    height:"10px",
-                    borderRadius:"5px",
-                    borderColor:"rgba(112, 112, 112,0.3)",
-                    padding:"1rem",
-                    backgroundColor:"white",
-                }} />
-            </div>
-
-            </div> */}
+          
             <div  
             className="marketContainer"
             style={{
@@ -72,30 +60,28 @@ const Markets = ()=>{
                     boxShadow: "rgba(0, 0, 0, 0.35) 5px 2px 5px"
                     
                 }}>
-                        <p style={{
-                            fontWeight:"500",
+                     <p 
+                     onClick={
+                        ()=>handleCategory("All")
+                    } 
+                     style={{
+                            fontWeight:categoryName === "All" ? "700":"500",
                             cursor:"pointer"
                         }} >All</p>
-                        <p style={{
-                        fontWeight:"500",
-                        cursor:"pointer"
-                        }} >Politics</p>
-                        <p style={{
-                        fontWeight:"500",
-                        cursor:"pointer"
-                        }} >Sports</p>
-                        <p style={{
-                        fontWeight:"500",
-                        cursor:"pointer"
-                        }} >Crypto</p>
-                        <p style={{
-                        fontWeight:"500",
-                        cursor:"pointer"
-                        }} >Business</p>
-                        <p style={{
-                        fontWeight:"500",
-                        cursor:"pointer"
-                        }} >Science</p>
+                    {
+                        event.categories&&(event.categories).map((category) =>{
+                            return(
+                                <p onClick={
+                                    ()=>handleCategory(category.name)
+                                } style={{
+                                    fontWeight:categoryName === category.name ? "700":"500",
+                                    cursor:"pointer",
+
+                                    }} >{category.name}</p>
+                            )
+                        })
+                    }
+                       
             </div>
 
             <div className="filterSearchMobile">
@@ -136,18 +122,21 @@ const Markets = ()=>{
                     className="valueContainer"
                      style={{
                         height:"120px",
-                        backgroundColor:"white",
+                        backgroundColor:"black",
                         borderRadius:"5px",
                         // boxShadow:"#3E6FD9 0px 8px 23px",
                         padding:"1rem",
-                        border:"2px solid #3E6FD9"
+                        border:"2px solid white",
+                        color:"white",
+                        boxShadow: "2px 3px 12px 0px rgba(0, 0, 0, 0.4)"
+
                     }}>
                         <div style={{
                             display:"flex",
                             justifyContent:"space-between"
                         }}>
                             <h3>Total Value Locked</h3>
-                            <img src="ic_round-lock.svg" alt="filter" style={{
+                            <img src="lock.svg" alt="filter" style={{
                                 width:"30px",
                                 height:"auto"
                             }} />
@@ -162,18 +151,20 @@ const Markets = ()=>{
                     style={{
                         
                         height:"120px",
-                        backgroundColor:"white",
+                        backgroundColor:"black",
                         borderRadius:"5px",
-                        // boxShadow:"#C985FF 0px 8px 24px",
-                        border:"2px solid #C985FF",
-                        padding:"1rem"
+                        // boxShadow:"#3E6FD9 0px 8px 23px",
+                        padding:"1rem",
+                        border:"2px solid white",
+                        color:"white",
+                        boxShadow: "2px 3px 12px 0px rgba(0, 0, 0, 0.4)"
                     }}>
                          <div style={{
                             display:"flex",
                             justifyContent:"space-between"
                         }}>
                             <h3>Total Fees Generated</h3>
-                            <img src="bi_cash.svg" alt="filter" style={{
+                            <img src="cash.svg" alt="filter" style={{
                                 width:"30px",
                                 height:"auto"
                             }} />
@@ -187,19 +178,20 @@ const Markets = ()=>{
                       className="valueContainer"
                     style={{
                         height:"120px",
-                        backgroundColor:"white",
+                        backgroundColor:"black",
                         borderRadius:"5px",
-                        //  boxShadow:"#8EC656 0px 8px 24px",
-                        border:"2px solid #8EC656",
-
-                         padding:"1rem"
+                        // boxShadow:"#3E6FD9 0px 8px 23px",
+                        padding:"1rem",
+                        border:"2px solid white",
+                        color:"white",
+                        boxShadow: "2px 3px 12px 0px rgba(0, 0, 0, 0.4)"
                     }}>
                         <div style={{
                             display:"flex",
                             justifyContent:"space-between"
                         }}>
                             <h3>Total Tokens Burnt</h3>
-                            <img src="mdi_fire.svg" alt="filter" style={{
+                            <img src="fire.svg" alt="filter" style={{
                                 width:"30px",
                                 height:"auto"
                             }} />
@@ -211,7 +203,10 @@ const Markets = ()=>{
                     </div>
 
                 </div>
-                <ActiveMarket />
+                <ActiveMarket 
+                    event={filteredEvent}
+                    title={"Active"}
+                />
 
 
             </div>

@@ -4,7 +4,7 @@
 
 .cardContainer2{
     /* width: 24%; */
-    height: 280px;
+    min-height: 280px;
     border-radius: 10px;
     background-color: white;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -14,6 +14,18 @@
 .cardMainBox{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+}
+
+.votMultiButon{
+    background-color: black;
+    color: white;
+
+}
+
+.votMultiButon:hover{
+    background-color: black;
+    color: white;
+    box-shadow: 2px 2px 2px #8a8a8a;
 }
 
 .startDateMobile{

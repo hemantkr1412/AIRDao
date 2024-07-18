@@ -1,67 +1,49 @@
-import Card from "./artiveCard";
 import { useEffect, useState } from "react";
+import Card from "./artiveCard";
+import useEvent from "../useEvent";
 
 
-const ActiveMarket = ({popularRef}) =>{
+const ActiveMarket = ({popularRef,event,title}) =>{
 
-    const [eventData,setEventData] = useState();
-    const [activeEvent,setActiveEvent] = useState();
-    const [recentEvent,setRecentEvent] = useState();
-    const [upcomingEvent,setUpcomingEvent] = useState();
-  
-    useEffect(() => {
-    populateEvent();
-    }, []);
+    const eventUse = useEvent();
+    
+
+    const [searchedEvent,setSearchedEvent] = useState(event);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('All Categories');
+    const [filtredEvent,setFilterEvent] = useState([])
+
+    useEffect(()=>{
+        setFilterEvent(event);
+        setSearchedEvent(event);
+    },[event]);
+
+
+    const handleCategoryChange = (e) => {
+        setSelectedCategory(e.target.value);
+        if(e.target.value === 'All'){
+            setSearchedEvent(event);
+            setFilterEvent(event)
+        }else{
+            console.log(event);
+            const newFilteredEvent = event?.filter((event) => event.category.name === e.target.value);
+            setSearchedEvent(newFilteredEvent);
+            setFilterEvent(newFilteredEvent);
+        }
+    };
+
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+        // console.log(filtredEvent,"Handle Search Change");
+        const filteredEvents = filtredEvent?.filter(event =>
+            event.event_name.toLowerCase().includes((e.target.value).toLowerCase())
+        );
+
+        setSearchedEvent(filteredEvents);
+    };
 
     
-    const populateEvent = async()=>{
-        await fetch( "https://xenplay.xyz/api/v1/event/")
-        .then((response) => response.json())
-        .then((data) => {
-          // console.log(data);
-          const responseData = data.results;
-        //   console.log(responseData);
 
-          const today = new Date();
-          const year = today.getFullYear();
-          const month = String(today.getMonth()+1).padStart(2,'0');
-          const day = String(today.getDate()).padStart(2,'0');
-
-          const formattedDate = `${year}-${month}-${day}`;
-
-        //   console.log(formattedDate)
-
-            const recent = [];
-            const active = [];
-            const upcoming = [];
-
-            responseData.forEach(event => {
-                const startDate = new Date(event.start_date);
-                const endDate = new Date(event.end_date);
-
-                if (endDate < today) {
-                    recent.push(event);
-                } else if (startDate < today && endDate >= today) {
-                    active.push(event);
-                } else if (startDate >= today) {
-                    upcoming.push(event);
-                }
-            });
-
-            setRecentEvent(recent);
-            setActiveEvent(active);
-            setUpcomingEvent(upcoming);
-        
-
-          setEventData(responseData)
-       
-
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-        
-    }
 
 
     return(
@@ -84,10 +66,13 @@ const ActiveMarket = ({popularRef}) =>{
                     <p style={{
                         fontSize:"1.5rem",
                         fontWeight:"700"
-                    }}>Active Markets</p>
+                    }}>{title} Markets</p>
                 </div>
                 <div>
-                    <input className="inpt" type="text" placeholder="Search" style={{
+                    <input className="inpt" type="text" placeholder="Search" 
+                    value={searchTerm}
+                    onChange={(e)=>handleSearchChange(e)}
+                    style={{
                     width:"200px",
                     height:"10px",
                     borderRadius:"5px",
@@ -95,9 +80,9 @@ const ActiveMarket = ({popularRef}) =>{
                     padding:"1rem",
                     // backgroundColor:"white",
                     marginRight:"1rem"
-                    
+                  
                 }} />
-                    <select style={{
+                    {title === "Active" && <select style={{
                         width:"200px",
                         height:"50px",
                         borderRadius:"5px",
@@ -106,10 +91,32 @@ const ActiveMarket = ({popularRef}) =>{
                         backgroundColor:"transparent",
                     
                     }}>
-                        <option>
-                           All Categories
-                        </option>
-                    </select>
+                              <option value="">Sort By</option>
+                              <option value="new">New</option>
+                              <option value="ending_soon">Ending soon</option>
+                             
+                    </select>}
+                    {title !== "Active" && (
+                        <select
+                        style={{
+                            width: "200px",
+                            height: "50px",
+                            borderRadius: "5px",
+                            borderColor: "rgba(112, 112, 112, 0.3)",
+                            padding: "1rem",
+                            backgroundColor: "transparent",
+                        }}
+                        onChange={(e)=>handleCategoryChange(e)}
+                        value={selectedCategory}
+                        >
+                        <option value="All">All Categories</option>
+                        {eventUse?.categories?.map((category) => (
+                            <option key={category.name} value={category.name}>
+                            {category.name}
+                            </option>
+                        ))}
+                        </select>
+                    )}
                 </div>
                
             </div> 
@@ -123,7 +130,21 @@ const ActiveMarket = ({popularRef}) =>{
                 gap:"2rem",
             }}>
                 {
-                    activeEvent&& activeEvent.map(
+                     title =="Active" &&  searchedEvent?.map(
+                        (eve,index)=> {
+                            return(
+                                <div key={index+1}>
+                                    <Card isPopular={true}
+                                        event={eve}
+                                        // isUpcominng={true}
+                                    />
+                                </div>
+                            )
+                        }
+                    )
+                }
+                {
+                     title =="Recent" &&  searchedEvent.map(
                         (event,index)=> {
                             return(
                                 <div key={index+1}>
@@ -136,145 +157,35 @@ const ActiveMarket = ({popularRef}) =>{
                         }
                     )
                 }
-                {/* <Card isPopular={true}/> */}
-                {/* <Card isPopular={true}/> */}
-                {/* <Card isPopular={true}/> */}
-                
-            </div>
-            <div style={{
-                width:"96%",
-                display:"flex",
-                justifyContent:"space-between",
-                marginLeft:"2%",
-                marginRight:"2%"
-            }}>
-                <div>
-                    <p style={{
-                        fontSize:"1.5rem",
-                        fontWeight:"700"
-                    }}>Upcoming Event</p>
-                </div>
-                <div>
-                    <input className="inpt" type="text" placeholder="Search" style={{
-                    width:"200px",
-                    height:"10px",
-                    borderRadius:"5px",
-                    border:"1px solid grey",
-                    padding:"1rem",
-                    // backgroundColor:"white",
-                    marginRight:"1rem"
-                    
-                }} />
-                    <select style={{
-                        width:"200px",
-                        height:"50px",
-                        borderRadius:"5px",
-                        borderColor:"rgba(112, 112, 112,0.3)",
-                        padding:"1rem",
-                        backgroundColor:"transparent",
-                    
-                    }}>
-                        <option>
-                           All Categories
-                        </option>
-                    </select>
-                </div>
-               
-            </div> 
-            <div
-            className="cardMainBox"
-             style={{
-                padding:"2%",
-                // display:"flex",
-                // justifyContent:"space-between",
-                // flexWrap:"wrap",
-                gap:"2rem",
-            }}>
                 {
-                    upcomingEvent&& upcomingEvent.map(
+                     title =="Upcoming" &&  searchedEvent.map(
                         (event,index)=> {
                             return(
                                 <div key={index+1}>
                                     <Card isPopular={true}
                                         event={event}
-                                        isUpcominng={true}
+                                        // isUpcominng={true}
                                     />
                                 </div>
                             )
                         }
                     )
                 }
-                {/* <Card isPopular={true}/> */}
-                {/* <Card isPopular={true}/> */}
-                {/* <Card isPopular={true}/> */}
-                
-            </div>
-            <div style={{
-                width:"96%",
-                display:"flex",
-                justifyContent:"space-between",
-                marginLeft:"2%",
-                marginRight:"2%"
-            }}>
-                <div>
-                    <p style={{
-                        fontSize:"1.5rem",
-                        fontWeight:"700"
-                    }}>Recent Markets</p>
-                </div>
-                <div>
-                    <input className="inpt" type="text" placeholder="Search" style={{
-                    width:"200px",
-                    height:"10px",
-                    borderRadius:"5px",
-                    border:"1px solid grey",
-                    padding:"1rem",
-                    // backgroundColor:"white",
-                    marginRight:"1rem"
-                    
-                }} />
-                    <select style={{
-                        width:"200px",
-                        height:"50px",
-                        borderRadius:"5px",
-                        borderColor:"rgba(112, 112, 112,0.3)",
-                        padding:"1rem",
-                        backgroundColor:"transparent",
-                    
-                    }}>
-                        <option>
-                           All Categories
-                        </option>
-                    </select>
-                </div>
-               
-            </div> 
-            <div
-            className="cardMainBox"
-             style={{
-                padding:"2%",
-                // display:"flex",
-                // justifyContent:"space-between",
-                // flexWrap:"wrap",
-                gap:"2rem",
-            }}>
-                {
-                    recentEvent&& recentEvent.map(
+                 {
+                     title =="popular" &&  searchedEvent.map(
                         (event,index)=> {
                             return(
                                 <div key={index+1}>
                                     <Card isPopular={true}
                                         event={event}
-                                        isRecent={true}
+                                        // isUpcominng={true}
                                     />
                                 </div>
                             )
                         }
                     )
                 }
-                {/* <Card isPopular={true}/> */}
-                {/* <Card isPopular={true}/> */}
-                {/* <Card isPopular={true}/> */}
+             
                 
             </div>
 

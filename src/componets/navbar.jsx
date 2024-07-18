@@ -49,10 +49,10 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                 <div style={{
                     display:"flex",
                     color:"white",
-                    width:"60%",
+                    width:"50%",
                     gap:"4rem",
-                    justifyContent:"right",
-                    paddingRight:"3rem",
+                    // justifyContent:"",
+                    justifyContent:"center",
                     alignItems: 'center',
                 }}>
                     <div onClick={()=>{
@@ -67,7 +67,17 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     }} style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
                     color:"white",
                   }} >Markets</div>
-                    <div>
+                   <div onClick={()=>{
+                      navigate("/markets")
+                    }} style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
+                    color:"white",
+                  }} >Ranks</div>
+                   <div onClick={()=>{
+                      navigate("/markets")
+                    }} style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
+                    color:"white",
+                  }} >My Predictions</div>
+                    {/* <div>
                         <button style={{
                             backgroundColor:"white",
                             color:"black",
@@ -78,57 +88,22 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                         }}>
                             Connect Wallet
                         </button>
-                    </div>
+                    </div> */}
                 </div>
+                <div>
+                        <button style={{
+                            backgroundColor:"white",
+                            color:"black",
+                            width:"140px",
+                            height:"35px",
+                            borderRadius:"5px",
+                            border:"none",
+                            marginRight:"3rem",
+                        }}>
+                            Connect Wallet
+                        </button>
+                    </div>
             </div>
-            {/* <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '5vh',
-                backgroundColor: 'white',
-                gap:"2.5rem",
-                // boxShadow:"1px 2px 2px black",
-                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
-                
-            }}>
-                    <p style={{
-                        fontWeight:"500",
-                        cursor:"pointer"
-                    }} onClick={()=>{
-                        handleScroll(upComingRef)
-                    }}>Upcoming Markets</p>
-                    <p style={{
-                    fontWeight:"500",
-                    cursor:"pointer"
-                    }} onClick={()=>{
-                        handleScroll(popularRef)
-                    }}>Popular Markets</p>
-                    <p style={{
-                    fontWeight:"500",
-                    cursor:"pointer"
-                    }} onClick={()=>{
-                        handleScroll(recentRef)
-                    }}>Recent Markets</p>
-                    <p style={{
-                    fontWeight:"500",
-                    cursor:"pointer"
-                    }} onClick={()=>{
-                        handleScroll(howItWorksRef)
-                    }}>How it Works</p>
-                    <p style={{
-                    fontWeight:"500",
-                    cursor:"pointer"
-                    }} onClick={()=>{
-                        handleScroll(roadMapref)
-                    }}>RoadMap</p>
-                    <p style={{
-                    fontWeight:"500",
-                    cursor:"pointer"
-                    }} onClick={()=>{
-                        handleScroll(tokenDetailsRef)
-                    }}>Token Details</p>
-            </div> */}
         </div>
         <div className="navmanu" style={{
       position: "fixed",
