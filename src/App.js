@@ -4,11 +4,18 @@ import Navbar from "./componets/navbar";
 import Footer from "./componets/footer";
 import Markets from "./componets/markets/markets";
 import Home from "./componets/home";
+import ConnectPhantom from "./componets/wallet/connectPhantom";
+import ConnectSolflare from "./componets/wallet/connectSolflare";
+import { WalletProvider } from "./context/walletContext";
 
 
 // router
 import { Route, Routes } from "react-router-dom";
 import { HashRouter } from "react-router-dom";
+
+import { createContext } from "react";
+
+export const MyContext = createContext("");
 
 
 function App() {
@@ -29,6 +36,7 @@ function App() {
 
 
   return (
+    <WalletProvider>
     <div
       style={{
         backgroundColor: "#F3F3F3",
@@ -71,6 +79,7 @@ function App() {
         <Footer />
       </HashRouter>
     </div>
+    </WalletProvider>
   );
 }
 

@@ -2,7 +2,7 @@
 import "./market.css";
 
 const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
-    // console.log(event)
+    // console.log(isUpcominng)
 
     return(
         <div className="cardContainer2" style={{
@@ -158,8 +158,8 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                                 fontSize:"1.1rem",
                                 color:"green",
                                 marginRight:"0.5rem",
-                            }}>70%</div>}
-                            <button 
+                            }}>0%</div>}
+                           {! isUpcominng && <button 
                             className="votMultiButon"
                             style={{
                                 width:"120px",
@@ -168,7 +168,22 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                                 border:"none",
                                 cursor:"pointer"
                             }}
+                            >Vote</button>}
+                            {
+                                isUpcominng && 
+                                <button 
+                            // className="votMultiButon"
+                            style={{
+                                backgroundColor:"#F2F2F2",
+                                color:"#7D7D7D",
+                                width:"120px",
+                                height:"35px",
+                                borderRadius:"5px",
+                                border:"none",
+                                // cursor:"pointer"
+                            }}
                             >Vote</button>
+                            }
 
                         </div>
                         </div>
@@ -181,7 +196,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                 
             </div>
 
-            <div style={{
+            <div className="cardfooter" style={{
                 borderTop:"1px solid rgba(112, 112, 112,0.5)",
                 display:"flex",
                 paddingLeft:"1rem",

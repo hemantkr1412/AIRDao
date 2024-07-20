@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import "./navbar.css";
 import { useNavigate } from "react-router-dom";
+import { useWallet } from "../context/walletContext";
 
 const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadMapref,tokenDetailsRef}) => {
+
     const navigate = useNavigate()
     const [isToggled, setToggle] = useState(true);
     const [isDropdown,setIsDropdown] = useState(false);
+
+    const wallet = useWallet();
 
     useEffect(() => {
     const getDocument = document.querySelector("#menu");
@@ -17,6 +21,31 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
     
   }, [isToggled]);
 
+  console.log(wallet.isWalletConnected);
+
+
+  const getAddress = () => {
+    if (!wallet.isWalletConnected) {
+      return "Connect Wallet";
+    }
+
+    let wallettype = localStorage.getItem("wallettype");
+
+    if (wallettype == "browser") {
+      return `${wallet?.provider?.publicKey
+        .toString()
+        .slice(0, 4)}...${wallet?.provider?.publicKey.toString().slice(39)}`;
+    }
+    if (wallettype == "mobile") {
+      return `${wallet?.mobile?.publicKey
+        .toString()
+        .slice(0, 4)}...${wallet?.mobile?.publicKey.toString().slice(39)}`;
+    }
+
+    return "Connect Wallet";
+  };
+
+
 
 
  const handleClickMenu = () =>{
@@ -24,7 +53,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
   }
     return (
     <>
-        <div className="navbar">
+        <div className="navbar" >
             <div style={{
 
                 display: 'flex',
@@ -92,7 +121,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     </div> */}
                 </div>
                 <div>
-                        <button style={{
+                        {/* <button style={{
                             backgroundColor:"white",
                             color:"black",
                             width:"140px",
@@ -105,39 +134,82 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
 
                         onClick={() => setIsDropdown(!isDropdown)}
                         >
-                            Connect Wallet
+                            {getAddress()}
                             <img src="downArrow.svg" alt="down-arrow" style={{
                               marginLeft:"0.4rem",
                               rotate:isDropdown?"180deg":"0deg"
                             }}/>
-                        </button>
-                        {isDropdown&& <div style={{
-                          position:"absolute",
-                          marginTop:"10px",
-                          width:"140px",
-                          backgroundColor:"white",
-                          display:"flex",
-                          flexDirection:"column",
-                          borderRadius:"10px",
-                          cursor:"pointer"
-                      
-                        }}>
-                          <p style={{
-                            padding:"1rem",
-                            borderBottom: "1px solid rgba(164, 164, 164, 1)"
-                          }}>
-                            Phantom
-                          </p>
-                          {/* <hr /> */}
-                          <p style={{
-                            padding:"1rem",
-
-                          }}>
-                            Solfare
-                          </p>
-
-
-                        </div>}
+                        </button> */}
+                        <div className="dropdown1">
+                            <button
+                             style={{
+                              backgroundColor:"white",
+                              color:"black",
+                              width:"140px",
+                              height:"35px",
+                              borderRadius:"5px",
+                              border:"none",
+                              marginRight:"3rem",
+                              cursor:"pointer"
+                          }}
+                             className="para-link2" > {getAddress()}
+                              <img src="downArrow.svg" alt="down-arrow" style={{
+                              marginLeft:"0.4rem",
+                              rotate:isDropdown?"180deg":"0deg"
+                            }}/>
+                             </button>
+                                <div className="dropdown-content1">
+                                    <div className="column" style={{
+                                    width:"100%",
+                                    height:"auto"
+                                    }}>
+                                    {!wallet.isWalletConnected ?<>
+                                    <a onClick={()=>{
+                                        wallet.connect()
+                                      }} style={{
+                                        padding:"1rem",
+                                        borderBottom: "1px solid rgba(164, 164, 164, 1)"
+                                      }}>
+                                        Phantom
+                                        <img  src="phantom.png" alt="phantom" style={{
+                                          width:"20px",
+                                          height:"20px",
+                                         
+                                       
+                                        }}/>
+                                      </a>
+                                      <a onClick={
+                                        ()=>{
+                                          wallet.connectSolflare()
+                                        }
+                                      } style={{
+                                        padding:"1rem",
+                                        borderBottom: "0px solid rgba(164, 164, 164, 1)"
+                                      }}>
+                                        Solfare
+                                        <img src="solfare.png" alt="phantom" style={{
+                                          width:"20px",
+                                          height:"20px",
+                                           marginLeft:"8px"
+                                        }}/>
+                                      </a>
+                                      </> :
+                                      <>
+                                      <a onClick={
+                                        ()=>{
+                                          wallet.disconnect();
+                                        }
+                                      } style={{
+                                        padding:"1rem",
+                                        borderBottom: "0px solid rgba(164, 164, 164, 1)"
+                                      }}>
+                                        Disconnect
+                                      </a>
+                                      </>}
+                                    </div>
+                                </div>
+                        </div>
+                        
                     </div>
             </div>
         </div>

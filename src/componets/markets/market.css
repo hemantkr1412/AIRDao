@@ -63,6 +63,9 @@ width: 25%;
 .inpt{
     display: inline;
 }
+.cardfooter p{
+    font-size: 1rem;
+}
 
 @media screen and (max-width: 450px) {
   .startDate{
@@ -116,6 +119,7 @@ width: 25%;
      grid-template-columns: repeat(2, 1fr);
 }
 
+
 }
 
 @media screen and (max-width: 1160px) {
@@ -144,6 +148,9 @@ width: 25%;
     display: grid;
      grid-template-columns: repeat(2, 1fr);
 }
+.cardfooter p{
+    font-size: 0.8rem;
+}
 
 }
 
@@ -168,6 +175,8 @@ width: 25%;
     border-radius: 10px;
     background-color: white;
 }    */
+
+
 
 .cardMainBox{
     display: grid;
