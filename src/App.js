@@ -7,7 +7,8 @@ import Home from "./componets/home";
 import ConnectPhantom from "./componets/wallet/connectPhantom";
 import ConnectSolflare from "./componets/wallet/connectSolflare";
 import { WalletProvider } from "./context/walletContext";
-
+import Pridtiction from "./componets/mypridiction/myPridiction";
+import MyRank from "./componets/myRank/myRank";
 
 // router
 import { Route, Routes } from "react-router-dom";
@@ -71,6 +72,20 @@ function App() {
             path="/markets"
             element={
               <Markets
+              />
+            }
+            />
+            <Route
+            path="/myPridiction"
+            element={
+              <Pridtiction
+              />
+            }
+            />
+             <Route
+            path="/myRank"
+            element={
+              <MyRank
               />
             }
             />

@@ -1,9 +1,14 @@
 
+import { useState } from "react";
 import "./market.css";
+import Modal from "../model";
 
 const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
-    // console.log(isUpcominng)
+    const [showModal, setShowModal] = useState(false);
 
+    const toggleModal = () => {
+      setShowModal(!showModal);
+    };
     return(
         <div className="cardContainer2" style={{
             backgroundColor:"white",
@@ -73,7 +78,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                     
                     }}>
                         <div>
-                        <button style={{
+                        <button  onClick={toggleModal} style={{
                                 marginTop:"20px",
                                 backgroundColor:"green",
                                 color:"white",
@@ -92,8 +97,9 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                                 fontWeight:"600"
                             }}>70%</p>
                         </div>
+                        <Modal show={showModal} onClose={toggleModal} />
                         <div>
-                        <button style={{
+                        <button  onClick={toggleModal} style={{
                                 marginTop:"20px",
                                 backgroundColor:"red",
                                 color:"white",

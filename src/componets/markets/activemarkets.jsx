@@ -3,7 +3,10 @@ import Card from "./artiveCard";
 import useEvent from "../useEvent";
 
 
+
+
 const ActiveMarket = ({popularRef,event,title}) =>{
+
 
     const eventUse = useEvent();
     
@@ -41,6 +44,44 @@ const ActiveMarket = ({popularRef,event,title}) =>{
 
         setSearchedEvent(filteredEvents);
     };
+
+
+    // const handlePostRequest = async () => {
+    //     console.log("Hit URL");
+    //     const proxyUrl = 'https://api.allorigins.win/get?url=';
+    //     const targetUrl = encodeURIComponent('https://bgms.nodwingaming.com/?fbclid=PAZXh0bgNhZW0CMTEAAabWGkLJiVQzrBJ6cbIJuNdwTTfX0_iDqPejCz8ZMrgGJ1iGm0sQK0Rl_QY_aem_Lyf4-CLS9zFKcJ7k7wiOmg');
+    //     const url = `${proxyUrl}${targetUrl}`;
+        
+        
+    //     const data = [
+    //       {
+    //         team: "6696bce7d2ad22865888ff60",
+    //         whatsappNumber: "919771304639"
+    //       }
+    //     ];
+    
+    //     try {
+    //       const response = await fetch(url, {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(data),
+    //       });
+    
+    //       if (!response.ok) {
+    //         throw new Error('Network response was not ok');
+    //       }
+    
+    //       const result = await response.json();
+    //       console.log(result);
+    //       //   setResponse(result);
+    //     } catch (error) {
+    //       console.error('Error:', error);
+    //       //   setResponse({ error: error.message });
+    //     }
+    //   };
+    
 
     
 

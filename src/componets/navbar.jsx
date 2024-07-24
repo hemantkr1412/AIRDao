@@ -98,12 +98,12 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     color:"white",
                   }} >Markets</div>
                    <div onClick={()=>{
-                      navigate("/markets")
+                      navigate("/myRank")
                     }} style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
                     color:"white",
                   }} >Ranks</div>
                    <div onClick={()=>{
-                      navigate("/markets")
+                      navigate("/myPridiction")
                     }} style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
                     color:"white",
                   }} >My Predictions</div>
