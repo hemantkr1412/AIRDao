@@ -1,0 +1,25 @@
+/* BarAnimation.css */
+.bar-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 200px;
+    width: 100%;
+    z-index: 2;
+  }
+  
+  .bar {
+    background-color: #333;
+    animation: growShrink 1s ease-in-out infinite;
+    transform-origin: bottom;
+  }
+  
+  @keyframes growShrink {
+    0%, 100% {
+      transform: scaleY(1);
+    }
+    50% {
+      transform: scaleY(0.5);
+    }
+  }
+  

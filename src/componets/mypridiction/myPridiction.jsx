@@ -69,6 +69,10 @@ const Pridtiction = () =>{
                         fontSize:"1.1rem",
                         fontWeight:"600"
                     }}>Tokens Committed</p>
+                      <p style={{
+                        fontSize:"1.1rem",
+                        fontWeight:"600"
+                    }}>Tokens Rewarded</p>
                 </div>
                  {/* <div style={{
                     background: "linear-gradient(180deg, #1A1A1A -1.47%, #3F3F3F 30.25%, #626262 49.26%, #393939 74.55%, #3F0A4C 100%)",

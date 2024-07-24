@@ -68,7 +68,7 @@ const MyRank = () =>{
                     <p style={{
                         fontSize:"1.1rem",
                         fontWeight:"600"
-                    }}>Tokens Committed</p>
+                    }}>Amount</p>
                 </div>
                  
                  <div style={divStyle}>

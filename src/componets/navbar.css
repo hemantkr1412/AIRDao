@@ -1,21 +1,29 @@
 .herosection{
     display: flex;
-    align-items: center;
-    height: 600px;
+    /* align-items: center; */
+    /* height: 85vh; */
+    /* margin-top: 20rem; */
 }
 
 .herosectionSubDiv{
-    width: 50%;
+    width: 40%;
     padding-left: 3rem;
+    margin-top: 35vh;
 }
 .herosectionSubDiv2{
     width: 50%;
     display: flex;
-    justify-content: right;
+    /* flex-direction: column; */
+    justify-content: center;
     margin-right: 5rem;
     height: 100%;
     align-items: center;
-    margin-top: 5rem;
+    margin-top: 5vh;
+    z-index: 4;
+}
+.herosectionSubDiv2 img{
+     width: 620px;
+     height:auto;
 }
 .herosectionSubDiv p{
     font-size: 1.3rem;
@@ -219,6 +227,14 @@ padding: 2%;
     background-color: white;
 }   
 
+.herosectionSubDiv{
+    width: 35%;
+}
+.herosectionSubDiv2 img{
+    width: 560px;
+    height:auto;
+}
+
 }
 
 @media screen and (max-width: 1160px) {
@@ -280,6 +296,7 @@ padding: 2%;
     background-color: white;
 }   
 
+
 }
 
 
@@ -300,8 +317,7 @@ padding: 2%;
 
     }
     .herosectionSubDiv2{
-    width: 100%;
-    
+        display: none;
     }
 
     .herosectionSubDiv p{
