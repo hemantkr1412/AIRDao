@@ -56,35 +56,18 @@ const HeroSection = () =>{
             </div>
             <div className="herosectionSubDiv2">
                
-                    <div style={{
-                        position:"absolute",
-                        marginRight:"28%",
-                        marginTop:"25rem"
-
-                    }} >
+                    <div className="herosectionSubDiv2Box1"  >
                         <CardAnimation cardNo={0}/>
                     </div>
-                    <div style={{
-                        position:"absolute",
-                        marginTop:"35rem",
-                        marginLeft:"20%"
-                    }} >
+                    <div className="herosectionSubDiv2Box2">
                         <CardAnimation  cardNo={1}/>
                     </div>
-                    <div 
-                    style={{
-                        position:"absolute",
-                        marginTop:"10rem",
-                        marginLeft:"30%"
-                    }} >
+                    <div className="herosectionSubDiv2Box3" >
                         <CardAnimation 
                         cardNo={2}
                         />
                     </div>
-                    <div style={{
-                        position:"absolute",
-
-                    }} >
+                    <div className="herosectionSubDiv2Box4" >
                         <CardAnimation 
                         cardNo={3}
                         />

@@ -180,6 +180,32 @@ padding: 2%;
 
 
 
+
+  /* herosectionSubDiv2 */
+
+  .herosectionSubDiv2Box1{
+    position:absolute;
+    margin-right:28%;
+    margin-top:25rem;
+  }
+  .herosectionSubDiv2Box2{
+    position:absolute;
+    margin-left:20%;
+    margin-top:35rem;
+  }
+  .herosectionSubDiv2Box3{
+    position:absolute;
+    margin-left:30%;
+    margin-top:10rem;
+  }
+  .herosectionSubDiv2Box4{
+    position: absolute;
+  }
+
+
+
+
+
 @media screen and (max-width: 450px) {
   .startDate{
    display: none;
@@ -200,7 +226,30 @@ padding: 2%;
     height: 280px;
     border-radius: 10px;
     background-color: white;
-}   
+}
+.herosectionSubDiv2{
+    width: 60%;
+    margin-right: 0rem;
+}
+.herosectionSubDiv2Box1{
+    position:absolute;
+    margin-right:28%;
+    margin-top:15rem;
+  }
+  .herosectionSubDiv2Box2{
+    position:absolute;
+    margin-left:15%;
+    margin-top:25rem;
+  }
+  .herosectionSubDiv2Box3{
+    position:absolute;
+    margin-left:25%;
+    margin-top:5rem;
+  }
+  .herosectionSubDiv2Box4{
+    position: absolute;
+    margin-bottom: 2.5rem;
+  }  
 
 }
 
@@ -213,6 +262,10 @@ padding: 2%;
 }   
 .startDate{
    margin-left: 22px;
+}
+.herosectionSubDiv2 img{
+    width: 460px;
+    height:auto;
 }
 
 }
@@ -229,10 +282,6 @@ padding: 2%;
 
 .herosectionSubDiv{
     width: 35%;
-}
-.herosectionSubDiv2 img{
-    width: 560px;
-    height:auto;
 }
 
 }

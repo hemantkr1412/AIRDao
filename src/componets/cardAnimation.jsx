@@ -59,11 +59,7 @@ const CardAnimation = ({cardNo}) => {
                     gap:"1rem"
                 }}>
                     <div>
-                    <img src={"profile.jpg"} alt="profile" style={{
-                        width:"70px",
-                        height:"70px",
-                        borderRadius:"50%",
-                    }} />
+                    <img src={"profile.jpg"} alt="profile"  />
                     </div>
                     <div>
                     <div style={{
@@ -81,10 +77,10 @@ const CardAnimation = ({cardNo}) => {
                         }}>
                         will biden dropout ?
                     </div>
-                    <div style={{
+                    <div className="resuDtae" style={{
                             color:"rgb(112, 112, 112)",
                             // marginTop:"0.5rem",
-                            fontSize:"0.9rem",
+                            // fontSize:"0.9rem",
                            
                         }}>Resolution Date : 01-01-2024</div>
                     </div>

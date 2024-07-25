@@ -208,7 +208,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                 paddingLeft:"1rem",
                 paddingRight:"1rem",
                 justifyContent:"space-between",
-                gap:'3rem'
+                // gap:'3rem'
             }}> 
                 {   
                     (isPopular || isRecent) && <p style={{

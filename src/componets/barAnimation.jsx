@@ -5,7 +5,7 @@ import "./barAnimation.css";
 const BarAnimation = () => {
   // Heights and widths of the bars as per the image
   const barHeights = [
-    100, 60, 80, 120, 50, 90, 60, 100, 40, 80,
+    100, 60, 80, 100, 50, 90, 60, 100, 40, 80,
     50, 100, 50, 70, 120, 50, 120, 70, 40, 110,
     100, 60, 80, 120, 50, 90, 60, 100, 40, 80,
     50, 100, 50, 70, 120, 50, 120, 70, 40, 110,

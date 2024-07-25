@@ -63,6 +63,9 @@ width: 25%;
 .inpt{
     display: inline;
 }
+.cardfooter{
+    gap: 3rem;
+}
 .cardfooter p{
     font-size: 1rem;
 }
@@ -88,7 +91,9 @@ width: 25%;
     border-radius: 10px;
     background-color: white;
 }    */
-
+.cardfooter{
+    gap: 1rem;
+}
 }
 
 @media screen and (max-width: 1330px) {
