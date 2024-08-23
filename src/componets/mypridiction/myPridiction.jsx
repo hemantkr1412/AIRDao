@@ -1,5 +1,47 @@
 
+import { useEffect, useState } from "react";
+import { useWallet } from "../../context/walletContext";
 const Pridtiction = () =>{
+
+    const [myPrediction,setMyprediction] = useState([]);
+    const wallet = useWallet();
+    const populateMyPridiction = async () => {
+        console.log("Enter in my prediction")
+          const url = new URL(`http://127.0.0.1:8000/api/v1/event/my-predictions/`);
+        url.searchParams.append("wallet_address",wallet.publicKey);
+      
+        const requestOptions = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+      
+        try {
+          const response = await fetch(url, requestOptions);
+      
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}, Text: ${response.statusText}`);
+          }
+      
+          const result = await response.json();
+          console.log(result, ">>>>>>>>> MY Pridiction >>>>>>>>>");
+          setMyprediction(result.results);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+        
+      };
+
+
+    useEffect(()=>{
+        if(wallet.publicKey){
+            console.log("My Prediction Effect if");
+            console.log(wallet.publicKey);
+            populateMyPridiction();
+        }
+    },[wallet.publicKey])
+   
     const divStyle = {
         background: "linear-gradient(180deg, #1A1A1A -1.47%, #3F3F3F 30.25%, #626262 49.26%, #393939 74.55%, #3F0A4C 100%)",
         width: "100%",
@@ -37,7 +79,7 @@ const Pridtiction = () =>{
          }}>My Predictions</h1>
        </div>
 
-       <div style={{
+       {wallet.isWalletConnected? <div style={{
         width:"100%",
         // height:"400px",
         display:"flex",
@@ -81,12 +123,50 @@ const Pridtiction = () =>{
                  }}>
 
                  </div> */}
-                 <div style={divStyle}>
-                    <div style={arrowStyle}></div>
-                </div>
+                 {
+                    myPrediction.map((data,index) =>{
+                        return(
+                            <div key={"data"+data.id} style={divStyle}>
+                               <div style={{
+                                display:"flex",
+                                justifyContent:"space-between",
+                                padding:"0.7rem",
+                                color:"white"
+                            }}>
+                                <p style={{
+                                    fontSize:"1.1rem",
+                                    fontWeight:"500",
+                                }}>{index+1}</p>
+                                <p style={{
+                                    fontSize:"1.1rem",
+                                    fontWeight:"500"
+                                }}>{data.event_id}</p>
+                                <p style={{
+                                    fontSize:"1.1rem",
+                                    fontWeight:"500"
+                                }}>{data.token_staked}</p>
+                                <p style={{
+                                    fontSize:"1.1rem",
+                                    fontWeight:"500"
+                                }}>Pending</p>
+                            </div>
+                                <div style={arrowStyle}></div>
+                            </div>
+                        )
+                    })
+                 }
+                 
             </div>
 
        </div>
+       :
+       <div style={{
+        marginTop:"2rem",
+        textAlign:"center"
+       }}>
+        Please Connect Your Wallet 
+        </div>
+       }
 
     </div>
     )

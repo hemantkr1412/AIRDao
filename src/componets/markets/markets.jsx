@@ -2,6 +2,8 @@
 import ActiveMarket from "./activemarkets";
 import useEvent from "../useEvent";
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Markets = ()=>{
 
     const event = useEvent();
@@ -27,12 +29,16 @@ const Markets = ()=>{
 
     };
 
+    const notify = () => toast.success("Wow so easy!");
+
+
     
     return(
     <div style={{width:"100%",
         minHeight:"100vh",
 
     }}>
+         <ToastContainer />
        
         <div style={{
             width:"100%",
@@ -63,6 +69,7 @@ const Markets = ()=>{
                      <p 
                      onClick={
                         ()=>handleCategory("All")
+                        // notify
                     } 
                      style={{
                             fontWeight:categoryName === "All" ? "700":"500",

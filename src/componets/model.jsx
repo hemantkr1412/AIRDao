@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import './Modal.css';
 import { useWallet } from '../context/walletContext';
-const Modal = ({ show, onClose }) => {
+import useEvent from './useEvent';
+const Modal = ({ show, onClose,event,voteId }) => {
   const wallet = useWallet();
+  const eventUse = useEvent();
+  const [ammount,setAmmount] = useState("")
 
   if (!show) {
     return null;
   }
+
+  console.log(event);
 
   return (
     <div className="modal-background" onClick={onClose}>
@@ -26,13 +31,20 @@ const Modal = ({ show, onClose }) => {
               fontSize:"1.5rem",
 
             }}>Enter Number of Tokens</p>
-            <input value="" type='number' style={{
+            <input value={ammount} type='text'
+            onChange={(e) =>setAmmount(e.target.value)}
+             style={{
               width:"400px",
               height:"50px",
               backgroundColor:"#0000000D",
               borderRadius:"10px"
             }}/>
-           <button onClick={onClose} style={{
+           <button 
+           
+           onClick={() =>{
+            eventUse.handleCommitToken(ammount,voteId)
+            onClose()
+           }} style={{
                 width:"200px",
                 height:"50px",
                 backgroundColor:"black",
@@ -53,7 +65,7 @@ const Modal = ({ show, onClose }) => {
           }}>
               <img src='walletNotConnected.svg' alt='Connect Wallet' />
               <p>Caution!! You need to connect wallet first</p>
-              <button 
+              {/* <button 
               onClick={()=>{
                 wallet.connect()
                 onClose()
@@ -66,7 +78,7 @@ const Modal = ({ show, onClose }) => {
                 borderRadius:"5px",
                 fontSize:"1rem",
               }}
-              >Connect Wallet</button>
+              >Connect Wallet</button> */}
 
           </div>
         }

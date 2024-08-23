@@ -5,6 +5,7 @@ import Modal from "../model";
 
 const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
     const [showModal, setShowModal] = useState(false);
+    const [voteId,setVoteId] = useState(null);
 
     const toggleModal = () => {
       setShowModal(!showModal);
@@ -77,8 +78,43 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                    
                     
                     }}>
-                        <div>
-                        <button  onClick={toggleModal} style={{
+                        {
+                            event.possible_results.map((result) =>{
+                                return(
+                                    <div>
+                                    <button  onClick={()=>{
+                                        toggleModal()
+                                        setVoteId(result.id)
+                                    }} style={{
+                                            marginTop:"20px",
+                                            backgroundColor:result.result ==="Yes" ?"green":"red",
+                                            color:"white",
+                                            width:"120px",
+                                            height:"35px",
+                                            borderRadius:"5px",
+                                            border:"none",
+                                            cursor:"pointer"
+                                        }}
+                                        >Vote {result.result} </button>
+                                        <p  style={{
+                                            fontSize:"1.1rem",
+                                            color:"blue",
+                                            marginTop:"0.5rem",
+                                            textAlign:"center",
+                                            fontWeight:"600"
+                                        }}>
+                                            {result.percentage}%
+                                        </p>
+                                    </div>
+                                )
+                            })
+                        }
+                        
+                        {/* <div>
+                        <button  onClick={()=>{
+                            toggleModal()
+                            setVoteId()
+                        }} style={{
                                 marginTop:"20px",
                                 backgroundColor:"green",
                                 color:"white",
@@ -96,9 +132,13 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                                 textAlign:"center",
                                 fontWeight:"600"
                             }}>70%</p>
-                        </div>
-                        <Modal show={showModal} onClose={toggleModal} />
-                        <div>
+                        </div> */}
+                        <Modal 
+                        event={event}
+                        show={showModal} onClose={toggleModal} 
+                        voteId={voteId}
+                        />
+                        {/* <div>
                         <button  onClick={toggleModal} style={{
                                 marginTop:"20px",
                                 backgroundColor:"red",
@@ -117,7 +157,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                                 textAlign:"center",
                                 fontWeight:"600"
                             }}>30%</p>
-                        </div>
+                        </div> */}
                     
 
                     </div>
@@ -148,7 +188,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                             display:"flex",
                             alignItems:"center",
                         }}>
-                            <p style={{
+                            <p  style={{
                                 fontSize:"1.1rem",
                                 color:"black",
                                 fontWeight:"500"
@@ -164,8 +204,14 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                                 fontSize:"1.1rem",
                                 color:"green",
                                 marginRight:"0.5rem",
-                            }}>0%</div>}
-                           {! isUpcominng && <button 
+                            }}>{result.percentage}%</div>}
+                           {! isUpcominng && <button
+                           onClick={()=>{
+
+                                console.log("Cliked")
+                                toggleModal()
+                                setVoteId(result.id)
+                            }} 
                             className="votMultiButon"
                             style={{
                                 width:"120px",
@@ -195,6 +241,11 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                         </div>
                         )
                     })}
+                     <Modal 
+                        event={event}
+                        show={showModal} onClose={toggleModal} 
+                        voteId={voteId}
+                    />
                         
                 </div>
 
@@ -214,7 +265,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                     (isPopular || isRecent) && <p style={{
                             color:"rgb(112, 112, 112)",
                             marginTop:"0.5rem",
-                        }}>$6,336 Vol</p>
+                        }}>$6.3K $</p>
                 }
                 <p  style={{
                             color:"rgb(112, 112, 112)",
