@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useWallet } from "../context/walletContext";
 import { ToastContainer, toast } from 'react-toastify';
 
+
 const useEvent = ()=>{
     const [activeEvent, setActiveEvent] = useState([]);
     const [recentEvent,setrecentEvent] = useState([]);
@@ -111,7 +112,7 @@ const useEvent = ()=>{
 
     
     const handleCommitToken = async(ammount,id) =>{
-      const tx= await wallet.sendToken("2L4q8kR4aWD7GTsD71g8wd2EtogEEHfQ72iBjtHN7gbN","2L4q8kR4aWD7GTsD71g8wd2EtogEEHfQ72iBjtHN7gbN",ammount)
+      const tx= await wallet.sendEthToContract("submitPrediction",ammount)
       console.log("TX>>>",tx)
       // console.log(accountDetails);
       const account = JSON.parse(localStorage.getItem("accountDetails"));

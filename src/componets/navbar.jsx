@@ -66,13 +66,17 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     paddingLeft:"1rem"
                 }}>
 
-                <a href="/" style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
+                <a href="/" style={{fontWeight:"600",fontSize:"1.1rem" ,cursor:"pointer",
                     color:"white",
                     textDecoration:"none"
-                  }} ><img src="logoxenPlay.png" alt="logo" style={{
+                  }} >
+                  {/* <img src="logoxenPlay.png" alt="logo" style={{
                     width:"200px",
                     height:"70px"
-                }}/>
+                }}/> */}
+                AirDAO <span style={{
+                  color:"#838283"
+                }}>Markets</span>
                 </a>
                 </div>
                 
@@ -165,32 +169,17 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                                     }}>
                                     {!wallet.isWalletConnected ?<>
                                     <a onClick={()=>{
-                                        wallet.connect()
+                                        wallet.connectWallet()
                                       }} style={{
                                         padding:"1rem",
                                         borderBottom: "1px solid rgba(164, 164, 164, 1)"
                                       }}>
-                                        Phantom
+                                        Metamask
                                         <img  src="phantom.png" alt="phantom" style={{
                                           width:"20px",
                                           height:"20px",
                                          
                                        
-                                        }}/>
-                                      </a>
-                                      <a onClick={
-                                        ()=>{
-                                          wallet.connectSolflare()
-                                        }
-                                      } style={{
-                                        padding:"1rem",
-                                        borderBottom: "0px solid rgba(164, 164, 164, 1)"
-                                      }}>
-                                        Solfare
-                                        <img src="solfare.png" alt="phantom" style={{
-                                          width:"20px",
-                                          height:"20px",
-                                           marginLeft:"8px"
                                         }}/>
                                       </a>
                                       </> :
