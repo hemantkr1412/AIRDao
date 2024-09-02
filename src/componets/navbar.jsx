@@ -32,9 +32,9 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
     let wallettype = localStorage.getItem("wallettype");
 
     if (wallettype == "browser") {
-      return `${wallet?.provider?.publicKey
+      return `${wallet?.publicKey
         .toString()
-        .slice(0, 4)}...${wallet?.provider?.publicKey.toString().slice(39)}`;
+        .slice(0, 4)}...${wallet?.publicKey.toString().slice(39)}`;
     }
     if (wallettype == "mobile") {
       return `${wallet?.mobile?.publicKey
@@ -74,7 +74,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     width:"200px",
                     height:"70px"
                 }}/> */}
-                AirDAO <span style={{
+                Monad <span style={{
                   color:"#838283"
                 }}>Markets</span>
                 </a>

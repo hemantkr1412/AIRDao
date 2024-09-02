@@ -111,8 +111,10 @@ const useEvent = ()=>{
        };
 
     
-    const handleCommitToken = async(ammount,id) =>{
-      const tx= await wallet.sendEthToContract("submitPrediction",ammount)
+    const handleCommitToken = async(event_id,voteId,voteIndex,ammount) =>{
+      console.log(event_id,voteId,ammount)
+      const tx= await wallet.sendEthToContract(event_id,voteIndex,ammount)
+
       console.log("TX>>>",tx)
       // console.log(accountDetails);
       const account = JSON.parse(localStorage.getItem("accountDetails"));
@@ -122,7 +124,7 @@ const useEvent = ()=>{
         toast.success("Transaction Successful");
         const data = {
           account:account.id,
-          possible_result:id,
+          possible_result:voteId,
           token_staked:ammount,
           tx_hash:tx
         }
@@ -138,6 +140,8 @@ const useEvent = ()=>{
           .then((response) => response.json())
           .then((data)=>console.log(data,"use Event ################"))
           .catch((error)=> console.log(error))
+      }else{
+        toast.error("Something went wrong !");
       }
       
     }

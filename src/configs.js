@@ -1,6 +1,80 @@
-export const contractAddress = "0x78Ee20D7C23115356dE4eee33FA91f4367A11081";
+export const contractAddress = "0x80C222e6f68C7Fe75424Cb55eDC2AFA63414FA6A";
 
 export const abi = [
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "newOwner",
+        type: "address"
+      }
+    ],
+    name: "changeOwner",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    inputs: [],
+    name: "claimAll",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "amountToSend",
+        type: "uint256"
+      },
+      {
+        internalType: "address payable",
+        name: "winnerAddress",
+        type: "address"
+      }
+    ],
+    name: "claimAmount",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "eventId",
+        type: "uint256"
+      },
+      {
+        internalType: "uint256",
+        name: "outcomeId",
+        type: "uint256"
+      }
+    ],
+    name: "closeEvent",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "title",
+        type: "string"
+      },
+      {
+        internalType: "string[]",
+        name: "outcomes",
+        type: "string[]"
+      }
+    ],
+    name: "createEvent",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function"
+  },
   {
     inputs: [
       {
@@ -29,13 +103,56 @@ export const abi = [
   },
   {
     inputs: [],
-    name: "InvalidOutcome",
+    name: "EventNotExist",
     type: "error"
   },
   {
     inputs: [],
-    name: "NotAdmin",
+    name: "InvalidAmount",
     type: "error"
+  },
+  {
+    inputs: [],
+    name: "InvalidOutcome",
+    type: "error"
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "admin",
+        type: "address"
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256"
+      }
+    ],
+    name: "AllFundsClaimed",
+    type: "event"
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "recipient",
+        type: "address"
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256"
+      }
+    ],
+    name: "AmountClaimed",
+    type: "event"
   },
   {
     anonymous: false,
@@ -116,16 +233,22 @@ export const abi = [
         type: "uint256"
       },
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "outcomeId",
-        type: "uint256"
-      },
-      {
         indexed: true,
         internalType: "address",
         name: "user",
         type: "address"
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "totalAmountLocked",
+        type: "uint256"
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "outcomeId",
+        type: "uint256"
       },
       {
         indexed: false,
@@ -136,19 +259,6 @@ export const abi = [
     ],
     name: "PredictionSubmitted",
     type: "event"
-  },
-  {
-    inputs: [],
-    name: "admin",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address"
-      }
-    ],
-    stateMutability: "view",
-    type: "function"
   },
   {
     inputs: [
@@ -163,27 +273,35 @@ export const abi = [
         type: "uint256"
       }
     ],
-    name: "closeEvent",
+    name: "submitPrediction",
     outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "payable",
     type: "function"
   },
   {
     inputs: [
       {
-        internalType: "string",
-        name: "title",
-        type: "string"
-      },
-      {
-        internalType: "string[]",
-        name: "outcomes",
-        type: "string[]"
+        internalType: "uint256",
+        name: "eventId",
+        type: "uint256"
       }
     ],
-    name: "createEvent",
+    name: "updateEvent",
     outputs: [],
     stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    inputs: [],
+    name: "checkContractBal",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256"
+      }
+    ],
+    stateMutability: "view",
     type: "function"
   },
   {
@@ -258,6 +376,19 @@ export const abi = [
     type: "function"
   },
   {
+    inputs: [],
+    name: "getOwner",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address"
+      }
+    ],
+    stateMutability: "view",
+    type: "function"
+  },
+  {
     inputs: [
       {
         internalType: "uint256",
@@ -287,44 +418,16 @@ export const abi = [
     type: "function"
   },
   {
-    inputs: [
+    inputs: [],
+    name: "totalAmountLocked",
+    outputs: [
       {
         internalType: "uint256",
-        name: "eventId",
-        type: "uint256"
-      },
-      {
-        internalType: "uint256",
-        name: "outcomeId",
-        type: "uint256"
-      },
-      {
-        internalType: "uint256",
-        name: "amount",
+        name: "",
         type: "uint256"
       }
     ],
-    name: "submitPrediction",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function"
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "eventId",
-        type: "uint256"
-      },
-      {
-        internalType: "bool",
-        name: "isActive",
-        type: "bool"
-      }
-    ],
-    name: "updateEvent",
-    outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "view",
     type: "function"
   }
 ];

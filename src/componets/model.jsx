@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Modal.css';
 import { useWallet } from '../context/walletContext';
 import useEvent from './useEvent';
-const Modal = ({ show, onClose,event,voteId }) => {
+const Modal = ({ show, onClose,event,voteId,voteIndex }) => {
   const wallet = useWallet();
   const eventUse = useEvent();
   const [ammount,setAmmount] = useState("")
@@ -42,7 +42,7 @@ const Modal = ({ show, onClose,event,voteId }) => {
            <button 
            
            onClick={() =>{
-            eventUse.handleCommitToken(ammount,voteId)
+            eventUse.handleCommitToken(event.event_id,voteId,voteIndex,ammount)
             onClose()
            }} style={{
                 width:"200px",

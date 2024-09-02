@@ -6,6 +6,7 @@ import Modal from "../model";
 const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
     const [showModal, setShowModal] = useState(false);
     const [voteId,setVoteId] = useState(null);
+    const [voteIndex,setVoteIndex] = useState(null)
 
     const toggleModal = () => {
       setShowModal(!showModal);
@@ -79,12 +80,13 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                     
                     }}>
                         {
-                            event.possible_results.map((result) =>{
+                            event.possible_results.map((result,index) =>{
                                 return(
                                     <div>
                                     <button  onClick={()=>{
                                         toggleModal()
                                         setVoteId(result.id)
+                                        setVoteIndex(index)
                                     }} style={{
                                             marginTop:"20px",
                                             backgroundColor:result.result ==="Yes" ?"green":"red",
@@ -137,6 +139,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                         event={event}
                         show={showModal} onClose={toggleModal} 
                         voteId={voteId}
+                        voteIndex={voteIndex}
                         />
                         {/* <div>
                         <button  onClick={toggleModal} style={{
@@ -178,7 +181,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                     
                 }}>
                   
-                    {event.possible_results.map((result)=> {
+                    {event.possible_results.map((result,index)=> {
                         return(
                              <div style={{
                         display:"flex",
@@ -211,6 +214,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                                 console.log("Cliked")
                                 toggleModal()
                                 setVoteId(result.id)
+                                setVoteIndex(index)
                             }} 
                             className="votMultiButon"
                             style={{
@@ -245,6 +249,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                         event={event}
                         show={showModal} onClose={toggleModal} 
                         voteId={voteId}
+                        voteIndex={voteIndex}
                     />
                         
                 </div>
