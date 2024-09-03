@@ -42,7 +42,7 @@ const Modal = ({ show, onClose,event,voteId,voteIndex }) => {
            <button 
            
            onClick={() =>{
-            eventUse.handleCommitToken(event.event_id,voteId,voteIndex,ammount)
+            eventUse.handleCommitToken(event.id,voteId,voteIndex,ammount)
             onClose()
            }} style={{
                 width:"200px",

@@ -1,80 +1,6 @@
-export const contractAddress = "0x80C222e6f68C7Fe75424Cb55eDC2AFA63414FA6A";
+export const contractAddress = "0x4f60EF27603285328b4f7c837464B2A098264B5e";
 
 export const abi = [
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "newOwner",
-        type: "address"
-      }
-    ],
-    name: "changeOwner",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "claimAll",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "amountToSend",
-        type: "uint256"
-      },
-      {
-        internalType: "address payable",
-        name: "winnerAddress",
-        type: "address"
-      }
-    ],
-    name: "claimAmount",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "eventId",
-        type: "uint256"
-      },
-      {
-        internalType: "uint256",
-        name: "outcomeId",
-        type: "uint256"
-      }
-    ],
-    name: "closeEvent",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [
-      {
-        internalType: "string",
-        name: "title",
-        type: "string"
-      },
-      {
-        internalType: "string[]",
-        name: "outcomes",
-        type: "string[]"
-      }
-    ],
-    name: "createEvent",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
   {
     inputs: [
       {
@@ -263,30 +189,12 @@ export const abi = [
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "eventId",
-        type: "uint256"
-      },
-      {
-        internalType: "uint256",
-        name: "outcomeId",
-        type: "uint256"
+        internalType: "address",
+        name: "newOwner",
+        type: "address"
       }
     ],
-    name: "submitPrediction",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function"
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "eventId",
-        type: "uint256"
-      }
-    ],
-    name: "updateEvent",
+    name: "changeOwner",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function"
@@ -306,15 +214,50 @@ export const abi = [
   },
   {
     inputs: [],
-    name: "eventCount",
-    outputs: [
+    name: "claimAll",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    inputs: [
       {
         internalType: "uint256",
-        name: "",
+        name: "eventId",
+        type: "uint256"
+      },
+      {
+        internalType: "uint256",
+        name: "outcomeId",
         type: "uint256"
       }
     ],
-    stateMutability: "view",
+    name: "closeEvent",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "eventId",
+        type: "uint256"
+      },
+      {
+        internalType: "string",
+        name: "title",
+        type: "string"
+      },
+      {
+        internalType: "string[]",
+        name: "outcomes",
+        type: "string[]"
+      }
+    ],
+    name: "createEvent",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function"
   },
   {
@@ -418,6 +361,24 @@ export const abi = [
     type: "function"
   },
   {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "eventId",
+        type: "uint256"
+      },
+      {
+        internalType: "uint256",
+        name: "outcomeId",
+        type: "uint256"
+      }
+    ],
+    name: "submitPrediction",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function"
+  },
+  {
     inputs: [],
     name: "totalAmountLocked",
     outputs: [
@@ -428,6 +389,37 @@ export const abi = [
       }
     ],
     stateMutability: "view",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "eventId",
+        type: "uint256"
+      }
+    ],
+    name: "updateEvent",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "amountToSend",
+        type: "uint256"
+      },
+      {
+        internalType: "address payable",
+        name: "receiverAddr",
+        type: "address"
+      }
+    ],
+    name: "withdrawAmount",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function"
   }
 ];

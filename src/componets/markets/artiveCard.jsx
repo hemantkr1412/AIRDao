@@ -270,7 +270,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                     (isPopular || isRecent) && <p style={{
                             color:"rgb(112, 112, 112)",
                             marginTop:"0.5rem",
-                        }}>$6.3K $</p>
+                        }}>{event.token_volume} $</p>
                 }
                 <p  style={{
                             color:"rgb(112, 112, 112)",

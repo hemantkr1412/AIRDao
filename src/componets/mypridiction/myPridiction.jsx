@@ -4,6 +4,13 @@ import { useWallet } from "../../context/walletContext";
 const Pridtiction = () =>{
 
     const [myPrediction,setMyprediction] = useState([]);
+    const [winningEvent,setWinningEvent] = useState([]);
+    const [selectedOption, setSelectedOption] = useState('last10');
+
+      // Handle the change in the select dropdown
+    const handleChange = (event) => {
+          setSelectedOption(event.target.value);
+      };
     const wallet = useWallet();
     const populateMyPridiction = async () => {
         console.log("Enter in my prediction")
@@ -33,12 +40,43 @@ const Pridtiction = () =>{
         
       };
 
+      const populateWinnigPridiction = async () => {
+        console.log("Enter in my prediction")
+          const url = new URL(`http://127.0.0.1:8000/api/v1/event/winning-votes/`);
+        url.searchParams.append("wallet_address",wallet.publicKey);
+      
+        const requestOptions = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+      
+        try {
+          const response = await fetch(url, requestOptions);
+      
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}, Text: ${response.statusText}`);
+          }
+      
+          const result = await response.json();
+          console.log(result, ">>>>>>>>> Winnig Pridiction >>>>>>>>>");
+          setWinningEvent(result.results);
+          // setMyprediction(result.results);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+        
+      };
+    
+
 
     useEffect(()=>{
         if(wallet.publicKey){
             console.log("My Prediction Effect if");
             console.log(wallet.publicKey);
             populateMyPridiction();
+            populateWinnigPridiction();
         }
     },[wallet.publicKey])
    
@@ -79,6 +117,8 @@ const Pridtiction = () =>{
          }}>My Predictions</h1>
        </div>
 
+
+
        {wallet.isWalletConnected? <div style={{
         width:"100%",
         // height:"400px",
@@ -87,6 +127,11 @@ const Pridtiction = () =>{
         alignItems:"center",
         color:"black",
        }}>
+            <label htmlFor="transaction-select">Select Option: </label>
+            <select id="transaction-select" value={selectedOption} onChange={handleChange}>
+              <option value="last10">Last 10 Transactions</option>
+              <option value="allWinning">All Winning Events</option>
+            </select>
             <div style={{
                 width:"80%",
                 // height:"400px",

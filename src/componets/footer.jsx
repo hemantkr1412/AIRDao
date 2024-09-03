@@ -21,13 +21,13 @@ const Footer = () => {
                             color:'white',
                             fontSize:"1.2rem",
                             fontWeight:"600"
-                        }}>XenPlay</p>
+                        }}>AIRDOA Markets</p>
                         <p style={{
                            color:"white" ,
                            fontSize:"0.8rem",
                            marginTop:"1rem"
                         }}>
-                            The first decentralized prediction Market on X1 Blockchain.
+                            The first decentralized prediction Market on AIRDOA Blockchain.
                         </p>
                     </div>
                     <div>

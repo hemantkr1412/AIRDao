@@ -112,10 +112,11 @@ const useEvent = ()=>{
 
     
     const handleCommitToken = async(event_id,voteId,voteIndex,ammount) =>{
-      console.log(event_id,voteId,ammount)
+      console.log("Handle Commit");
+      console.log(event_id,voteIndex,ammount)
       const tx= await wallet.sendEthToContract(event_id,voteIndex,ammount)
 
-      console.log("TX>>>",tx)
+      console.log("TX>>>",tx);
       // console.log(accountDetails);
       const account = JSON.parse(localStorage.getItem("accountDetails"));
 
