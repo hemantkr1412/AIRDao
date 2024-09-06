@@ -130,8 +130,8 @@ export function WalletProvider(props) {
 
   async function sendEthToContract(event_id,voteIndex, ethAmount) {
     toast.info("Please Wait ! Trying to Connect your wallet",{
-      autoClose: 9998,
-    })
+      theme: "colored",
+      })
     // Create a provider using MetaMask
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     // Get the signer (the user connected with MetaMask)
@@ -147,7 +147,10 @@ export function WalletProvider(props) {
       try {
 
         const tx = await contract.submitPrediction(event_id, voteIndex, {value: amountInWei});
-        
+        toast.info("Please Wait ! Tx is processing...",{
+          autoClose: 25000,
+          theme: "colored",
+          })
         await tx.wait()
         // toast.dismiss()
         // toast.success("Registeration Success")

@@ -1,4 +1,4 @@
-export const contractAddress = "0x4f60EF27603285328b4f7c837464B2A098264B5e";
+export const contractAddress = "0x3250F9495Baf1e0d3d96A436466ab0c640D74467";
 
 export const abi = [
   {
@@ -13,33 +13,74 @@ export const abi = [
     type: "constructor"
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string"
+      }
+    ],
     name: "EmptyOutcomes",
     type: "error"
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string"
+      }
+    ],
     name: "EmptyTitle",
     type: "error"
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string"
+      }
+    ],
     name: "EventInactive",
     type: "error"
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string"
+      }
+    ],
     name: "EventNotExist",
     type: "error"
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string"
+      }
+    ],
     name: "InvalidAmount",
     type: "error"
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string"
+      }
+    ],
     name: "InvalidOutcome",
+    type: "error"
+  },
+  {
+    inputs: [],
+    name: "ReentrancyGuardReentrantCall",
     type: "error"
   },
   {

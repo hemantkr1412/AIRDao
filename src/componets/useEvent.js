@@ -24,6 +24,7 @@ const useEvent = ()=>{
          populateSortList();
          populateMyPridiction();
         populateAccountData();
+        populateKPI();
        }, [walletDetails]);
 
 
@@ -58,6 +59,13 @@ const useEvent = ()=>{
         }
        }
 
+
+       const populateKPI = async () =>{
+        await fetch("http://127.0.0.1:8000/api/v1/event/kpi")
+        .then((response) => response.json())
+        .then((data)=>console.log(data,"use KPI ################"))
+        .catch((error)=> console.log(error))
+       }
 
 
 
@@ -122,7 +130,11 @@ const useEvent = ()=>{
 
       // console.log(account,"ACCCCC");
       if(tx){
-        toast.success("Transaction Successful");
+        toast.success("Transaction Successful", {
+          autoClose: 5000,
+          theme: "colored"
+          });
+
         const data = {
           account:account.id,
           possible_result:voteId,
@@ -210,6 +222,48 @@ const useEvent = ()=>{
     };
 
 
+    const claimReward = async(voteId,walletAdress,populateAgain,setPopilateAgain) =>{
+      console.log(voteId);
+      const data = {
+        vote_id:voteId,
+        account: walletAdress,
+      };
+    
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      };
+    
+      try {
+        toast.info("Please Wait ! Tx is processing...",{
+          autoClose: 10000,
+          theme: "colored",
+        })
+
+        const response = await fetch(`http://127.0.0.1:8000/api/v1/event/claim-reward/`, requestOptions);
+    
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}, Text: ${response.statusText}`);
+        }
+        toast.success("Amount Claimed", {
+          autoClose: 5000,
+          theme: "colored"
+        });
+
+        const result = await response.json();
+        
+
+        console.log(result, ">>>>>>>>> Claimed >>>>>>>>>");
+        setPopilateAgain(!populateAgain)
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+
+
 
 
 
@@ -232,6 +286,7 @@ const useEvent = ()=>{
         setWalletDetails,
         isOpeningWallet,
         setOpeningWallet,
+        claimReward
     }
 }
 

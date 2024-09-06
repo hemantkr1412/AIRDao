@@ -1,11 +1,15 @@
 
 import { useEffect, useState } from "react";
 import { useWallet } from "../../context/walletContext";
+import useEvent from "../useEvent";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Pridtiction = () =>{
-
+    const event = useEvent();
     const [myPrediction,setMyprediction] = useState([]);
-    const [winningEvent,setWinningEvent] = useState([]);
+    const [winningEvents,setWinningEvent] = useState([]);
     const [selectedOption, setSelectedOption] = useState('last10');
+    const [populateAgain,setPopilateAgain] = useState(false)
 
       // Handle the change in the select dropdown
     const handleChange = (event) => {
@@ -78,7 +82,7 @@ const Pridtiction = () =>{
             populateMyPridiction();
             populateWinnigPridiction();
         }
-    },[wallet.publicKey])
+    },[wallet.publicKey,populateAgain])
    
     const divStyle = {
         background: "linear-gradient(180deg, #1A1A1A -1.47%, #3F3F3F 30.25%, #626262 49.26%, #393939 74.55%, #3F0A4C 100%)",
@@ -107,7 +111,7 @@ const Pridtiction = () =>{
         // justifyContent:"center",
         // alignContent:"center"
     }}>
-       
+      <ToastContainer />
        <div style={{
              paddingTop:"7rem"
        }}>
@@ -160,6 +164,12 @@ const Pridtiction = () =>{
                         fontSize:"1.1rem",
                         fontWeight:"600"
                     }}>Tokens Rewarded</p>
+                    {
+                      selectedOption === "allWinning"&& <p style={{
+                        fontSize:"1.1rem",
+                        fontWeight:"600"
+                    }}>Action</p>
+                    }
                 </div>
                  {/* <div style={{
                     background: "linear-gradient(180deg, #1A1A1A -1.47%, #3F3F3F 30.25%, #626262 49.26%, #393939 74.55%, #3F0A4C 100%)",
@@ -169,7 +179,7 @@ const Pridtiction = () =>{
 
                  </div> */}
                  {
-                    myPrediction.map((data,index) =>{
+                   selectedOption==="last10" && myPrediction.map((data,index) =>{
                         return(
                             <div key={"data"+data.id} style={divStyle}>
                                <div style={{
@@ -193,12 +203,60 @@ const Pridtiction = () =>{
                                 <p style={{
                                     fontSize:"1.1rem",
                                     fontWeight:"500"
-                                }}>Pending</p>
+                                }}>{data.amount_rewarded===null?"Pending":data.amount_rewarded}</p>
                             </div>
                                 <div style={arrowStyle}></div>
                             </div>
                         )
                     })
+                 }
+                 {
+                  selectedOption==="allWinning" && winningEvents.map((data,index) =>{
+                    return(
+                        <div key={"data"+data.id} style={divStyle}>
+                           <div style={{
+                            display:"flex",
+                            justifyContent:"space-between",
+                            padding:"0.7rem",
+                            color:"white"
+                        }}>
+                            <p style={{
+                                fontSize:"1.1rem",
+                                fontWeight:"500",
+                            }}>{index+1}</p>
+                            <p style={{
+                                fontSize:"1.1rem",
+                                fontWeight:"500"
+                            }}>{data.event_id}</p>
+                            <p style={{
+                                fontSize:"1.1rem",
+                                fontWeight:"500"
+                            }}>{data.token_staked}</p>
+                            <p style={{
+                                fontSize:"1.1rem",
+                                fontWeight:"500"
+                            }}>{data.amount_rewarded}</p>
+                            <button 
+                            onClick={()=>
+                              event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
+                            }
+                            style={{
+                                backgroundColor:!data.is_claimed ?"#F2F2F2":"grey",
+                                color:"black",
+                                width:"120px",
+                                height:"35px",
+                                borderRadius:"5px",
+                                border:"none",
+                                cursor:!data.is_claimed ?"pointer":"",
+                               
+                            }}>
+                              {!data.is_claimed ?"Claim":"Claimed"}
+                            </button>
+                        </div>
+                            <div style={arrowStyle}></div>
+                        </div>
+                    )
+                })
                  }
                  
             </div>
