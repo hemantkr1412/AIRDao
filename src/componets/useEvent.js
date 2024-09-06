@@ -47,7 +47,7 @@ const useEvent = ()=>{
           };
         
           try {
-            const response = await fetch(`http://127.0.0.1:8000/api/v1/user/account/`, requestOptions);
+            const response = await fetch(`https://xenplay.xyz/api/v1/user/account/`, requestOptions);
         
             if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}, Text: ${response.statusText}`);
@@ -65,7 +65,7 @@ const useEvent = ()=>{
 
 
        const populateKPI = async () =>{
-        await fetch("http://127.0.0.1:8000/api/v1/event/kpi")
+        await fetch("https://xenplay.xyz/api/v1/event/kpi")
         .then((response) => response.json())
         .then((data)=>{
           if(!data.error){
@@ -79,21 +79,21 @@ const useEvent = ()=>{
 
 
        const populateSortList = async () =>{
-        await fetch("http://127.0.0.1:8000/api/v1/event/sorted-event")
+        await fetch("https://xenplay.xyz/api/v1/event/sorted-event")
         .then((response) => response.json())
         .then((data)=>console.log(data,"use Event ################"))
         .catch((error)=> console.log(error))
       }
 
       const populatecategories = async () =>{
-        await fetch("http://127.0.0.1:8000/api/v1/event/categories/")
+        await fetch("https://xenplay.xyz/api/v1/event/categories/")
         .then((response) => response.json())
         .then((data)=>setcategories(data.results))
         .catch((error)=> console.log(error))
       }
 
        const populateEvent = async () => {
-         await fetch("http://127.0.0.1:8000/api/v1/event/")
+         await fetch("https://xenplay.xyz/api/v1/event/")
            .then((response) => response.json())
            .then((data) => {
             const responseData = data.results;
@@ -158,7 +158,7 @@ const useEvent = ()=>{
           },
           body: data ? JSON.stringify(data) : null,
         }
-        await fetch(`http://127.0.0.1:8000/api/v1/event/votes/create/`,requestOptions)
+        await fetch(`https://xenplay.xyz/api/v1/event/votes/create/`,requestOptions)
           .then((response) => response.json())
           .then((data)=>console.log(data,"use Event ################"))
           .catch((error)=> console.log(error))
@@ -183,7 +183,7 @@ const useEvent = ()=>{
       };
     
       try {
-        const response = await fetch(`http://127.0.0.1:8000/api/v1/user/account/`, requestOptions);
+        const response = await fetch(`https://xenplay.xyz/api/v1/user/account/`, requestOptions);
     
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}, Text: ${response.statusText}`);
@@ -200,7 +200,7 @@ const useEvent = ()=>{
 
     const populateMyPridiction = async () => {
       if(walletDetails){
-        const url = new URL(`http://127.0.0.1:8000/api/v1/event/my-predictions/`);
+        const url = new URL(`https://xenplay.xyz/api/v1/event/my-predictions/`);
 
       // console.log(wallet.publicKey);
       
@@ -252,7 +252,7 @@ const useEvent = ()=>{
           theme: "colored",
         })
 
-        const response = await fetch(`http://127.0.0.1:8000/api/v1/event/claim-reward/`, requestOptions);
+        const response = await fetch(`https://xenplay.xyz/api/v1/event/claim-reward/`, requestOptions);
     
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}, Text: ${response.statusText}`);

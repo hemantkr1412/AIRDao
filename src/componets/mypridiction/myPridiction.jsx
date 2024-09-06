@@ -18,7 +18,7 @@ const Pridtiction = () =>{
     const wallet = useWallet();
     const populateMyPridiction = async () => {
         console.log("Enter in my prediction")
-          const url = new URL(`http://127.0.0.1:8000/api/v1/event/my-predictions/`);
+          const url = new URL(`https://xenplay.xyz/api/v1/event/my-predictions/`);
         url.searchParams.append("wallet_address",wallet.publicKey);
       
         const requestOptions = {
@@ -46,7 +46,7 @@ const Pridtiction = () =>{
 
       const populateWinnigPridiction = async () => {
         console.log("Enter in my prediction")
-          const url = new URL(`http://127.0.0.1:8000/api/v1/event/winning-votes/`);
+          const url = new URL(`https://xenplay.xyz/api/v1/event/winning-votes/`);
         url.searchParams.append("wallet_address",wallet.publicKey);
       
         const requestOptions = {
