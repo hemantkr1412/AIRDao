@@ -65,7 +65,7 @@ const Footer = () => {
                     textAlign:"center",
                     marginTop:"2rem",
                     
-                }}>Xenplay © 2024</p>
+                }}>AIRDAO Markets © 2024</p>
             </div>
         </div>
     )

@@ -43,7 +43,7 @@ const HeroSection = () =>{
                     letterSpacing: "0.03em",
                     textAlign: "left",
                     marginTop:"1rem"
-                }}>Welcome to XENPLAY, the premier destination for predictive insights on the X1 Chain!</p>
+                }}>Welcome to AIRDAO Markets, the premier destination for predictive insights on the AirDao Chain!</p>
                 <button style={{
                     marginTop:"1.5rem",
                     width:"150px",

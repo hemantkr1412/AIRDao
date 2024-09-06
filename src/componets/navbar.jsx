@@ -175,7 +175,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                                         borderBottom: "1px solid rgba(164, 164, 164, 1)"
                                       }}>
                                         Metamask
-                                        <img  src="phantom.png" alt="phantom" style={{
+                                        <img  src="metamask-icon.svg" alt="phantom" style={{
                                           width:"20px",
                                           height:"20px",
                                          
