@@ -24,7 +24,11 @@ const useEvent = ()=>{
          populateSortList();
          populateMyPridiction();
         populateAccountData();
-        populateKPI();
+        const retrievedData = JSON.parse(localStorage.getItem('feesData'));
+        if(!retrievedData){
+          console.log("RetriveData :",retrievedData)
+            populateKPI();
+        }
        }, [walletDetails]);
 
 
@@ -63,7 +67,12 @@ const useEvent = ()=>{
        const populateKPI = async () =>{
         await fetch("http://127.0.0.1:8000/api/v1/event/kpi")
         .then((response) => response.json())
-        .then((data)=>console.log(data,"use KPI ################"))
+        .then((data)=>{
+          if(!data.error){
+            localStorage.setItem('feesData', JSON.stringify(data));
+          }
+          console.log(data)
+        })
         .catch((error)=> console.log(error))
        }
 

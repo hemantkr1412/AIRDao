@@ -9,12 +9,19 @@ const Markets = ()=>{
     const event = useEvent();
     const [filteredEvent,setFiltredEvent] = useState(event.activeEvent);
     const [categoryName,setCategoryName] = useState("All");
+    const [feesData,setFeesData] = useState({
+        total_volume_locked:0,
+        total_platform_fee:0,
+        total_burn_fee:0
+    })
 
 
     useEffect(()=>{
         // console.log("###############")
         setFiltredEvent(event.activeEvent);
         // console.log(event.activeEvent);
+        const retrievedData = JSON.parse(localStorage.getItem('feesData'));
+        setFeesData(retrievedData)
         
     },[event.activeEvent])
 
@@ -149,7 +156,7 @@ const Markets = ()=>{
                             }} />
                         </div>
                         <div>
-                            <h1>$0</h1>
+                            <h1>${feesData.total_volume_locked}</h1>
                         </div>
 
                     </div>
@@ -177,7 +184,7 @@ const Markets = ()=>{
                             }} />
                         </div>
                         <div>
-                            <h1>$0</h1>
+                            <h1>${feesData.total_platform_fee}</h1>
                         </div>
 
                     </div>
@@ -204,7 +211,7 @@ const Markets = ()=>{
                             }} />
                         </div>
                         <div>
-                            <h1>$0</h1>
+                            <h1>${feesData.total_burn_fee}</h1>
                         </div>
 
                     </div>
