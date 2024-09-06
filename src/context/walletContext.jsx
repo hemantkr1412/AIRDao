@@ -1,9 +1,5 @@
 
-import SolflareWallet from "@solflare-wallet/sdk";
 import React, { useState, useEffect, useContext } from "react";
-import * as web3 from "@solana/web3.js";
-import * as splToken from "@solana/spl-token";
-// import { Buffer } from 'buffer';
 import useEvent from "../componets/useEvent";
 import { ToastContainer, toast } from 'react-toastify';
 

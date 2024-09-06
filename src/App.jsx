@@ -4,8 +4,6 @@ import Navbar from "./componets/navbar";
 import Footer from "./componets/footer";
 import Markets from "./componets/markets/markets";
 import Home from "./componets/home";
-import ConnectPhantom from "./componets/wallet/connectPhantom";
-import ConnectSolflare from "./componets/wallet/connectSolflare";
 import { WalletProvider } from "./context/walletContext";
 import Pridtiction from "./componets/mypridiction/myPridiction";
 import MyRank from "./componets/myRank/myRank";
