@@ -85,7 +85,7 @@ const TokenDetails = ({tokenDetailsRef}) => {
                                 color:"#666666",
                                 marginTop:"1rem",
                                 textAlign:"center"
-                            }}>on X1 LaunchPad</p>
+                            }}>Coming Soon</p>
                     </div>
 
                 </div>

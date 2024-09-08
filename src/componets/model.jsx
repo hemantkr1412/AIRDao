@@ -89,4 +89,3 @@ const Modal = ({ show, onClose,event,voteId,voteIndex }) => {
 
 
 export default Modal;
-

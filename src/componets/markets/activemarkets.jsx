@@ -191,7 +191,7 @@ const ActiveMarket = ({popularRef,event,title}) =>{
                                 <div key={index+1}>
                                     <Card isPopular={true}
                                         event={event}
-                                        // isUpcominng={true}
+                                        isRecent={true}
                                     />
                                 </div>
                             )

@@ -35,7 +35,7 @@ const Footer = () => {
                            color:"white" ,
                            fontSize:"1rem",
                         }}>Join the community</p>
-                        <a href="https://x.com/xenplay24" target="_blank" rel="noreferrer">
+                        <a href="https://x.com/AirdaoM" target="_blank" rel="noreferrer">
                         <img src="Vector7.png" alt="vector"  style={{
                             width:"20px",
                             height:"20px",
@@ -43,7 +43,7 @@ const Footer = () => {
                             
                         }}/>
                         </a>
-                         <a href="https://t.me/xenplay2024" target="_blank" rel="noreferrer">
+                         <a href="https://t.me/airdaomarkets" target="_blank" rel="noreferrer">
                         <img src="Vector8.png" alt="vector" style={{
                             width:"20px",
                             height:"20px",

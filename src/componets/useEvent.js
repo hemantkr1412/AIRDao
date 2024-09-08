@@ -12,13 +12,15 @@ const useEvent = ()=>{
     const [sortBylist,setSortBylist] = useState([]);
     const [myPrediction,setMyprediction] = useState([]);
     const [walletDetails,setWalletDetails] = useState(null);
-    const [isOpeningWallet,setOpeningWallet] = useState(false)
+    const [isOpeningWallet,setOpeningWallet] = useState(false);
+    const [isPopulate,setPopulate] = useState(false)
 
 
     
     const wallet = useWallet();
 
        useEffect(() => {
+          console.log("Calling Use Effect")
          populateEvent();
          populatecategories();
          populateSortList();
@@ -29,7 +31,7 @@ const useEvent = ()=>{
           console.log("RetriveData :",retrievedData)
             populateKPI();
         }
-       }, [walletDetails]);
+       }, [walletDetails,isPopulate]);
 
 
        const populateAccountData = async () =>{
@@ -81,7 +83,7 @@ const useEvent = ()=>{
        const populateSortList = async () =>{
         await fetch("https://xenplay.xyz/api/v1/event/sorted-event")
         .then((response) => response.json())
-        .then((data)=>console.log(data,"use Event ################"))
+        .then((data)=>console.log(data,"Populate Event ################"))
         .catch((error)=> console.log(error))
       }
 
@@ -97,7 +99,7 @@ const useEvent = ()=>{
            .then((response) => response.json())
            .then((data) => {
             const responseData = data.results;
-            //  console.log(responseData);
+             console.log(responseData,"Populate Event form use Event");
 
             const activeEvent = responseData.filter((event) => {
               return event.market === "active";
@@ -160,7 +162,10 @@ const useEvent = ()=>{
         }
         await fetch(`https://xenplay.xyz/api/v1/event/votes/create/`,requestOptions)
           .then((response) => response.json())
-          .then((data)=>console.log(data,"use Event ################"))
+          .then((data)=>{
+              setPopulate(!isPopulate);
+              console.log(data,"Token Save in DB")
+          })
           .catch((error)=> console.log(error))
       }else{
         toast.error("Something went wrong !");
@@ -277,7 +282,7 @@ const useEvent = ()=>{
 
 
     
-
+    console.log(activeEvent,"<<---From use Event --->>")
 
 
 

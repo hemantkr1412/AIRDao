@@ -1,10 +1,10 @@
 import BarAnimation from "./barAnimation";
 import "./navbar.css";
 import CardAnimation from "./cardAnimation";
-
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () =>{
-
+    const navigate = useNavigate();
     return (
         <div style={{
             backgroundColor: '#F3F3F3',
@@ -44,14 +44,17 @@ const HeroSection = () =>{
                     textAlign: "left",
                     marginTop:"1rem"
                 }}>Welcome to AIRDAO Markets, the premier destination for predictive insights on the AirDao Chain!</p>
-                <button style={{
+                <button 
+                onClick={() => navigate("/markets")}
+                style={{
                     marginTop:"1.5rem",
                     width:"150px",
                     height:"50px",
                     backgroundColor:"black",
                     borderRadius:"5px",
                     color:"white",
-                    border:"none"
+                    border:"none",
+                    cursor:"pointer"
                 }}>Start Prediction</button>
             </div>
             <div className="herosectionSubDiv2">

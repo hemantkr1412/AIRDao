@@ -74,7 +74,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     width:"200px",
                     height:"70px"
                 }}/> */}
-                AIRDOA <span style={{
+                AIRDAO <span style={{
                   color:"#838283"
                 }}>Markets</span>
                 </a>

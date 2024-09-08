@@ -67,103 +67,124 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                 }
                 {
                     event.possible_results.length === 2 &&
-                    <div style={{
-                    marginTop:"0.5rem",
-                    width:"100%",
-                    height:"120px",
-                    display:"flex",
-                    justifyContent:"space-around",
-                    gap:"1rem",
-                    overflowY:"scroll",
-                    scrollbarWidth: "none",
-                   
-                    
-                    }}>
-                        {
-                            event.possible_results.map((result,index) =>{
-                                return(
-                                    <div>
-                                    <button  onClick={()=>{
-                                        toggleModal()
-                                        setVoteId(result.id)
-                                        setVoteIndex(index)
-                                    }} style={{
-                                            marginTop:"20px",
-                                            backgroundColor:result.result ==="Yes" ?"green":"red",
-                                            color:"white",
-                                            width:"120px",
-                                            height:"35px",
-                                            borderRadius:"5px",
-                                            border:"none",
-                                            cursor:"pointer"
-                                        }}
-                                        >Vote {result.result} </button>
-                                        <p  style={{
-                                            fontSize:"1.1rem",
-                                            color:"blue",
-                                            marginTop:"0.5rem",
-                                            textAlign:"center",
-                                            fontWeight:"600"
-                                        }}>
-                                            {result.percentage}%
-                                        </p>
-                                    </div>
-                                )
-                            })
-                        }
-                        
-                        {/* <div>
-                        <button  onClick={()=>{
-                            toggleModal()
-                            setVoteId()
-                        }} style={{
-                                marginTop:"20px",
-                                backgroundColor:"green",
-                                color:"white",
-                                width:"120px",
-                                height:"35px",
-                                borderRadius:"5px",
-                                border:"none",
-                                cursor:"pointer"
-                            }}
-                            >Vote Yes </button>
-                            <p  style={{
-                                fontSize:"1.1rem",
-                                color:"blue",
-                                marginTop:"0.5rem",
-                                textAlign:"center",
-                                fontWeight:"600"
-                            }}>70%</p>
-                        </div> */}
-                        <Modal 
-                        event={event}
-                        show={showModal} onClose={toggleModal} 
-                        voteId={voteId}
-                        voteIndex={voteIndex}
-                        />
-                        {/* <div>
-                        <button  onClick={toggleModal} style={{
-                                marginTop:"20px",
-                                backgroundColor:"red",
-                                color:"white",
-                                width:"120px",
-                                height:"35px",
-                                borderRadius:"5px",
-                                border:"none",
-                                 cursor:"pointer"
-                            }}
-                            >Vote No </button>
-                            <p style={{
-                                fontSize:"1.1rem",
-                                color:"blue",
-                                marginTop:"0.5rem",
-                                textAlign:"center",
-                                fontWeight:"600"
-                            }}>30%</p>
-                        </div> */}
-                    
+                    (
 
-                    </div>
+                        <div style={{
+                            marginTop:"0.5rem",
+                            width:"100%",
+                            height:"120px",
+                            display:"flex",
+                            justifyContent:"space-around",
+                            gap:"1rem",
+                            overflowY:"scroll",
+                            scrollbarWidth: "none",
+                           
+                            
+                            }}>
+                                {
+                                    event.possible_results.map((result,index) =>{
+                                        return(
+                                            <div>
+                                            {(!isUpcominng && !isRecent) &&
+                                            <button  onClick={()=>{
+                                                toggleModal()
+                                                setVoteId(result.id)
+                                                setVoteIndex(index)
+                                            }} style={{
+                                                    marginTop:"20px",
+                                                    backgroundColor:result.result ==="Yes" ?"green":"red",
+                                                    color:"white",
+                                                    width:"120px",
+                                                    height:"35px",
+                                                    borderRadius:"5px",
+                                                    border:"none",
+                                                    cursor:"pointer"
+                                                }}
+                                                >Vote {result.result} 
+                                            </button>}
+                                            {
+                                            (isUpcominng || isRecent) && 
+                                                    <button 
+                                                // className="votMultiButon"
+                                                style={{
+                                                    backgroundColor:"#F2F2F2",
+                                                    color:"#7D7D7D",
+                                                    width:"120px",
+                                                    height:"35px",
+                                                    borderRadius:"5px",
+                                                    border:"none",
+                                                    // cursor:"pointer"
+                                                }}
+                                                >Vote {result.result} </button>
+                                                }
+                                                <p  style={{
+                                                    fontSize:"1.1rem",
+                                                    color:"blue",
+                                                    marginTop:"0.5rem",
+                                                    textAlign:"center",
+                                                    fontWeight:"600"
+                                                }}>
+                                                    {result.percentage}%
+                                                </p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                                
+                                {/* <div>
+                                <button  onClick={()=>{
+                                    toggleModal()
+                                    setVoteId()
+                                }} style={{
+                                        marginTop:"20px",
+                                        backgroundColor:"green",
+                                        color:"white",
+                                        width:"120px",
+                                        height:"35px",
+                                        borderRadius:"5px",
+                                        border:"none",
+                                        cursor:"pointer"
+                                    }}
+                                    >Vote Yes </button>
+                                    <p  style={{
+                                        fontSize:"1.1rem",
+                                        color:"blue",
+                                        marginTop:"0.5rem",
+                                        textAlign:"center",
+                                        fontWeight:"600"
+                                    }}>70%</p>
+                                </div> */}
+                                <Modal 
+                                event={event}
+                                show={showModal} onClose={toggleModal} 
+                                voteId={voteId}
+                                voteIndex={voteIndex}
+                                />
+                                {/* <div>
+                                <button  onClick={toggleModal} style={{
+                                        marginTop:"20px",
+                                        backgroundColor:"red",
+                                        color:"white",
+                                        width:"120px",
+                                        height:"35px",
+                                        borderRadius:"5px",
+                                        border:"none",
+                                         cursor:"pointer"
+                                    }}
+                                    >Vote No </button>
+                                    <p style={{
+                                        fontSize:"1.1rem",
+                                        color:"blue",
+                                        marginTop:"0.5rem",
+                                        textAlign:"center",
+                                        fontWeight:"600"
+                                    }}>30%</p>
+                                </div> */}
+                            
+        
+                            </div>
+                    )
+                    
 
                 }
                 {
@@ -177,9 +198,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                     gap:"1rem",
                     overflowY:"scroll",
                     scrollbarWidth: "none",
-                   
-                    
-                }}>
+                   }}>
                   
                     {event.possible_results.map((result,index)=> {
                         return(
@@ -208,7 +227,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                                 color:"green",
                                 marginRight:"0.5rem",
                             }}>{result.percentage}%</div>}
-                           {! isUpcominng && <button
+                           {(!isUpcominng && !isRecent) && <button
                            onClick={()=>{
 
                                 console.log("Cliked")
@@ -226,7 +245,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                             }}
                             >Vote</button>}
                             {
-                                isUpcominng && 
+                                (isUpcominng || isRecent) && 
                                 <button 
                             // className="votMultiButon"
                             style={{
@@ -250,6 +269,8 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                         show={showModal} onClose={toggleModal} 
                         voteId={voteId}
                         voteIndex={voteIndex}
+                        
+
                     />
                         
                 </div>

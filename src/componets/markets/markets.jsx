@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Markets = ()=>{
 
     const event = useEvent();
+    
     const [filteredEvent,setFiltredEvent] = useState(event.activeEvent);
     const [categoryName,setCategoryName] = useState("All");
     const [feesData,setFeesData] = useState({
@@ -17,9 +18,9 @@ const Markets = ()=>{
 
 
     useEffect(()=>{
-        // console.log("###############")
+        console.log("use Effect of Markets");
         setFiltredEvent(event.activeEvent);
-        // console.log(event.activeEvent);
+        console.log(event.activeEvent,"Active Event from Market");
         const retrievedData = JSON.parse(localStorage.getItem('feesData'));
         setFeesData(retrievedData)
         
@@ -36,7 +37,7 @@ const Markets = ()=>{
 
     };
 
-    const notify = () => toast.success("Wow so easy!");
+   
 
 
     
