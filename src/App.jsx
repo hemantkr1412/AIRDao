@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./App.css";
 import Navbar from "./componets/navbar";
 import Footer from "./componets/footer";
@@ -18,6 +18,18 @@ export const MyContext = createContext("");
 
 
 function App() {
+  const isMobileDevice = () => {
+    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  };
+  useEffect(() => {
+    if (isMobileDevice()) {
+      if (!window.ethereum) {
+        alert("Please open this website using MetaMask mobile browser.");
+        window.location.href = "https://metamask.app.link/dapp/xenplay.xyz";
+      }
+    }
+  }, []);
+
     const upComingRef = useRef(null);
     const popularRef = useRef(null);
     const recentRef = useRef(null);
