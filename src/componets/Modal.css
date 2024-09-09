@@ -20,6 +20,11 @@
     max-width: 500px;
     width: 100%;
   }
+
+  .modal-content input{
+    width: 400px;
+    height: 50px;
+  }
   
   .close-button {
     background: red;
@@ -39,4 +44,26 @@
     cursor: pointer;
     border-radius: 5px;
   }
+
+
+  @media screen and (max-width: 770px) {
+    .modal-content {
+      max-width: 500px;
+    }
+    .modal-content input{
+      width: 250px;
+      height: 30px;
+    }
+  }
   
+
+  
+  @media screen and (max-width: 670px) {
+    .modal-content {
+      max-width: 280px;
+    }
+    .modal-content input{
+      width: 250px;
+      height: 30px;
+    }
+  }

@@ -34,8 +34,8 @@ const Modal = ({ show, onClose,event,voteId,voteIndex }) => {
             <input value={ammount} type='text'
             onChange={(e) =>setAmmount(e.target.value)}
              style={{
-              width:"400px",
-              height:"50px",
+              // width:"400px",
+              // height:"50px",
               backgroundColor:"#0000000D",
               borderRadius:"10px"
             }}/>
