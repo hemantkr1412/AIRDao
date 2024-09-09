@@ -261,14 +261,84 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                 padding:"1rem",
                 color:"black"
             }}>
-                    <a href="/" style={{fontWeight:"600",fontSize:"1.1rem" ,cursor:"pointer"}} >Home</a>
+                    <a href="/" style={{fontWeight:"600",fontSize:"1.1rem" ,cursor:"pointer",color:"black",textDecorationLine:"none",marginLeft:"7px"}} >Home</a>
                     <p onClick={()=>{
                       navigate("/markets")
                       handleClickMenu()
                     }} style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
-                    "1rem",cursor:"pointer"}}>Markets</p>
-                    <p style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
-                    "1rem"}}>Connect Wallet</p>
+                    "1rem",cursor:"pointer",marginLeft:"7px"}}>Markets</p>
+                    <p onClick={()=>{
+                      navigate("/myRank")
+                      handleClickMenu()
+                    }} style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
+                    "1rem",cursor:"pointer",marginLeft:"7px"}}>Leaderboard</p>
+                    <p onClick={()=>{
+                      navigate("/myPridiction")
+                      handleClickMenu()
+                    }} style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
+                    "1rem",cursor:"pointer",marginLeft:"7px"}}>My Prediction</p>
+                    {/* <p
+                    onClick={() =>  wallet.connectWallet()}
+                     style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
+                    "1rem"}}>{wallet.isWalletConnected ? getAddress(): "Connect Wallet"}</p> */}
+                     <div className="dropdown1" style={{
+                      marginTop:
+                      "1rem",
+                      fontWeight:"600"
+                     }}>
+                            <button
+                             style={{
+                              backgroundColor:"white",
+                              color:"black",
+                              width:"140px",
+                              height:"35px",
+                              borderRadius:"5px",
+                              border:"none",
+                              marginRight:"3rem",
+                              cursor:"pointer"
+                          }}
+                             className="para-link2" > {getAddress()}
+                              <img src="downArrow.svg" alt="down-arrow" style={{
+                              marginLeft:"0.4rem",
+                              rotate:isDropdown?"180deg":"0deg"
+                            }}/>
+                             </button>
+                                <div className="dropdown-content1">
+                                    <div className="column" style={{
+                                    width:"100%",
+                                    height:"auto"
+                                    }}>
+                                    {!wallet.isWalletConnected ?<>
+                                    <a onClick={()=>{
+                                        wallet.connectWallet()
+                                      }} style={{
+                                        padding:"1rem",
+                                        borderBottom: "1px solid rgba(164, 164, 164, 1)"
+                                      }}>
+                                        Metamask
+                                        <img  src="metamask-icon.svg" alt="phantom" style={{
+                                          width:"20px",
+                                          height:"20px",
+                                         
+                                       
+                                        }}/>
+                                      </a>
+                                      </> :
+                                      <>
+                                      <a onClick={
+                                        ()=>{
+                                          wallet.disconnect();
+                                        }
+                                      } style={{
+                                        padding:"1rem",
+                                        borderBottom: "0px solid rgba(164, 164, 164, 1)"
+                                      }}>
+                                        Disconnect
+                                      </a>
+                                      </>}
+                                    </div>
+                                </div>
+                        </div>
             </div>
       
           </div>
