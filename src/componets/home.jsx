@@ -6,6 +6,7 @@ import RecentMarkets from "./recentMarkets";
 import HowItWorks from "./howItWorks";
 import RoadMap from "./roadMap";
 import TokenDetails from "./tokenDetails";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadMapref,tokenDetailsRef}) => {
     
@@ -67,6 +68,7 @@ const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadM
                         handleScroll(tokenDetailsRef)
                     }}>Token Details</p>
             </div>
+            <ToastContainer />
             <HeroSection  />
             <UpcomingMarkets upComingRef={upComingRef} />
             <PopularMarkets popularRef={popularRef} />

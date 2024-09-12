@@ -5,6 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import { ethers } from "ethers";
 import { contractAddress,abi } from "../configs";
+import {useSDK} from "@metamask/sdk-react";
+
 
 
 const WalletContext = React.createContext();
@@ -14,14 +16,16 @@ export function useWallet() {
 }
 
 export function WalletProvider(props) {
-  const [provider, setProvider] = useState(null);
+  // const [provider, setProvider] = useState(null);
   const [publicKey, setPublicKey] = useState(null);
   const [isWalletConnected, setIsWalletConnected] = useState(false);
+  const {sdk, connected, connecting, provider, chainId} = useSDK();
   
   // const [contractAddress, setContractAddress] = useState(null);
 
 
   const event = useEvent();
+
 
   // useEffect(() => {
   //   try {
@@ -43,15 +47,78 @@ export function WalletProvider(props) {
 
   useEffect(() => {
     try {
-      const {ethereum} = window;
-      ethereum.on("accountsChanged", accounts => {
-        console.log("Account changed to:", accounts[0]);
-        setPublicKey(accounts[0]);
-      });
+      if (connected && chainId !== "0x5618") {
+        switchNetwork();
+      }
+      // const {ethereum} = window;
+      // ethereum.on("accountsChanged", accounts => {
+      //   console.log("Account changed to:", accounts[0]);
+      //   setPublicKey(accounts[0]);
+      // });
     } catch (error) {
       console.log(error);
     }
-});
+  },[chainId]);
+
+  const switchNetwork = async () => {
+    if (typeof window.ethereum !== "undefined") {
+      const {ethereum} = window;
+
+      const targetChainId = "0x5618"; // Example: Ethereum Mainnet (Hex: 0x1)
+      try {
+        // Specify the desired chainId (in hexadecimal)
+        const chainId = await ethereum.request({method: "eth_chainId"});
+
+        // Check if already connected to the desired chain
+        if (chainId !== targetChainId) {
+          console.log(`Current chain: ${chainId}, switching to ${targetChainId}`);
+
+          // Attempt to switch the chain
+          await ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [{chainId: targetChainId}]
+          });
+
+          // setCurrentChain(targetChainId);
+          console.log(`Successfully switched to chain ${targetChainId}`);
+        } else {
+          console.log("Already connected to the correct chain");
+        }
+      } catch (error) {
+        console.log("got into error");
+        if (error.code === 4902) {
+          // Chain not found, prompt user to add the network
+          try {
+            console.log("in try");
+            await ethereum.request({
+              method: "wallet_addEthereumChain",
+              params: [
+                {
+                  chainId: targetChainId,
+                  chainName: "Airdao Testnet",
+                  nativeCurrency: {
+                    name: "AMB",
+                    symbol: "AMB",
+                    decimals: 18
+                  },
+                  rpcUrls: ["https://network.ambrosus-test.io/"], // Replace with your RPC URL
+                  blockExplorerUrls: ["https://testnet.airdao.io/explorer/"]
+                }
+              ]
+            });
+            console.log("Network added and switched");
+            // setCurrentChain(targetChainId);
+          } catch (addError) {
+            console.error("Error adding the chain:", addError);
+          }
+        } else {
+          console.error("Error switching chain:", error);
+        }
+      }
+    } else {
+      console.log("MetaMask not detected!");
+    }
+  };
 
 
 
@@ -65,21 +132,37 @@ export function WalletProvider(props) {
   }
 
   try {
-    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-    // setSignerAddress(accounts[0]);
-    console.log(accounts);
-    setPublicKey(accounts[0]);
-    localStorage.setItem("wallet", "metamask");
-    localStorage.setItem("wallettype", "browser");
-    setIsWalletConnected(true);
-    // event.createAccount(resp.publicKey.toString());
-    event.setWalletDetails(accounts[0]);
+    // const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+    // // setSignerAddress(accounts[0]);
+    // console.log(accounts);
+    // setPublicKey(accounts[0]);
+    // localStorage.setItem("wallet", "metamask");
+    // localStorage.setItem("wallettype", "browser");
+    // setIsWalletConnected(true);
+    // // event.createAccount(resp.publicKey.toString());
+    // event.setWalletDetails(accounts[0]);
 
-    const provider = new ethers.providers.Web3Provider(ethereum);
-    //  setProvider(provider);
-    console.log("Step 2")
-    const signer = provider.getSigner();
-    console.log("Connected with signer:", signer);
+    // const provider = new ethers.providers.Web3Provider(ethereum);
+    // //  setProvider(provider);
+    // console.log("Step 2")
+    // const signer = provider.getSigner();
+    // console.log("Connected with signer:", signer);
+
+
+
+    try {
+      const accounts = await sdk?.connect();
+      console.log(accounts?.[0],"AAAAAAAAAAAAAAAAAAAAAA<<<<<<>>>>>>>>>>>>>>>>>>>>AAAAAAAAAAAAAAAAAAAAAAAAAAA")
+      setPublicKey(accounts?.[0]);
+      localStorage.setItem("wallet", "metamask");
+      localStorage.setItem("wallettype", "browser");
+      setIsWalletConnected(true);
+      event.setWalletDetails(accounts[0]);
+      console.log(chainId);
+      console.log(provider);
+    } catch (err) {
+      console.warn("failed to connect..", err);
+    }
    
 
   } catch (error) {
@@ -87,39 +170,19 @@ export function WalletProvider(props) {
   }
   };
 
-  // const connect = async () => {
-  //   if ("phantom" in window) {
-  //     try {
-  //       console.log("trying to connect");
-  //       let myprovider = window.phantom?.solana;
-  //       const resp = await myprovider.connect();
-  //       console.log("request processed...");
-  //       setPublicKey(resp.publicKey.toString());
-  //       localStorage.setItem("wallet", "phantom");
-  //       localStorage.setItem("wallettype", "browser");
-  //       setProvider(myprovider);
-  //       setIsWalletConnected(true);
-  //       // event.createAccount(resp.publicKey.toString());
-  //       event.setWalletDetails(resp.publicKey.toString());
-  //     } catch {
-  //       setIsWalletConnected(false);
-  //       alert("Wallet connection declined!");
-  //     }
-  //   } else {
-  //     try {
-  //       // mobile.connectWithMobileApp();
-  //     } catch {
-  //       window.open("https://phantom.app/", "_blank");
-  //     }
-  //   }
-  // };
+
+  
+
+
+
+
 
   const disconnect = async () => {
     try {
       provider.request({ method: "disconnect" });
     } catch {}
     setIsWalletConnected(false);
-    setProvider(null);
+    // setProvider(null);
     setPublicKey(null);
   };
 

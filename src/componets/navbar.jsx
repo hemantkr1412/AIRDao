@@ -3,6 +3,7 @@ import "./navbar.css";
 import { useNavigate } from "react-router-dom";
 import { useWallet } from "../context/walletContext";
 
+
 const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadMapref,tokenDetailsRef}) => {
 
     const navigate = useNavigate()
@@ -10,6 +11,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
     const [isDropdown,setIsDropdown] = useState(false);
 
     const wallet = useWallet();
+  
 
     useEffect(() => {
     const getDocument = document.querySelector("#menu");
@@ -105,7 +107,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                       navigate("/myRank")
                     }} style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
                     color:"white",
-                  }} >Ranks</div>
+                  }} >Leaderboard</div>
                    <div onClick={()=>{
                       navigate("/myPridiction")
                     }} style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",

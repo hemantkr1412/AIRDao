@@ -3,6 +3,8 @@ import ActiveMarket from "./markets/activemarkets";
 import useEvent from "./useEvent";
 const PopularMarkets = ({popularRef}) =>{
     const event = useEvent()
+
+    console.log(event.popularEvent,"PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
     
     return(
         <div ref={popularRef} style={{

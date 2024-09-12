@@ -3,11 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { MetaMaskProvider } from "@metamask/sdk-react"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <MetaMaskProvider
+      sdkOptions={{
+        dappMetadata: {
+          name: "Example React UI Dapp",
+          url: window.location.href
+        },
+        infuraAPIKey: "210f27d3fbea4f8689fadcc8a6c5d048"
+        // Other options.
+      }}>
     <App />
+    </MetaMaskProvider>
   </React.StrictMode>
 );
 

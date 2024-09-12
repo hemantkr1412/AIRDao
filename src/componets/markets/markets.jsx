@@ -4,9 +4,26 @@ import useEvent from "../useEvent";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 const Markets = ()=>{
 
     const event = useEvent();
+
+     console.log(event)
+
+    // const {
+    //     handleCategory,
+    //     activeEvent,
+    //     filteredEvent,
+    //     setFiltredEvent,
+    //     categoryName,
+    //     setCategoryName,
+    //     feesData,
+    //     setFeesData,
+    //     handleCommitToken
+    // } = useMarkets();
+
+    
     
     const [filteredEvent,setFiltredEvent] = useState(event.activeEvent);
     const [categoryName,setCategoryName] = useState("All");
@@ -14,17 +31,19 @@ const Markets = ()=>{
         total_volume_locked:0,
         total_platform_fee:0,
         total_burn_fee:0
-    })
+    });
+    console.log(event.activeEvent,"<<---ACTIVE EVENT --->>")
 
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log("use Effect of Markets");
-        setFiltredEvent(event.activeEvent);
-        console.log(event.activeEvent,"Active Event from Market");
-        const retrievedData = JSON.parse(localStorage.getItem('feesData'));
-        setFeesData(retrievedData)
+        setFiltredEvent(event.activeEvent); // Update filtered events
+        console.log(event.activeEvent, "Active Event from Market");
         
-    },[event.activeEvent])
+        const retrievedData = JSON.parse(localStorage.getItem('feesData'));
+        setFeesData(retrievedData); // Refresh fees data
+    }, [event.activeEvent, event.leaderBoard, event.popularEvent, event.upcomingEvent]); // Add other dependencies if needed
+    
 
     const handleCategory = (category) => {
         setCategoryName(category)
@@ -86,7 +105,7 @@ const Markets = ()=>{
                     {
                         event.categories&&(event.categories).map((category) =>{
                             return(
-                                <p onClick={
+                                <p key={category.name} onClick={
                                     ()=>handleCategory(category.name)
                                 } style={{
                                     fontWeight:categoryName === category.name ? "700":"500",

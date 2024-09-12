@@ -213,7 +213,7 @@ const ActiveMarket = ({popularRef,event,title}) =>{
                     )
                 }
                  {
-                     title =="popular" &&  searchedEvent.map(
+                     title =="Popular" &&  searchedEvent.map(
                         (event,index)=> {
                             return(
                                 <div key={index+1}>

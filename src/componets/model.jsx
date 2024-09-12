@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import './Modal.css';
 import { useWallet } from '../context/walletContext';
 import useEvent from './useEvent';
+
 const Modal = ({ show, onClose,event,voteId,voteIndex }) => {
   const wallet = useWallet();
   const eventUse = useEvent();
-  const [ammount,setAmmount] = useState("")
+  const [ammount,setAmmount] = useState("");
+  
 
   if (!show) {
     return null;

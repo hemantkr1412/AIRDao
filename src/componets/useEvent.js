@@ -13,9 +13,10 @@ const useEvent = ()=>{
     const [myPrediction,setMyprediction] = useState([]);
     const [walletDetails,setWalletDetails] = useState(null);
     const [isOpeningWallet,setOpeningWallet] = useState(false);
-    const [isPopulate,setPopulate] = useState(false)
+    const [isPopulate,setPopulate] = useState(false);
+    const [leaderBoard,setLeaderboard ]= useState([]);
 
-
+    const API_URL = "https://xenplay.xyz/api/v1"
     
     const wallet = useWallet();
 
@@ -25,13 +26,10 @@ const useEvent = ()=>{
          populatecategories();
          populateSortList();
          populateMyPridiction();
-        populateAccountData();
-        const retrievedData = JSON.parse(localStorage.getItem('feesData'));
-        if(!retrievedData){
-          console.log("RetriveData :",retrievedData)
-            populateKPI();
-        }
-       }, [walletDetails,isPopulate]);
+         populateAccountData();
+         populateKPI();
+         populatePopularMarrket();
+       }, [walletDetails]);
 
 
        const populateAccountData = async () =>{
@@ -49,7 +47,7 @@ const useEvent = ()=>{
           };
         
           try {
-            const response = await fetch(`https://xenplay.xyz/api/v1/user/account/`, requestOptions);
+            const response = await fetch(`${API_URL}/user/account/`, requestOptions);
         
             if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}, Text: ${response.statusText}`);
@@ -67,35 +65,46 @@ const useEvent = ()=>{
 
 
        const populateKPI = async () =>{
-        await fetch("https://xenplay.xyz/api/v1/event/kpi")
+        await fetch(`${API_URL}/event/kpi`)
         .then((response) => response.json())
         .then((data)=>{
           if(!data.error){
             localStorage.setItem('feesData', JSON.stringify(data));
           }
-          console.log(data)
+          console.log(data,"!!!!!!!!!!!!!!!KPI!!!!!!!!!!!!!!")
         })
         .catch((error)=> console.log(error))
        }
 
+       const populateLeaderBoard = async () =>{
+        await fetch("http://127.0.0.1:8000/api/v1/event/top-votes")
+        .then((response) => response.json())
+        .then((data)=>{
+          setLeaderboard(data)
+          console.log(data,"??????????????TOP RANK?????????????")
+        })
+        .catch((error)=> console.log(error))
+       }
+       
+
 
 
        const populateSortList = async () =>{
-        await fetch("https://xenplay.xyz/api/v1/event/sorted-event")
+        await fetch(`${API_URL}/event/sorted-event`)
         .then((response) => response.json())
         .then((data)=>console.log(data,"Populate Event ################"))
         .catch((error)=> console.log(error))
       }
 
       const populatecategories = async () =>{
-        await fetch("https://xenplay.xyz/api/v1/event/categories/")
+        await fetch(`${API_URL}/event/categories/`)
         .then((response) => response.json())
         .then((data)=>setcategories(data.results))
         .catch((error)=> console.log(error))
       }
 
        const populateEvent = async () => {
-         await fetch("https://xenplay.xyz/api/v1/event/")
+         await fetch(`${API_URL}/event/`)
            .then((response) => response.json())
            .then((data) => {
             const responseData = data.results;
@@ -130,49 +139,53 @@ const useEvent = ()=>{
        };
 
     
-    const handleCommitToken = async(event_id,voteId,voteIndex,ammount) =>{
-      console.log("Handle Commit");
-      console.log(event_id,voteIndex,ammount)
-      const tx= await wallet.sendEthToContract(event_id,voteIndex,ammount)
-
-      console.log("TX>>>",tx);
-      // console.log(accountDetails);
-      const account = JSON.parse(localStorage.getItem("accountDetails"));
-
-      // console.log(account,"ACCCCC");
-      if(tx){
-        toast.success("Transaction Successful", {
-          autoClose: 5000,
-          theme: "colored"
-          });
-
-        const data = {
-          account:account.id,
-          possible_result:voteId,
-          token_staked:ammount,
-          tx_hash:tx
+       const handleCommitToken = async (event_id, voteId, voteIndex, amount) => {
+        console.log("Handle Commit");
+        console.log(event_id, voteIndex, amount);
+        
+        const tx = await wallet.sendEthToContract(event_id, voteIndex, amount);
+    
+        console.log("TX>>>", tx);
+        const account = JSON.parse(localStorage.getItem("accountDetails"));
+    
+        if (tx) {
+            toast.success("Transaction Successful", {
+                autoClose: 5000,
+                theme: "colored"
+            });
+    
+            const data = {
+                account: account.id,
+                possible_result: voteId,
+                token_staked: amount,
+                tx_hash: tx
+            };
+    
+            const requestOptions = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            };
+    
+            await fetch(`${API_URL}/event/votes/create/`, requestOptions)
+                .then((response) => response.json())
+                .then((data) => {
+                    // setPopulate(!isPopulate);
+                    console.log(data, "Token Save in DB");
+    
+                    // Call to refresh the events and leaderboard after success
+                    populateEvent();  
+                    populatePopularMarrket();     // Refresh event data
+                    populateLeaderBoard();  // Refresh leaderboard data
+                    populateKPI();          // Refresh KPI data
+                })
+                .catch((error) => console.log(error));
+        } else {
+            toast.error("Something went wrong!");
         }
-        console.log(JSON.stringify(data));
-        const requestOptions= {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: data ? JSON.stringify(data) : null,
-        }
-        await fetch(`https://xenplay.xyz/api/v1/event/votes/create/`,requestOptions)
-          .then((response) => response.json())
-          .then((data)=>{
-              setPopulate(!isPopulate);
-              console.log(data,"Token Save in DB")
-          })
-          .catch((error)=> console.log(error))
-      }else{
-        toast.error("Something went wrong !");
-      }
-      
-    }
-
+    };
 
     const createAccount = async (wallet) => {
       const data = {
@@ -188,7 +201,7 @@ const useEvent = ()=>{
       };
     
       try {
-        const response = await fetch(`https://xenplay.xyz/api/v1/user/account/`, requestOptions);
+        const response = await fetch(`${API_URL}/user/account/`, requestOptions);
     
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}, Text: ${response.statusText}`);
@@ -205,7 +218,7 @@ const useEvent = ()=>{
 
     const populateMyPridiction = async () => {
       if(walletDetails){
-        const url = new URL(`https://xenplay.xyz/api/v1/event/my-predictions/`);
+        const url = new URL(`${API_URL}/event/my-predictions/`);
 
       // console.log(wallet.publicKey);
       
@@ -236,6 +249,7 @@ const useEvent = ()=>{
     };
 
 
+
     const claimReward = async(voteId,walletAdress,populateAgain,setPopilateAgain) =>{
       console.log(voteId);
       const data = {
@@ -257,7 +271,7 @@ const useEvent = ()=>{
           theme: "colored",
         })
 
-        const response = await fetch(`https://xenplay.xyz/api/v1/event/claim-reward/`, requestOptions);
+        const response = await fetch(`${API_URL}/event/claim-reward/`, requestOptions);
     
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}, Text: ${response.statusText}`);
@@ -279,10 +293,30 @@ const useEvent = ()=>{
 
 
 
+    const populatePopularMarrket = async () =>{
+      await fetch(`${API_URL}/event/popular-markets`)
+      .then((response) => response.json())
+      .then((data)=>{
+        
+        console.log(data,"!!!!!!!!!!!!!!!POPILAR MARKET!!!!!!!!!!!!!!")
+        setpopularEvent(data);
+      })
+      .catch((error)=> console.log(error))
+     }
+
 
 
     
-    console.log(activeEvent,"<<---From use Event --->>")
+
+
+
+
+
+
+
+
+    
+    // console.log(activeEvent,"<<---From use Event Active --->>")
 
 
 
@@ -300,7 +334,9 @@ const useEvent = ()=>{
         setWalletDetails,
         isOpeningWallet,
         setOpeningWallet,
-        claimReward
+        claimReward,
+        setLeaderboard,
+        leaderBoard
     }
 }
 

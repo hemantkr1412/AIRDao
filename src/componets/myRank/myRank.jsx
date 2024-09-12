@@ -1,5 +1,28 @@
+import { useEffect, useState } from "react";
 
 const MyRank = () =>{
+    const [leaderBoard,setLeaderboard ]= useState([]);
+
+    const API_URL = "http://127.0.0.1:8000/api/v1"
+
+    useEffect(()=>{
+        populateLeaderBoard()
+    },[])
+
+    const populateLeaderBoard = async () =>{
+        await fetch(`${API_URL}/event/top-votes/`)
+        .then((response) => response.json())
+        .then((data)=>{
+          setLeaderboard(data)
+          console.log(data,"??????????????TOP RANK?????????????")
+        })
+        .catch((error)=> console.log(error))
+    }
+
+
+
+
+
     const divStyle = {
         background: "linear-gradient(180deg, #1A1A1A -1.47%, #3F3F3F 30.25%, #626262 49.26%, #393939 74.55%, #3F0A4C 100%)",
         width: "100%",
@@ -60,7 +83,7 @@ const MyRank = () =>{
                     <p style={{
                         fontSize:"1.1rem",
                         fontWeight:"600"
-                    }}>S. No.</p>
+                    }}>Rank</p>
                     <p style={{
                         fontSize:"1.1rem",
                         fontWeight:"600"
@@ -71,9 +94,35 @@ const MyRank = () =>{
                     }}>Amount</p>
                 </div>
                  
-                 <div style={divStyle}>
-                    <div style={arrowStyle}></div>
-                </div>
+                {
+                   leaderBoard.map((data,index) =>{
+                        return(
+                            <div key={"data"+data.id} style={divStyle}>
+                               <div style={{
+                                display:"flex",
+                                justifyContent:"space-between",
+                                padding:"0.7rem",
+                                color:"white"
+                            }}>
+                                <p style={{
+                                    fontSize:"1.1rem",
+                                    fontWeight:"500",
+                                }}>{index+1}</p>
+                                <p style={{
+                                    fontSize:"1.1rem",
+                                    fontWeight:"500"
+                                }}>{data.account.account}</p>
+                                <p style={{
+                                    fontSize:"1.1rem",
+                                    fontWeight:"500"
+                                }}>${Number(data.total_reward_usd).toFixed(2)}</p>
+                                
+                            </div>
+                                <div style={arrowStyle}></div>
+                            </div>
+                        )
+                    })
+                 }
             </div>
 
        </div>

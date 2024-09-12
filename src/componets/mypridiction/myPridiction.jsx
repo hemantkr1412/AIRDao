@@ -11,6 +11,8 @@ const Pridtiction = () =>{
     const [selectedOption, setSelectedOption] = useState('last10');
     const [populateAgain,setPopilateAgain] = useState(false)
 
+    const API_URL = "https://xenplay.xyz/api/v1"
+
       // Handle the change in the select dropdown
     const handleChange = (event) => {
           setSelectedOption(event.target.value);
@@ -18,7 +20,7 @@ const Pridtiction = () =>{
     const wallet = useWallet();
     const populateMyPridiction = async () => {
         console.log("Enter in my prediction")
-          const url = new URL(`https://xenplay.xyz/api/v1/event/my-predictions/`);
+          const url = new URL(`${API_URL}/event/my-predictions/`);
         url.searchParams.append("wallet_address",wallet.publicKey);
       
         const requestOptions = {
@@ -46,7 +48,7 @@ const Pridtiction = () =>{
 
       const populateWinnigPridiction = async () => {
         console.log("Enter in my prediction")
-          const url = new URL(`https://xenplay.xyz/api/v1/event/winning-votes/`);
+          const url = new URL(`${API_URL}/event/winning-votes/`);
         url.searchParams.append("wallet_address",wallet.publicKey);
       
         const requestOptions = {
@@ -121,7 +123,9 @@ const Pridtiction = () =>{
          }}>My Predictions</h1>
        </div>
 
-
+         
+    
+        
 
        {wallet.isWalletConnected? <div style={{
         width:"100%",
@@ -131,11 +135,36 @@ const Pridtiction = () =>{
         alignItems:"center",
         color:"black",
        }}>
-            <label htmlFor="transaction-select">Select Option: </label>
-            <select id="transaction-select" value={selectedOption} onChange={handleChange}>
-              <option value="last10">Last 10 Transactions</option>
-              <option value="allWinning">All Winning Events</option>
-            </select>
+            {/* <label htmlFor="transaction-select">Select Option: </label> */}
+            <div style={{
+              width: "80%",
+              display: "flex",
+              
+            }}>
+              <select
+                style={{
+                  width: "200px",
+                  height: "40px",
+                  border: "2px solid black",
+                  borderRadius: "10px",
+                  marginLeft:"auto",
+                  fontSize: "15px",
+                  fontWeight: "400",
+                  lineHeight: "21.78px",
+                  letterSpacing: "0.03em",
+               
+
+                }}
+                id="transaction-select"
+                value={selectedOption}
+                onChange={handleChange}
+              >
+                <option value="last10">Last 10 Transactions</option>
+                <option value="allWinning">All Winning Events</option>
+              </select>
+            </div>
+            
+
             <div style={{
                 width:"80%",
                 // height:"400px",
@@ -159,17 +188,22 @@ const Pridtiction = () =>{
                     <p style={{
                         fontSize:"1.1rem",
                         fontWeight:"600"
+                    }}>Event Status</p>
+                    <p style={{
+                        fontSize:"1.1rem",
+                        fontWeight:"600"
                     }}>Tokens Committed</p>
                       <p style={{
                         fontSize:"1.1rem",
-                        fontWeight:"600"
+                        fontWeight:"600",
+                        marginRight:"3rem"
                     }}>Tokens Rewarded</p>
-                    {
-                      selectedOption === "allWinning"&& <p style={{
+                     <p style={{
                         fontSize:"1.1rem",
-                        fontWeight:"600"
+                        fontWeight:"600",
+                        marginRight:"3rem"
                     }}>Action</p>
-                    }
+                    
                 </div>
                  {/* <div style={{
                     background: "linear-gradient(180deg, #1A1A1A -1.47%, #3F3F3F 30.25%, #626262 49.26%, #393939 74.55%, #3F0A4C 100%)",
@@ -191,19 +225,62 @@ const Pridtiction = () =>{
                                 <p style={{
                                     fontSize:"1.1rem",
                                     fontWeight:"500",
+                                    width:"10px",
+                                    textAlign:"center"
                                 }}>{index+1}</p>
                                 <p style={{
                                     fontSize:"1.1rem",
-                                    fontWeight:"500"
+                                    fontWeight:"500",
+                                      width:"66px",
+                                      textAlign:"center"
                                 }}>{data.event_id}</p>
+                               <p style={{
+                                    fontSize:"1.1rem",
+                                    fontWeight:"500",
+                                      width:"97px",
+                                      textAlign:"center"
+                                }}>{data.status}</p>
                                 <p style={{
                                     fontSize:"1.1rem",
-                                    fontWeight:"500"
+                                    fontWeight:"500",
+                                     width:"150px",
+                                     textAlign:"center"
                                 }}>{data.token_staked}</p>
                                 <p style={{
                                     fontSize:"1.1rem",
-                                    fontWeight:"500"
+                                    fontWeight:"500",
+                                     width:"138px",
+                                     textAlign:"center"
                                 }}>{data.amount_rewarded===null?"Pending":data.amount_rewarded}</p>
+                                <button 
+                                  onClick={()=>{
+                                    if(!data.is_claimed ){
+                                      if(data.status ==="WON" ){
+                                        event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
+                                      }
+                                    }
+                                  }
+                                  }
+                                  style={{
+                                      backgroundColor:data.is_claimed ?" #00000080":"#DADADA26",
+                                      color:"#FFFFFF",
+                                      width:"120px",
+                                      height:"35px",
+                                      borderRadius:"5px",
+                                      border:"none",
+                                      cursor:!data.is_claimed ?"pointer":"",
+                                      border: "2px solid #FFFFFF",
+                                    
+                                  }}>
+                                    {!data.is_claimed ?<span>Claim</span>:<span>Claimed</span>}
+                                    {data.is_claimed &&
+
+                                    <img style={{
+                                      marginLeft:"5px",
+                                      position:"absolute"
+                                    }} src="clainmed.svg" alt="Claimed" />
+                                    }
+                                  </button>
                             </div>
                                 <div style={arrowStyle}></div>
                             </div>
@@ -221,37 +298,59 @@ const Pridtiction = () =>{
                             color:"white"
                         }}>
                             <p style={{
-                                fontSize:"1.1rem",
-                                fontWeight:"500",
+                              fontSize:"1.1rem",
+                              fontWeight:"500",
+                              width:"10px",
+                              textAlign:"center"
                             }}>{index+1}</p>
                             <p style={{
-                                fontSize:"1.1rem",
-                                fontWeight:"500"
+                                 fontSize:"1.1rem",
+                                 fontWeight:"500",
+                                  width:"66px",
+                                textAlign:"center"
                             }}>{data.event_id}</p>
+                              <p style={{
+                                    fontSize:"1.1rem",
+                                    fontWeight:"500",
+                                      width:"97px",
+                                      textAlign:"center"
+                                }}>{data.status}</p>
                             <p style={{
-                                fontSize:"1.1rem",
-                                fontWeight:"500"
+                              fontSize:"1.1rem",
+                              fontWeight:"500",
+                              width:"150px",
+                              textAlign:"center"
                             }}>{data.token_staked}</p>
                             <p style={{
                                 fontSize:"1.1rem",
-                                fontWeight:"500"
+                                fontWeight:"500",
+                                 width:"138px",
+                                 textAlign:"center"
                             }}>{data.amount_rewarded}</p>
-                            <button 
-                            onClick={()=>
-                              event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
-                            }
-                            style={{
-                                backgroundColor:!data.is_claimed ?"#F2F2F2":"grey",
-                                color:"black",
-                                width:"120px",
-                                height:"35px",
-                                borderRadius:"5px",
-                                border:"none",
-                                cursor:!data.is_claimed ?"pointer":"",
-                               
-                            }}>
-                              {!data.is_claimed ?"Claim":"Claimed"}
-                            </button>
+                               <button 
+                                  onClick={()=>
+                                    event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
+                                  }
+                                  style={{
+                                      backgroundColor:data.is_claimed ?" #00000080":"#DADADA26",
+                                      color:"#FFFFFF",
+                                      width:"120px",
+                                      height:"35px",
+                                      borderRadius:"5px",
+                                      border:"none",
+                                      cursor:!data.is_claimed ?"pointer":"",
+                                      border: "2px solid #FFFFFF",
+                                    
+                                  }}>
+                                    {!data.is_claimed ?<span>Claim</span>:<span>Claimed</span>}
+                                    {data.is_claimed &&
+
+                                    <img style={{
+                                      marginLeft:"5px",
+                                      position:"absolute"
+                                    }} src="clainmed.svg" alt="Claimed" />
+                                    }
+                                  </button>
                         </div>
                             <div style={arrowStyle}></div>
                         </div>
