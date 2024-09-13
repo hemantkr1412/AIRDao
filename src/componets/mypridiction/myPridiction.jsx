@@ -267,12 +267,15 @@ const Pridtiction = () =>{
                                       width:"120px",
                                       height:"35px",
                                       borderRadius:"5px",
-                                      border:"none",
-                                      cursor:!data.is_claimed ?"pointer":"",
+                                      cursor: data.status === "WON" ?"pointer":"",
                                       border: "2px solid #FFFFFF",
                                     
                                   }}>
-                                    {!data.is_claimed ?<span>Claim</span>:<span>Claimed</span>}
+                                    {
+                                      data.status === "WON" ? (
+                                        !data.is_claimed ?<span>Claim</span>:<span>Claimed</span>
+                                      ):("N/A")
+                                    }
                                     {data.is_claimed &&
 
                                     <img style={{
@@ -337,7 +340,6 @@ const Pridtiction = () =>{
                                       width:"120px",
                                       height:"35px",
                                       borderRadius:"5px",
-                                      border:"none",
                                       cursor:!data.is_claimed ?"pointer":"",
                                       border: "2px solid #FFFFFF",
                                     

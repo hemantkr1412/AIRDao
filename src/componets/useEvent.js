@@ -77,7 +77,7 @@ const useEvent = ()=>{
        }
 
        const populateLeaderBoard = async () =>{
-        await fetch("http://127.0.0.1:8000/api/v1/event/top-votes")
+        await fetch(`${API_URL}/event/top-votes`)
         .then((response) => response.json())
         .then((data)=>{
           setLeaderboard(data)
