@@ -184,10 +184,12 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                                         padding:"1rem",
                                         borderBottom: "1px solid rgba(164, 164, 164, 1)"
                                       }}>
-                                        Metamask
+                                        <span >Metamask</span>
                                         <img  src="metamask-icon.svg" alt="phantom" style={{
                                           width:"20px",
                                           height:"20px",
+                                          marginLeft:"10px",
+                                        
                                          
                                        
                                         }}/>
@@ -291,11 +293,11 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                                           borderBottom: "1px solid rgba(164, 164, 164, 1)"
                                         }}>
                                           Metamask
-                                          <img  src="metamask-icon.svg" alt="phantom" style={{
+                                          {/* <img  src="metamask-icon.svg" alt="phantom" style={{
                                             width:"10px",
                                             height:"10px",
                                             marginLeft:"5px"
-                                          }}/>
+                                          }}/> */}
                                         </a>
                                         </> :
                                         <>
