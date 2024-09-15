@@ -96,7 +96,7 @@ const ActiveMarket = ({popularRef,event,title}) =>{
             marginTop:"3rem",
             paddingTop:"3rem"
         }}>
-            <div style={{
+            <div className="marktesTab" style={{
                 width:"96%",
                 display:"flex",
                 justifyContent:"space-between",
@@ -121,8 +121,7 @@ const ActiveMarket = ({popularRef,event,title}) =>{
                     padding:"1rem",
                     // backgroundColor:"white",
                     marginRight:"1rem"
-                  
-                }} />
+                    }} />
                     {title === "Active" && <select style={{
                         width:"200px",
                         height:"50px",
@@ -132,7 +131,7 @@ const ActiveMarket = ({popularRef,event,title}) =>{
                         backgroundColor:"transparent",
                     
                     }}>
-                              <option value="">Sort By</option>
+                              <option value="" hidden disabled selected>Sort By</option>
                               <option value="new">New</option>
                               <option value="ending_soon">Ending soon</option>
                              

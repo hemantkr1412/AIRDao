@@ -153,7 +153,7 @@ const HowItWorks = ({howItWorksRef}) =>{
                 <div>
                     <h1 style={{
                         textAlign:"center"
-                    }}>7%</h1>
+                    }}>5%</h1>
                     <p style={{
                         textAlign:"center"
                     }}> Platform Fee</p>
@@ -164,7 +164,7 @@ const HowItWorks = ({howItWorksRef}) =>{
                 <div>
                     <h1 style={{
                         textAlign:"center"
-                    }} >3%</h1>
+                    }} >0%</h1>
                     <p style={{
                         textAlign:"center"
                     }}>Token Burn Allocation</p>
@@ -175,7 +175,7 @@ const HowItWorks = ({howItWorksRef}) =>{
                 <div>
                     <h1 style={{
                         textAlign:"center"
-                    }}>90%</h1>
+                    }}>95%</h1>
                     <p style={{
                         textAlign:"center"
                     }}>Winner Reward Pool</p>

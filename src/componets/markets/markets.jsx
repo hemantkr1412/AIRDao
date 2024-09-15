@@ -63,7 +63,7 @@ const Markets = ()=>{
     return(
     <div style={{width:"100%",
         minHeight:"100vh",
-
+        marginBottom:"2rem"
     }}>
          <ToastContainer />
        
@@ -118,7 +118,7 @@ const Markets = ()=>{
                        
             </div>
 
-            <div className="filterSearchMobile">
+            {/* <div className="filterSearchMobile">
                 <div>
                     <p style={{
                     fontWeight:"500",
@@ -144,12 +144,12 @@ const Markets = ()=>{
                 </div>
                 
 
-            </div>
+            </div> */}
                 <div 
                 className="tokenInfoContainer"
                 style={{
                     gap:"2rem",
-                    marginTop:"2rem",
+                    marginTop:"5rem",
                 }}>
 
                     <div
@@ -231,7 +231,7 @@ const Markets = ()=>{
                             }} />
                         </div>
                         <div>
-                            <h1>${feesData.total_burn_fee}</h1>
+                            <h1>${0}</h1>
                         </div>
 
                     </div>

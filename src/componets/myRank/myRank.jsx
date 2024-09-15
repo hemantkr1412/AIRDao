@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import "../markets/market.css";
 
 const MyRank = () =>{
     const [leaderBoard,setLeaderboard ]= useState([]);
 
-    const API_URL = "https://xenplay.xyz/api/v1"
+    // const API_URL = "http://127.0.0.1:8000/api/v1"
+    // const API_URL = "https://xenplay.xyz/api/v1"
 
     useEffect(()=>{
         populateLeaderBoard()
@@ -70,33 +72,24 @@ const MyRank = () =>{
        }}>
             <div style={{
                 width:"80%",
-                // height:"400px",
                 display:"flex",
                 flexDirection:"column",
                 gap:"2rem"
             }}>
-                <div style={{
+                <div className="leaderBoardHeadings" style={{
                     display:"flex",
                     justifyContent:"space-between",
                     marginTop:"2rem"
                 }}>
-                    <p style={{
-                        fontSize:"1.1rem",
-                        fontWeight:"600"
-                    }}>Rank</p>
-                    <p style={{
-                        fontSize:"1.1rem",
-                        fontWeight:"600"
-                    }}>Wallet Address</p>
-                    <p style={{
-                        fontSize:"1.1rem",
-                        fontWeight:"600"
-                    }}>Amount</p>
+                    <p>Rank</p>
+                    <p>Wallet Address</p>
+                    <p>Amount</p>
                 </div>
                  
                 {
                    leaderBoard.map((data,index) =>{
                         return(
+                            <>
                             <div key={"data"+data.id} style={divStyle}>
                                <div style={{
                                 display:"flex",
@@ -108,10 +101,16 @@ const MyRank = () =>{
                                     fontSize:"1.1rem",
                                     fontWeight:"500",
                                 }}>{index+1}</p>
-                                <p style={{
+                                <p className="leaderboardAccountDesktop" style={{
                                     fontSize:"1.1rem",
                                     fontWeight:"500"
                                 }}>{data.account.account}</p>
+                                <p className="leaderboardAccountMobile"  style={{
+                                    fontSize:"0.9rem",
+                                    fontWeight:"500"
+                                }}>{ `${data.account.account
+                                    .toString()
+                                    .slice(0, 4)}...${data.account.account.toString().slice(39)}`}</p>
                                 <p style={{
                                     fontSize:"1.1rem",
                                     fontWeight:"500"
@@ -120,6 +119,8 @@ const MyRank = () =>{
                             </div>
                                 <div style={arrowStyle}></div>
                             </div>
+                            
+                            </>
                         )
                     })
                  }

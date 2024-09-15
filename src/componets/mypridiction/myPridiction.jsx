@@ -4,6 +4,8 @@ import { useWallet } from "../../context/walletContext";
 import useEvent from "../useEvent";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "../markets/market.css";
+
 const Pridtiction = () =>{
     const event = useEvent();
     const [myPrediction,setMyprediction] = useState([]);
@@ -11,7 +13,8 @@ const Pridtiction = () =>{
     const [selectedOption, setSelectedOption] = useState('last10');
     const [populateAgain,setPopilateAgain] = useState(false)
 
-    const API_URL = "https://xenplay.xyz/api/v1"
+    // const API_URL = "http://127.0.0.1:8000/api/v1"
+     const API_URL = "https://xenplay.xyz/api/v1"
 
       // Handle the change in the select dropdown
     const handleChange = (event) => {
@@ -142,13 +145,11 @@ const Pridtiction = () =>{
               
             }}>
               <select
+                className="predictionSelect"
                 style={{
-                  width: "200px",
-                  height: "40px",
                   border: "2px solid black",
                   borderRadius: "10px",
                   marginLeft:"auto",
-                  fontSize: "15px",
                   fontWeight: "400",
                   lineHeight: "21.78px",
                   letterSpacing: "0.03em",
@@ -165,14 +166,16 @@ const Pridtiction = () =>{
             </div>
             
 
-            <div style={{
+            <div 
+            className="desktopVersion"
+            style={{
                 width:"80%",
-                // height:"400px",
-                display:"flex",
+                // display:"flex",
                 flexDirection:"column",
-                gap:"2rem"
+                gap:"2rem",
             }}>
-                <div style={{
+                <div
+                 style={{
                     display:"flex",
                     justifyContent:"space-between",
                     marginTop:"2rem"
@@ -205,13 +208,6 @@ const Pridtiction = () =>{
                     }}>Action</p>
                     
                 </div>
-                 {/* <div style={{
-                    background: "linear-gradient(180deg, #1A1A1A -1.47%, #3F3F3F 30.25%, #626262 49.26%, #393939 74.55%, #3F0A4C 100%)",
-                    width:"100%",
-                    height:"50px"
-                 }}>
-
-                 </div> */}
                  {
                    selectedOption==="last10" && myPrediction.map((data,index) =>{
                         return(
@@ -331,8 +327,13 @@ const Pridtiction = () =>{
                                  textAlign:"center"
                             }}>{data.amount_rewarded}</p>
                                <button 
-                                  onClick={()=>
-                                    event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
+                                  onClick={()=>{
+                                    if(!data.is_claimed ){
+                                      if(data.status ==="WON" ){
+                                        event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
+                                      }
+                                    }
+                                  }
                                   }
                                   style={{
                                       backgroundColor:data.is_claimed ?" #00000080":"#DADADA26",
@@ -340,11 +341,15 @@ const Pridtiction = () =>{
                                       width:"120px",
                                       height:"35px",
                                       borderRadius:"5px",
-                                      cursor:!data.is_claimed ?"pointer":"",
+                                      cursor: data.status === "WON" ?"pointer":"",
                                       border: "2px solid #FFFFFF",
                                     
                                   }}>
-                                    {!data.is_claimed ?<span>Claim</span>:<span>Claimed</span>}
+                                    {
+                                      data.status === "WON" ? (
+                                        !data.is_claimed ?<span>Claim</span>:<span>Claimed</span>
+                                      ):("N/A")
+                                    }
                                     {data.is_claimed &&
 
                                     <img style={{
@@ -359,9 +364,149 @@ const Pridtiction = () =>{
                     )
                 })
                  }
+
                  
             </div>
+            <div 
+            className="mobileView"
+            style={{
+                width:"80%",
+                // display:"flex",
+                flexDirection:"column",
+                gap:"2rem"
+            }}>
+               
+                 {
+                   selectedOption==="last10" && myPrediction.map((data,index) =>{
+                        return(
+                          <div key={`indi+${data.event_id}`}  style={divStyle}>
+                          <div style={{
+                           display:"flex",
+                           justifyContent:"space-between",
+                           padding:"0.7rem",
+                           color:"white"
+                       }}>
+                           <p style={{
+                             fontSize:"1.4rem",
+                             fontWeight:"500",
+                             // width:"10px",
+                             textAlign:"center"
+                           }}>{index+1}</p>
+                           <p style={{
+                                fontSize:"0.6rem",
+                                fontWeight:"500",
+                                 // width:"66px",
+                               // textAlign:"center"
+                           }}>Event ID :{data.event_id} <br/>Tokens Rewarded: {data.amount_rewarded}</p>
+                             <p style={{
+                                   fontSize:"0.7rem",
+                                   fontWeight:"500",
+                                     // width:"97px",
+                                     textAlign:"center",
+                                     color: data.status === "WON" ? "GREEN" 
+                                     : data.status === "LOST" ? "RED" 
+                                     : "BLUE" // For "PENDING"
+                               }}>{data.status}</p>
+                              <button 
+                                 onClick={()=>
+                                   event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
+                                 }
+                                 style={{
+                                     backgroundColor:data.is_claimed  ?" #00000080":"#DADADA26",
+                                     color:"#FFFFFF",
+                                     width:"100px",
+                                     height:"25px",
+                                     borderRadius:"5px",
+                                     cursor:true ?"pointer":"",
+                                     border: "2px solid #FFFFFF",
+                                   
+                                 }}>
+                                   {
+                                      data.status === "WON" ? (
+                                        !data.is_claimed ?<span>Claim</span>:<span>Claimed</span>
+                                      ):("N/A")
+                                    }
+                                   {data.is_claimed &&
 
+                                   <img style={{
+                                     marginLeft:"5px",
+                                     position:"absolute"
+                                   }} src="clainmed.svg" alt="Claimed" />
+                                   }
+                                 </button>
+                       </div>
+                           <div style={arrowStyle}></div>
+                          </div>
+                        )
+                    })
+                 }
+                 {
+                  selectedOption==="allWinning" && winningEvents.map((data,index) =>{
+                    return(
+                      <div key={`indi+${data.event_id}`}  style={divStyle}>
+                      <div style={{
+                       display:"flex",
+                       justifyContent:"space-between",
+                       padding:"0.7rem",
+                       color:"white"
+                   }}>
+                       <p style={{
+                         fontSize:"1.4rem",
+                         fontWeight:"500",
+                         // width:"10px",
+                         textAlign:"center"
+                       }}>{index+1}</p>
+                       <p style={{
+                            fontSize:"0.6rem",
+                            fontWeight:"500",
+                             // width:"66px",
+                           // textAlign:"center"
+                       }}>Event ID :{data.event_id} <br/>Tokens Rewarded: {data.amount_rewarded}</p>
+                         <p style={{
+                               fontSize:"0.7rem",
+                               fontWeight:"500",
+                                 // width:"97px",
+                                 textAlign:"center",
+                                 color: data.status === "WON" ? "GREEN" 
+                                 : data.status === "LOST" ? "RED" 
+                                 : "BLUE" // For "PENDING"
+                           }}>{data.status}</p>
+                          <button 
+                             onClick={()=>
+                               event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
+                             }
+                             style={{
+                                 backgroundColor:data.is_claimed  ?" #00000080":"#DADADA26",
+                                 color:"#FFFFFF",
+                                 width:"100px",
+                                 height:"25px",
+                                 borderRadius:"5px",
+                                 cursor:true ?"pointer":"",
+                                 border: "2px solid #FFFFFF",
+                               
+                             }}>
+                               {
+                                  data.status === "WON" ? (
+                                    !data.is_claimed ?<span>Claim</span>:<span>Claimed</span>
+                                  ):("N/A")
+                                }
+                               {data.is_claimed &&
+
+                               <img style={{
+                                 marginLeft:"5px",
+                                 position:"absolute"
+                               }} src="clainmed.svg" alt="Claimed" />
+                               }
+                             </button>
+                   </div>
+                       <div style={arrowStyle}></div>
+                      </div>
+                    )
+                })
+                 }
+
+                 
+            </div>
        </div>
        :
        <div style={{

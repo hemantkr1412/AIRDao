@@ -16,7 +16,8 @@ const useEvent = ()=>{
     const [isPopulate,setPopulate] = useState(false);
     const [leaderBoard,setLeaderboard ]= useState([]);
 
-    const API_URL = "https://xenplay.xyz/api/v1"
+    // const API_URL = "http://127.0.0.1:8000/api/v1"
+     const API_URL = "https://xenplay.xyz/api/v1"
     
     const wallet = useWallet();
 

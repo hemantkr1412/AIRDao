@@ -13,8 +13,9 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
     };
     return(
         <div className="cardContainer2" style={{
-            backgroundColor:"white",
+            background: "linear-gradient(180deg, rgba(247, 147, 26, 0.2) 0%, rgba(45, 40, 255, 0.2) 100%)",
         }}>
+            
            
            <div style={{
             padding:"1rem",
@@ -33,7 +34,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                     </div>
                     <div>
                     <div style={{
-                            color:"rgb(112, 112, 112)",
+                            color:"rgb(0,0,0,0.7)",
                             marginTop:"0.5rem",
                             fontSize:"0.9rem",
                            
@@ -47,10 +48,11 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                         }}>
                         {event.event_name}
                     </div>
-                    <div style={{
-                            color:"rgb(112, 112, 112)",
+                    <div
+                    className="resulationDate"
+                     style={{
+                            color:"rgb(0,0,0,0.7)",
                             // marginTop:"0.5rem",
-                            fontSize:"0.9rem",
                            
                         }}>Resolution Date : {formatDate(event.resolution_date)}</div>
                     </div>
@@ -92,7 +94,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                                                 setVoteIndex(index)
                                             }} style={{
                                                     marginTop:"20px",
-                                                    backgroundColor:result.result ==="Yes" ?"green":"red",
+                                                    backgroundColor:index === 0 ?"green":"red",
                                                     color:"white",
                                                     width:"120px",
                                                     height:"35px",
@@ -107,8 +109,8 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                                                     <button 
                                                 // className="votMultiButon"
                                                 style={{
-                                                    backgroundColor:"#F2F2F2",
-                                                    color:"#7D7D7D",
+                                                    backgroundColor:index === 0 ?"rgb(0, 128, 0,0.6)":"rgb(255, 0, 0,0.6)",
+                                                    color:"rgb(255, 255, 255,0.7)",
                                                     width:"120px",
                                                     height:"35px",
                                                     borderRadius:"5px",
@@ -289,12 +291,12 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
             }}> 
                 {   
                     (isPopular || isRecent) && <p style={{
-                            color:"rgb(112, 112, 112)",
+                            color:"rgb(0,0,0,0.7)",
                             marginTop:"0.5rem",
                         }}>${Number(event.token_volume_in_doller).toFixed(2)}</p>
                 }
                 <p  style={{
-                            color:"rgb(112, 112, 112)",
+                            color:"rgb(0,0,0,0.7)",
                             marginTop:"0.5rem",
                             textAlign:"center"
                         }}>Last Date:  {formatDate(event.end_date)}</p>

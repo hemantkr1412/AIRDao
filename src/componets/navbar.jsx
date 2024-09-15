@@ -20,6 +20,11 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
     }else{
       getDocument.style.display = "flex";
     }
+
+    const walletDetails = localStorage.getItem('wallet'); 
+    if(walletDetails === 'metamask'){
+      wallet.connectWallet()
+    }
     
   }, [isToggled]);
 
@@ -33,7 +38,10 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
 
     let wallettype = localStorage.getItem("wallettype");
 
-    if (wallettype == "browser") {
+    if (wallettype == "browser" && wallet?.publicKey) {
+      // console.error(wallet?.publicKey)
+      
+    
       return `${wallet?.publicKey
         .toString()
         .slice(0, 4)}...${wallet?.publicKey.toString().slice(39)}`;
@@ -229,21 +237,94 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
             display:"flex",
             justifyContent:"space-between",
           }}>
-          <img  src="logoxenPlay.png" alt="XenPLay"style={{
+          {/* <img  src="logoxenPlay.png" alt="XenPLay"style={{
             width:"120px",
             height:"50px"
-          }}/>
-          
+          }}/> */}
+          <a href="/" style={{fontWeight:"600",fontSize:"0.8rem" ,cursor:"pointer",
+                    color:"white",
+                    textDecoration:"none",
+                    marginTop:"5px"
+                  }} >
+                  {/* <img src="logoxenPlay.png" alt="logo" style={{
+                    width:"200px",
+                    height:"70px"
+                }}/> */}
+                AIRDAO <span style={{
+                  color:"#838283"
+                }}>Markets</span>
+                </a>
+          <div style={{
+            display:"flex",
+
+          }}>
+            <div className="dropdown1" style={{
+                        fontWeight:"600",
+                      }}>
+                              <button
+                              style={{
+                                backgroundColor:"white",
+                                color:"black",
+                                width:"100px",
+                                height:"25px",
+                                borderRadius:"5px",
+                                border:"none",
+                                // marginRight:"3rem",
+                                cursor:"pointer",
+                            }}
+                              className="para-link2" > {getAddress()}
+                                <img src="downArrow.svg" alt="down-arrow" style={{
+                                marginLeft:"0.4rem",
+                                rotate:isDropdown?"180deg":"0deg"
+                              }}/>
+                              </button>
+                                  <div className="dropdown-content1">
+                                      <div className="column" style={{
+                                      width:"100%",
+                                      height:"auto"
+                                      }}>
+                                      {!wallet.isWalletConnected ?<>
+                                      <a onClick={()=>{
+                                          wallet.connectWallet()
+                                        }} style={{
+                                          padding:"1rem",
+                                          borderBottom: "1px solid rgba(164, 164, 164, 1)"
+                                        }}>
+                                          Metamask
+                                          <img  src="metamask-icon.svg" alt="phantom" style={{
+                                            width:"10px",
+                                            height:"10px",
+                                            marginLeft:"5px"
+                                          }}/>
+                                        </a>
+                                        </> :
+                                        <>
+                                        <a onClick={
+                                          ()=>{
+                                            wallet.disconnect();
+                                          }
+                                        } style={{
+                                          padding:"1rem",
+                                          borderBottom: "0px solid rgba(164, 164, 164, 1)"
+                                        }}>
+                                          Disconnect
+                                        </a>
+                                        </>}
+                                      </div>
+                                  </div>
+            </div>
           {!isToggled ?   <img className="maunuicon" src="cancel.png"  alt="Close" onClick={handleClickMenu} style={{
-            width:"30px",
-            height:"30px"
+            width:"25px",
+            height:"25px"
           }}/>
           :
           <img  src="Group.svg"  alt="Menu" onClick={handleClickMenu} style={{
-            width:"50px",
-            height:"40px"
+            width:"40px",
+            height:"30px"
           }}/>
           }
+          </div>
+         
    
           </div>
         <div 
@@ -283,64 +364,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     onClick={() =>  wallet.connectWallet()}
                      style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
                     "1rem"}}>{wallet.isWalletConnected ? getAddress(): "Connect Wallet"}</p> */}
-                     <div className="dropdown1" style={{
-                      marginTop:
-                      "1rem",
-                      fontWeight:"600"
-                     }}>
-                            <button
-                             style={{
-                              backgroundColor:"white",
-                              color:"black",
-                              width:"140px",
-                              height:"35px",
-                              borderRadius:"5px",
-                              border:"none",
-                              marginRight:"3rem",
-                              cursor:"pointer"
-                          }}
-                             className="para-link2" > {getAddress()}
-                              <img src="downArrow.svg" alt="down-arrow" style={{
-                              marginLeft:"0.4rem",
-                              rotate:isDropdown?"180deg":"0deg"
-                            }}/>
-                             </button>
-                                <div className="dropdown-content1">
-                                    <div className="column" style={{
-                                    width:"100%",
-                                    height:"auto"
-                                    }}>
-                                    {!wallet.isWalletConnected ?<>
-                                    <a onClick={()=>{
-                                        wallet.connectWallet()
-                                      }} style={{
-                                        padding:"1rem",
-                                        borderBottom: "1px solid rgba(164, 164, 164, 1)"
-                                      }}>
-                                        Metamask
-                                        <img  src="metamask-icon.svg" alt="phantom" style={{
-                                          width:"20px",
-                                          height:"20px",
-                                         
-                                       
-                                        }}/>
-                                      </a>
-                                      </> :
-                                      <>
-                                      <a onClick={
-                                        ()=>{
-                                          wallet.disconnect();
-                                        }
-                                      } style={{
-                                        padding:"1rem",
-                                        borderBottom: "0px solid rgba(164, 164, 164, 1)"
-                                      }}>
-                                        Disconnect
-                                      </a>
-                                      </>}
-                                    </div>
-                                </div>
-                        </div>
+                    
             </div>
       
           </div>

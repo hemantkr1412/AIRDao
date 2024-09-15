@@ -55,7 +55,7 @@ const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadM
                     }} onClick={()=>{
                         handleScroll(howItWorksRef)
                     }}>How it Works</p>
-                    <p style={{
+                    {/* <p style={{
                     fontWeight:"500",
                     cursor:"pointer"
                     }} onClick={()=>{
@@ -66,7 +66,7 @@ const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadM
                     cursor:"pointer"
                     }} onClick={()=>{
                         handleScroll(tokenDetailsRef)
-                    }}>Token Details</p>
+                    }}>Token Details</p> */}
             </div>
             <ToastContainer />
             <HeroSection  />
@@ -74,8 +74,8 @@ const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadM
             <PopularMarkets popularRef={popularRef} />
             <RecentMarkets recentRef={recentRef} />
             <HowItWorks howItWorksRef={howItWorksRef} />
-            <RoadMap roadMapref={roadMapref} />
-            <TokenDetails tokenDetailsRef={tokenDetailsRef} />
+            {/* <RoadMap roadMapref={roadMapref} /> */}
+            {/* <TokenDetails tokenDetailsRef={tokenDetailsRef} /> */}
         </div>
     )
 }

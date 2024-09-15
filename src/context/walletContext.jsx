@@ -20,6 +20,7 @@ export function WalletProvider(props) {
   const [publicKey, setPublicKey] = useState(null);
   const [isWalletConnected, setIsWalletConnected] = useState(false);
   const {sdk, connected, connecting, provider, chainId} = useSDK();
+  const targetChainId = "0x5618";
   
   // const [contractAddress, setContractAddress] = useState(null);
 
@@ -46,77 +47,85 @@ export function WalletProvider(props) {
   // }, []);
 
   useEffect(() => {
-    try {
-      if (connected && chainId !== "0x5618") {
-        switchNetwork();
-      }
-      // const {ethereum} = window;
-      // ethereum.on("accountsChanged", accounts => {
-      //   console.log("Account changed to:", accounts[0]);
-      //   setPublicKey(accounts[0]);
-      // });
-    } catch (error) {
-      console.log(error);
+    
+    const {ethereum} = window;
+    // const wallet = localStorage.getItem('wallet');
+    // console.log(wallet)    
+    // if(wallet ==="metamask"){
+    //   connectWallet()
+    // }
+
+    if (connected && chainId !== targetChainId) {
+      switchNetwork(ethereum);
     }
-  },[chainId]);
+  }, [chainId, connected]);
 
-  const switchNetwork = async () => {
-    if (typeof window.ethereum !== "undefined") {
-      const {ethereum} = window;
+   // Track account changes in MetaMask
+   useEffect(() => {
+   
+   
 
-      const targetChainId = "0x5618"; // Example: Ethereum Mainnet (Hex: 0x1)
+    const {ethereum} = window;
+    if (ethereum && ethereum.isMetaMask) {
+      const handleAccountsChanged = accounts => {
+        setPublicKey(accounts.length > 0 ? accounts[0] : null);
+      };
+
+      ethereum
+        .request({method: "eth_accounts"})
+        .then(handleAccountsChanged)
+        .catch(console.error);
+      ethereum.on("accountsChanged", handleAccountsChanged);
+
+      return () => ethereum.removeListener("accountsChanged", handleAccountsChanged);
+    } else {
+      console.log("MetaMask is not installed.");
+    }
+  }, []);
+
+
+  const switchNetwork = async ethereum => {
+    try {
+      const currentChainId = await ethereum.request({method: "eth_chainId"});
+      if (currentChainId !== targetChainId) {
+        await ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [{chainId: targetChainId}]
+        });
+        console.log(`Switched to chain ${targetChainId}`);
+      }
+    } catch (error) {
+      handleSwitchError(error, ethereum);
+    }
+  };
+
+
+  const handleSwitchError = async (error, ethereum) => {
+    if (error.code === 4902) {
+      // Chain not found, add and switch
       try {
-        // Specify the desired chainId (in hexadecimal)
-        const chainId = await ethereum.request({method: "eth_chainId"});
-
-        // Check if already connected to the desired chain
-        if (chainId !== targetChainId) {
-          console.log(`Current chain: ${chainId}, switching to ${targetChainId}`);
-
-          // Attempt to switch the chain
-          await ethereum.request({
-            method: "wallet_switchEthereumChain",
-            params: [{chainId: targetChainId}]
-          });
-
-          // setCurrentChain(targetChainId);
-          console.log(`Successfully switched to chain ${targetChainId}`);
-        } else {
-          console.log("Already connected to the correct chain");
-        }
-      } catch (error) {
-        console.log("got into error");
-        if (error.code === 4902) {
-          // Chain not found, prompt user to add the network
-          try {
-            console.log("in try");
-            await ethereum.request({
-              method: "wallet_addEthereumChain",
-              params: [
-                {
-                  chainId: targetChainId,
-                  chainName: "Airdao Testnet",
-                  nativeCurrency: {
-                    name: "AMB",
-                    symbol: "AMB",
-                    decimals: 18
-                  },
-                  rpcUrls: ["https://network.ambrosus-test.io/"], // Replace with your RPC URL
-                  blockExplorerUrls: ["https://testnet.airdao.io/explorer/"]
-                }
-              ]
-            });
-            console.log("Network added and switched");
-            // setCurrentChain(targetChainId);
-          } catch (addError) {
-            console.error("Error adding the chain:", addError);
-          }
-        } else {
-          console.error("Error switching chain:", error);
-        }
+        await ethereum.request({
+          method: "wallet_addEthereumChain",
+          params: [
+            {
+              chainId: targetChainId,
+              chainName: "Airdao Testnet",
+              nativeCurrency: {
+                name: "AMB",
+                symbol: "AMB",
+                decimals: 18
+              },
+              rpcUrls: ["https://network.ambrosus-test.io/"],
+              blockExplorerUrls: ["https://testnet.airdao.io/explorer/"]
+            }
+          ]
+        });
+        console.log("Network added and switched");
+      } catch (addError) {
+        console.error("Error adding the chain:", addError);
       }
     } else {
-      console.log("MetaMask not detected!");
+      console.error("Error switching chain:", error);
     }
   };
 
