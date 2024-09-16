@@ -6,16 +6,19 @@ const HowItWorks = ({howItWorksRef}) =>{
             backgroundColor:"white",
             // padding:"2%"
            paddingTop:"3rem",
-            paddingBottom:"2rem"
+            paddingBottom:"2rem",
         }}>
             <h1 style={{
                 textAlign:"center"
             }}>How it works ?</h1>
             <p style={{
-                textAlign:"center"
+                textAlign:"center",
+                marginTop:"1rem",
+                marginBottom:"1rem",
+                color:"rgba(76, 76, 76, 1)"
             }}>Understanding The Process</p>
 
-            <div>
+            {/* <div>
                 <div className="howItBoxStep">
                     <div>
                         <h1 style={{
@@ -106,81 +109,121 @@ const HowItWorks = ({howItWorksRef}) =>{
                 <div>
 
                 </div>
-            </div>
-            <div className="howItMainBoxImage">
-                <div style={{
-                    width:"18%"
-                }}>
-                    <img src="Card.png" alt="Card" style={{
-                        width:"100%"
-                    }}/>
-                </div>
-                 <div style={{
-                    width:"18%"
-                }}>
-                    <img src="card1.png" alt="Card" style={{
-                        width:"100%"
-                    }}/>
-                </div>
-                 <div style={{
-                    width:"18%"
-                }}>
-                    <img src="card2.png" alt="Card" style={{
-                        width:"100%"
-                    }}/>
-                </div>
-                 <div style={{
-                    width:"18%"
-                }}>
-                    <img src="card3.png" alt="Card" style={{
-                        width:"100%"
-                    }}/>
-                </div>
-                 <div style={{
-                    width:"18%"
-                }}>
-                    <img src="card4.png" alt="Card" style={{
-                        width:"100%"
-                    }}/>
-                </div>
-                 
-            </div>
-            <h1 style={{
-                marginTop:"2rem",
-                textAlign:"center"
-            }}>Fund Distribution</h1>
-            <div className="fundDistributionContainer" >
-                <div>
-                    <h1 style={{
-                        textAlign:"center"
-                    }}>5%</h1>
-                    <p style={{
-                        textAlign:"center"
-                    }}> Platform Fee</p>
-                </div>
-                <div  className="horizontalLineBox">
-                        
-                </div>
-                {/* <div>
-                    <h1 style={{
-                        textAlign:"center"
-                    }} >0%</h1>
-                    <p style={{
-                        textAlign:"center"
-                    }}>Token Burn Allocation</p>
-                </div> */}
-                  {/* <div  className="horizontalLineBox">
-                        
+            </div> */}
+            <div style={{
+                display:"flex",
+                justifyContent:"center"
+            }}>
+                <div className="howItMainBoxImage">
+                    <div className="howItWorksCard">
+                        <h1>1</h1>
+                        <p>Listing Event</p>
+                        <img src="cuate.png" />
+                    </div>
+                    <div className="howItWorksCard">
+                       <h1>2</h1>
+                        <p>Listing Event</p>
+                        <img src="bro.png" />
+                    </div>
+                    <div className="howItWorksCard">
+                        <h1>3</h1>
+                        <p>Listing Event</p>
+                        <img src="Group 159.png" />
+                    </div>
+                    <div className="howItWorksCard">
+                        <h1>4</h1>
+                        <p>Listing Event</p>
+                        <img src="cuate.png" />
+                    </div>
+                    <div className="howItWorksCard">
+                        <h1>5</h1>
+                        <p>Listing Event</p>
+                        <img src="amico.png" />
+                    </div>
+                    {/* <div style={{
+                        width:"18%"
+                    }}>
+                        <img src="Card.png" alt="Card" style={{
+                            width:"100%"
+                        }}/>
+                    </div>
+                    <div style={{
+                        width:"18%"
+                    }}>
+                        <img src="card1.png" alt="Card" style={{
+                            width:"100%"
+                        }}/>
+                    </div>
+                    <div style={{
+                        width:"18%"
+                    }}>
+                        <img src="card2.png" alt="Card" style={{
+                            width:"100%"
+                        }}/>
+                    </div>
+                    <div style={{
+                        width:"18%"
+                    }}>
+                        <img src="card3.png" alt="Card" style={{
+                            width:"100%"
+                        }}/>
+                    </div>
+                    <div style={{
+                        width:"18%"
+                    }}>
+                        <img src="card4.png" alt="Card" style={{
+                            width:"100%"
+                        }}/>
                     </div> */}
-                <div>
+                    
+                </div>
+                
+
+
+
+            </div>
+
+           
+            <div style={{
+                display:"flex",
+                justifyContent:"center"
+            }}>
+                <div className="fundDistribution">
+                    <div>
                     <h1 style={{
+                        // marginTop:"2rem",
                         textAlign:"center"
-                    }}>95%</h1>
-                    <p style={{
-                        textAlign:"center"
-                    }}>Winner Reward Pool</p>
+                    }}>Fund Distribution</h1>
+                    </div>
+                    <div className="fundDistributionSubDiv" style={{
+                        display:"flex",
+
+                    }}>
+                        <div  style={{
+                            display:"flex",
+                            flexDirection:"column",
+                            justifyContent:"center",
+                            alignItems:"center"
+                        }}>
+                            <h2>5%</h2>
+                            <p>Platform</p>
+                            
+                        </div>
+                        <div style={{
+                            display:"flex",
+                            flexDirection:"column",
+                            justifyContent:"center",
+                            alignItems:"center"
+                        }}>
+                           <h2>95%</h2>
+                           <p>Winner Reward Pool</p>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
+            
+             
         </div>
     )
 }

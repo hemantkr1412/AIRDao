@@ -263,14 +263,15 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
           }}>
             <div className="dropdown1" style={{
                         fontWeight:"600",
+                        
                       }}>
                               <button
                               style={{
-                                backgroundColor:"white",
+                                background:"linear-gradient(90.06deg, #FFD700 0%, #8B4513 100%)",
                                 color:"black",
                                 width:"100px",
                                 height:"25px",
-                                borderRadius:"5px",
+                                borderRadius:"100px",
                                 border:"none",
                                 // marginRight:"3rem",
                                 cursor:"pointer",

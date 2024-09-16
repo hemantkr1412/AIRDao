@@ -73,7 +73,7 @@ const Markets = ()=>{
                      style={{
                     justifyContent: 'center',
                     alignItems: 'center',
-                    height: '5vh',
+                    height: '40px',
                     // backgroundColor: 'white',
                     background:"linear-gradient(90.06deg, #FFD700 0%, #8B4513 100%)",
                     gap:"2.5rem",

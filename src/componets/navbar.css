@@ -55,7 +55,71 @@ padding: 2%;
 .howItMainBoxImage{
     display: flex;
     justify-content: space-around;
+    width: 96%;
+    height: 400px;
+    background-color: #f5ebdf; /* Light background color similar to the image */
+    border: 2px solid #8B4513;
+    /* border-image: linear-gradient(262.61deg, #8B4513 0.18%, #FED600 99.82%); */
+    border-image-slice: 1;
+    border-radius: 15px;
+    /* padding: 4%; */
+    align-items: center;
 }
+
+.howItWorksCard{
+    width: 17%;
+    height: 300px;
+    background: linear-gradient(180deg, #804E0C 0%, #FFC06E 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 10px;
+
+}
+.howItWorksCard h1{
+    color: white;
+}
+.howItWorksCard p{
+    color: white;
+    /* font-family: Inter; */
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    text-align: center;
+    
+
+}
+
+.fundDistribution{
+    display: flex;
+    justify-content: space-around;
+    width: 76%;
+    height: 200px;
+    background-color: #f5ebdf; /* Light background color similar to the image */
+    border: 2px solid #8B4513;
+    /* border-image: linear-gradient(262.61deg, #8B4513 0.18%, #FED600 99.82%); */
+    border-image-slice: 1;
+    border-radius: 15px;
+    /* padding: 4%; */
+    align-items: center;
+    margin-top: 2rem;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.fundDistribution p{
+   color:rgba(76, 76, 76, 1);
+   
+  }
+  
+
+
+
+
+
+
 
 .howItImageContainer{
     width: 18%;
@@ -68,6 +132,10 @@ padding: 2%;
     align-items: center;
     gap: 2rem;
     margin-top: 2rem;
+}
+
+.fundDistributionSubDiv{
+    gap: 4rem;
 }
 
 .tokenDetailsContainer{
@@ -415,10 +483,6 @@ padding: 2%;
     margin-top: 1rem;
     width: 98%;
     }
-    .howItMainBoxImage{
-    display: none;
-}
-
 .para-link2{
     font-size: 10px;
   font-weight: 500;
@@ -435,4 +499,29 @@ padding: 2%;
     font-size: 0.7rem;
     
   }
+
+  .howItMainBoxImage{
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .howItWorksCard{
+    width: 90%;
+  }
+
+  .fundDistribution h1{
+    font-size: 1.5rem;
+  }
+
+  .fundDistribution h2{
+    font-size: 1.2rem;
+  }
+  .fundDistribution p{
+    font-size: 0.8rem;
+  }
+  .fundDistributionSubDiv{
+    gap: 2rem;
+}
+
 }
