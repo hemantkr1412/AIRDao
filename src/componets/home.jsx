@@ -21,7 +21,8 @@ const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadM
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: '40px',
-                backgroundColor: 'white',
+                // backgroundColor: 'white',
+                background:"linear-gradient(90.06deg, #FFD700 0%, #8B4513 100%)",
                 position:"fixed",
                 zIndex: 100,
 

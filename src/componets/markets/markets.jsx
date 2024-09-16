@@ -9,19 +9,8 @@ const Markets = ()=>{
 
     const event = useEvent();
 
-     console.log(event)
+    //  console.log(event)
 
-    // const {
-    //     handleCategory,
-    //     activeEvent,
-    //     filteredEvent,
-    //     setFiltredEvent,
-    //     categoryName,
-    //     setCategoryName,
-    //     feesData,
-    //     setFeesData,
-    //     handleCommitToken
-    // } = useMarkets();
 
     
     
@@ -32,7 +21,7 @@ const Markets = ()=>{
         total_platform_fee:0,
         total_burn_fee:0
     });
-    console.log(event.activeEvent,"<<---ACTIVE EVENT --->>")
+    // console.log(event.activeEvent,"<<---ACTIVE EVENT --->>")
 
 
     useEffect(() => {
@@ -85,7 +74,8 @@ const Markets = ()=>{
                     justifyContent: 'center',
                     alignItems: 'center',
                     height: '5vh',
-                    backgroundColor: 'white',
+                    // backgroundColor: 'white',
+                    background:"linear-gradient(90.06deg, #FFD700 0%, #8B4513 100%)",
                     gap:"2.5rem",
                     marginTop:"5rem",
                     // position:"sticky",
@@ -156,12 +146,12 @@ const Markets = ()=>{
                     className="valueContainer"
                      style={{
                         height:"120px",
-                        backgroundColor:"black",
+                        background:"linear-gradient(180deg, #F0E68C 0%, #F5DEB3 100%)",
                         borderRadius:"5px",
                         // boxShadow:"#3E6FD9 0px 8px 23px",
                         padding:"1rem",
-                        border:"2px solid white",
-                        color:"white",
+                        border:"1px solid rgba(212, 144, 0, 1)",
+                        color:"black",
                         boxShadow: "2px 3px 12px 0px rgba(0, 0, 0, 0.4)"
 
                     }}>
@@ -185,12 +175,12 @@ const Markets = ()=>{
                     style={{
                         
                         height:"120px",
-                        backgroundColor:"black",
+                        background:"linear-gradient(180deg, #F0E68C 0%, #F5DEB3 100%)",
                         borderRadius:"5px",
                         // boxShadow:"#3E6FD9 0px 8px 23px",
                         padding:"1rem",
-                        border:"2px solid white",
-                        color:"white",
+                        border:"1px solid rgba(212, 144, 0, 1)",
+                        color:"black",
                         boxShadow: "2px 3px 12px 0px rgba(0, 0, 0, 0.4)"
                     }}>
                          <div style={{
@@ -212,12 +202,12 @@ const Markets = ()=>{
                       className="valueContainer"
                     style={{
                         height:"120px",
-                        backgroundColor:"black",
+                        background:"linear-gradient(180deg, #F0E68C 0%, #F5DEB3 100%)",
                         borderRadius:"5px",
                         // boxShadow:"#3E6FD9 0px 8px 23px",
                         padding:"1rem",
-                        border:"2px solid white",
-                        color:"white",
+                        border:"1px solid rgba(212, 144, 0, 1)",
+                        color:"black",
                         boxShadow: "2px 3px 12px 0px rgba(0, 0, 0, 0.4)"
                     }}>
                         <div style={{

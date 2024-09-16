@@ -161,17 +161,17 @@ const HowItWorks = ({howItWorksRef}) =>{
                 <div  className="horizontalLineBox">
                         
                 </div>
-                <div>
+                {/* <div>
                     <h1 style={{
                         textAlign:"center"
                     }} >0%</h1>
                     <p style={{
                         textAlign:"center"
                     }}>Token Burn Allocation</p>
-                </div>
-                  <div  className="horizontalLineBox">
+                </div> */}
+                  {/* <div  className="horizontalLineBox">
                         
-                    </div>
+                    </div> */}
                 <div>
                     <h1 style={{
                         textAlign:"center"

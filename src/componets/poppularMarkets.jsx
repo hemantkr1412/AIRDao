@@ -1,10 +1,22 @@
+import { useEffect, useState } from "react";
 import Card from "./card";
 import ActiveMarket from "./markets/activemarkets";
 import useEvent from "./useEvent";
 const PopularMarkets = ({popularRef}) =>{
-    const event = useEvent()
+    const event = useEvent();
+    const [popularEventList,setPopularEventList] = useState([])
 
-    console.log(event.popularEvent,"PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
+    useEffect(() =>{
+       const data=  JSON.parse(localStorage.getItem('popularMarket'));
+       if(data){
+        setPopularEventList(data)
+       }
+
+    },[])
+
+    
+
+    // console.error(event.popularEvent,"PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
     
     return(
         <div ref={popularRef} style={{
@@ -15,7 +27,7 @@ const PopularMarkets = ({popularRef}) =>{
             paddingTop:"3rem"
         }}>
            <ActiveMarket
-            event={event.popularEvent}
+            event={popularEventList}
             title={"Popular"}
             />
 

@@ -157,14 +157,15 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                         <div className="dropdown1">
                             <button
                              style={{
-                              backgroundColor:"white",
+                              background:"linear-gradient(90.06deg, #FFD700 0%, #8B4513 100%)",
                               color:"black",
                               width:"140px",
                               height:"35px",
-                              borderRadius:"5px",
+                              borderRadius:"100px",
                               border:"none",
                               marginRight:"3rem",
-                              cursor:"pointer"
+                              cursor:"pointer",
+                              boxShadow: "0px 4px 4px 0px rgba(255, 255, 255, 0.4)",
                           }}
                              className="para-link2" > {getAddress()}
                               <img src="downArrow.svg" alt="down-arrow" style={{

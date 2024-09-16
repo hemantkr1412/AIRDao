@@ -300,7 +300,12 @@ const useEvent = ()=>{
       .then((data)=>{
         
         console.log(data,"!!!!!!!!!!!!!!!POPILAR MARKET!!!!!!!!!!!!!!")
+        if(data){
+           localStorage.setItem('popularMarket', JSON.stringify(data));
+        }
         setpopularEvent(data);
+
+       
       })
       .catch((error)=> console.log(error))
      }

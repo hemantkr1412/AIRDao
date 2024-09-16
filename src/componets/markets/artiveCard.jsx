@@ -13,7 +13,10 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
     };
     return(
         <div className="cardContainer2" style={{
-            background: "linear-gradient(180deg, rgba(247, 147, 26, 0.2) 0%, rgba(45, 40, 255, 0.2) 100%)",
+            background: (isUpcominng || isRecent) ?"rgba(196, 154, 108, 1)": "linear-gradient(180deg, rgba(247, 147, 26, 0.2) 0%, rgba(45, 40, 255, 0.2) 100%)",
+            boxShadow:(isUpcominng || isRecent) ?"2px 4px 8px 0px rgba(196, 154, 108, 0.8)":"2px 4px 8px 0px #00000040",
+            border:(isUpcominng || isRecent) ?"":"0.5px solid white"
+
         }}>
             
            
@@ -34,7 +37,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                     </div>
                     <div>
                     <div style={{
-                            color:"rgb(0,0,0,0.7)",
+                            color:(isUpcominng || isRecent) ?"rgb(0,0,0,0.8)":"rgb(0,0,0,0.8)",
                             marginTop:"0.5rem",
                             fontSize:"0.9rem",
                            
@@ -43,15 +46,16 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                     </div> 
                     <div style={{
                             fontSize:"1rem",
-                            fontWeight:"600",
-                           
+                            fontWeight:"500",
+                            color:(isUpcominng || isRecent) ?"black":"rgb(0,0,0,1)",
                         }}>
                         {event.event_name}
                     </div>
                     <div
                     className="resulationDate"
                      style={{
-                            color:"rgb(0,0,0,0.7)",
+                            // color:"rgb(0,0,0,0.8)",
+                            color:(isUpcominng || isRecent) ?"rgb(0,0,0,0.8)":"rgb(0,0,0,0.8)",
                             // marginTop:"0.5rem",
                            
                         }}>Resolution Date : {formatDate(event.resolution_date)}</div>
@@ -121,10 +125,11 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                                                 }
                                                 <p  style={{
                                                     fontSize:"1.1rem",
-                                                    color:"blue",
+                                                    // color:"blue",
                                                     marginTop:"0.5rem",
                                                     textAlign:"center",
-                                                    fontWeight:"600"
+                                                    fontWeight:"600",
+                                                    color:(isUpcominng || isRecent) ?"rgb(0,0,0,0.8)":"blue"
                                                 }}>
                                                     {result.percentage}%
                                                 </p>
@@ -214,8 +219,9 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                         }}>
                             <p  style={{
                                 fontSize:"1.1rem",
-                                color:"black",
-                                fontWeight:"500"
+                                // color:"black",
+                                fontWeight:"500",
+                                color:(isUpcominng || isRecent) ?"black":"black"
                             }}>{result.result}</p>
                     
                         
@@ -226,8 +232,9 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                         }}>
                            {(isPopular || isRecent) && <div style={{
                                 fontSize:"1.1rem",
-                                color:"green",
+                                // color:"green",
                                 marginRight:"0.5rem",
+                                color:(isUpcominng || isRecent) ?"rgb(0,0,0,0.8)":"green"
                             }}>{result.percentage}%</div>}
                            {(!isUpcominng && !isRecent) && <button
                            onClick={()=>{
@@ -291,12 +298,15 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
             }}> 
                 {   
                     (isPopular || isRecent) && <p style={{
-                            color:"rgb(0,0,0,0.7)",
+                            // color:"rgb(0,0,0,0.8)",
+                            color:(isUpcominng || isRecent) ?"rgb(0,0,0,0.8)":"rgb(0,0,0,0.8)",
                             marginTop:"0.5rem",
                         }}>${Number(event.token_volume_in_doller).toFixed(2)}</p>
                 }
                 <p  style={{
-                            color:"rgb(0,0,0,0.7)",
+                            // color:"rgb(0,0,0,0.8)",
+                            color:(isUpcominng || isRecent) ?"rgb(0,0,0,0.8)":"rgb(0,0,0,0.8)",
+
                             marginTop:"0.5rem",
                             textAlign:"center"
                         }}>Last Date:  {formatDate(event.end_date)}</p>
