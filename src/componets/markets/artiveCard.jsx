@@ -45,7 +45,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                     Event ID : 00{event.id}
                     </div> 
                     <div style={{
-                            fontSize:"1rem",
+                            fontSize:"0.9rem",
                             fontWeight:"500",
                             color:(isUpcominng || isRecent) ?"black":"rgb(0,0,0,1)",
                         }}>
