@@ -60,7 +60,7 @@ const ActiveMarket = ({popularRef,event,title}) =>{
             }
         }else{
             setSelectedCategory(e.target.value);
-            const API_URI = `https://xenplay.xyz/api/v1/event/sorted-event?sort_by=${e.target.value}`
+            const API_URI = `https://airdaomarkets.xyz/api/v1/event/sorted-event?sort_by=${e.target.value}`
             const requestOptions = {
                 method: "GET",
                 headers: {

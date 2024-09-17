@@ -15,7 +15,7 @@ const Pridtiction = () =>{
     const [populateAgain,setPopilateAgain] = useState(false)
 
     // const API_URL = "http://127.0.0.1:8000/api/v1"
-     const API_URL = "https://xenplay.xyz/api/v1"
+     const API_URL = "https://airdaomarkets.xyz/api/v1"
 
       // Handle the change in the select dropdown
     const handleChange = (event) => {
