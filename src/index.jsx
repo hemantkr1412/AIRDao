@@ -4,11 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { MetaMaskProvider } from "@metamask/sdk-react"
+import { ThirdwebProvider } from "thirdweb/react";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <MetaMaskProvider
+    {/* <MetaMaskProvider
       sdkOptions={{
         dappMetadata: {
           name: "Example React UI Dapp",
@@ -16,9 +17,11 @@ root.render(
         },
         infuraAPIKey: "210f27d3fbea4f8689fadcc8a6c5d048"
         // Other options.
-      }}>
+      }}> */}
+    <ThirdwebProvider >
     <App />
-    </MetaMaskProvider>
+    </ThirdwebProvider>
+    {/* </MetaMaskProvider> */}
   </React.StrictMode>
 );
 

@@ -483,7 +483,7 @@ const Pridtiction = () =>{
 
                  
             </div>
-            <div 
+            {/* <div 
             className="mobileView"
             style={{
                 width:"80%",
@@ -622,7 +622,7 @@ const Pridtiction = () =>{
                  }
 
                  
-            </div>
+            </div> */}
             <div 
             className="mobileView"
             style={{
@@ -644,17 +644,17 @@ const Pridtiction = () =>{
                            color:"white"
                        }}>
                            <p style={{
-                             fontSize:"1.4rem",
-                             fontWeight:"500",
-                             // width:"10px",
-                             textAlign:"center"
-                           }}>{index+1}</p>
-                           <p style={{
-                                fontSize:"0.6rem",
-                                fontWeight:"500",
-                                 // width:"66px",
-                               // textAlign:"center"
-                           }}>Event ID :{data.event_id} <br/>Tokens Rewarded: {data.amount_rewarded}</p>
+                         fontSize:"0.8rem",
+                         fontWeight:"500",
+                         // width:"10px",
+                         textAlign:"center"
+                       }}>Event ID :{data.event_id}</p>
+                       <p style={{
+                            fontSize:"0.6rem",
+                            fontWeight:"500",
+                             // width:"66px",
+                           // textAlign:"center"
+                       }}>Committed :{data.event_id} <br/>Rewarded: {data.amount_rewarded}</p>
                              <p style={{
                                    fontSize:"0.7rem",
                                    fontWeight:"500",
@@ -697,6 +697,76 @@ const Pridtiction = () =>{
                         )
                     })
                  }
+
+                {
+                  selectedOption==="allWinning" && 
+
+                  winningEvents.map((data,index) =>{
+                    console.log(data);
+                    return(
+                      <div key={`indi+${data.event_id}`}  style={divStyle}>
+                      <div style={{
+                       display:"flex",
+                       justifyContent:"space-between",
+                       padding:"0.7rem",
+                       color:"white"
+                   }}>
+                       <p style={{
+                         fontSize:"0.8rem",
+                         fontWeight:"500",
+                         // width:"10px",
+                         textAlign:"center"
+                       }}>Event ID :{data.event_id}</p>
+                       <p style={{
+                            fontSize:"0.6rem",
+                            fontWeight:"500",
+                             // width:"66px",
+                           // textAlign:"center"
+                       }}>Committed :{data.event_id} <br/>Rewarded: {data.amount_rewarded}</p>
+                         <p style={{
+                               fontSize:"0.7rem",
+                               fontWeight:"500",
+                                 // width:"97px",
+                                 textAlign:"center",
+                                 color: data.status === "WON" ? "GREEN" 
+                                 : data.status === "LOST" ? "RED" 
+                                 : "BLUE" // For "PENDING"
+                           }}> {data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase()}</p>
+                          <button 
+                             onClick={()=>
+                               event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
+                             }
+                             style={{
+                                 backgroundColor:data.is_claimed  ?" #00000080":"#DADADA26",
+                                 color:"#FFFFFF",
+                                 width:"100px",
+                                 height:"25px",
+                                 borderRadius:"5px",
+                                 cursor:true ?"pointer":"",
+                                 border: "2px solid #FFFFFF",
+                               
+                             }}>
+                               {
+                                  data.status === "WON" ? (
+                                    !data.is_claimed ?<span>Claim</span>:<span>Claimed</span>
+                                  ):("N/A")
+                                }
+                               {data.is_claimed &&
+
+                               <img style={{
+                                 marginLeft:"5px",
+                                 position:"absolute"
+                               }} src="clainmed.svg" alt="Claimed" />
+                               }
+                             </button>
+                   </div>
+                       <div style={arrowStyle}></div>
+                      </div>
+              
+                    )
+                })
+                 }
+
                  {
                   selectedOption==="lastLost" && 
 
@@ -711,17 +781,17 @@ const Pridtiction = () =>{
                        color:"white"
                    }}>
                        <p style={{
-                         fontSize:"1.4rem",
+                         fontSize:"0.8rem",
                          fontWeight:"500",
                          // width:"10px",
                          textAlign:"center"
-                       }}>{index+1}</p>
+                       }}>Event ID :{data.event_id}</p>
                        <p style={{
                             fontSize:"0.6rem",
                             fontWeight:"500",
                              // width:"66px",
                            // textAlign:"center"
-                       }}>Event ID :{data.event_id} <br/>Tokens Rewarded: {data.amount_rewarded}</p>
+                       }}>Committed :{data.event_id} <br/>Rewarded: {data.amount_rewarded}</p>
                          <p style={{
                                fontSize:"0.7rem",
                                fontWeight:"500",

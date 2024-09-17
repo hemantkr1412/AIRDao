@@ -2,15 +2,27 @@ import { useEffect, useState } from "react";
 import "./navbar.css";
 import { useNavigate } from "react-router-dom";
 import { useWallet } from "../context/walletContext";
+import { ConnectButton } from "thirdweb/react";
+import { createWallet } from "thirdweb/wallets";
+import { client } from "./client";
+import { useAddress } from "@thirdweb-dev/react";
+import useEvent from "./useEvent";
+
+
+const wallets = [createWallet("io.metamask")];
 
 
 const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadMapref,tokenDetailsRef}) => {
+
+   
 
     const navigate = useNavigate()
     const [isToggled, setToggle] = useState(true);
     const [isDropdown,setIsDropdown] = useState(false);
 
-    const wallet = useWallet();
+    const walletContext = useWallet();
+
+    const event = useEvent();
   
 
     useEffect(() => {
@@ -21,35 +33,36 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
       getDocument.style.display = "flex";
     }
 
-    const walletDetails = localStorage.getItem('wallet'); 
-    if(walletDetails === 'metamask'){
-      wallet.connectWallet()
-    }
+
+    // const walletDetails = localStorage.getItem('wallet'); 
+    // if(walletDetails === 'metamask'){
+    //   wallet.connectWallet()
+    // }
     
   }, [isToggled]);
 
-  console.log(wallet.isWalletConnected);
+  console.log(walletContext.isWalletConnected);
 
 
   const getAddress = () => {
-    if (!wallet.isWalletConnected) {
+    if (!walletContext.isWalletConnected) {
       return "Connect Wallet";
     }
 
     let wallettype = localStorage.getItem("wallettype");
 
-    if (wallettype == "browser" && wallet?.publicKey) {
+    if (wallettype == "browser" && walletContext?.publicKey) {
       // console.error(wallet?.publicKey)
       
     
-      return `${wallet?.publicKey
+      return `${walletContext?.publicKey
         .toString()
-        .slice(0, 4)}...${wallet?.publicKey.toString().slice(39)}`;
+        .slice(0, 4)}...${walletContext?.publicKey.toString().slice(39)}`;
     }
     if (wallettype == "mobile") {
-      return `${wallet?.mobile?.publicKey
+      return `${walletContext?.mobile?.publicKey
         .toString()
-        .slice(0, 4)}...${wallet?.mobile?.publicKey.toString().slice(39)}`;
+        .slice(0, 4)}...${walletContext?.mobile?.publicKey.toString().slice(39)}`;
     }
 
     return "Connect Wallet";
@@ -159,7 +172,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                               rotate:isDropdown?"180deg":"0deg"
                             }}/>
                         </button> */}
-                        <div className="dropdown1">
+                        {/* <div className="dropdown1">
                             <button
                              style={{
                               background:"linear-gradient(90.06deg, #FFD700 0%, #8B4513 100%)",
@@ -215,7 +228,40 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                                       </>}
                                     </div>
                                 </div>
-                        </div>
+                        </div> */}
+
+
+                      
+                          <ConnectButton
+                          onConnect = {
+                            (wallet) =>{
+                              const walletAddress = wallet.getAccount()
+                              if(walletAddress.address){
+                                walletContext.setIsWalletConnected(true);
+                                console.log(walletAddress.address);
+                                walletContext.setPublicKey(walletAddress.address);
+                                event.setWalletDetails(walletAddress.address);
+                              }
+                            }
+                          }
+                           client={client} wallets={wallets} 
+                           connectButton={{
+                            label: "Connect Wallet",
+                            style:{
+                              background: "linear-gradient(90.06deg, #FFD700 0%, #8B4513 100%)",
+                              color: "black",
+                              width: "140px",
+                              height: "35px",
+                              borderRadius: "100px",
+                              border: "none",
+                              marginRight: "3rem",
+                              cursor: "pointer",
+                              boxShadow: "0px 4px 4px 0px rgba(255, 255, 255, 0.4)",
+                            }
+                          }}
+                      
+                           />
+                        {/* </button> */}
                         
                     </div>
             </div>
@@ -266,7 +312,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
             display:"flex",
 
           }}>
-            <div className="dropdown1" style={{
+            {/* <div className="dropdown1" style={{
                         fontWeight:"600",
                         
                       }}>
@@ -278,7 +324,6 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                                 height:"25px",
                                 borderRadius:"100px",
                                 border:"none",
-                                // marginRight:"3rem",
                                 cursor:"pointer",
                             }}
                               className="para-link2" > {getAddress()}
@@ -292,25 +337,21 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                                       width:"100%",
                                       height:"auto"
                                       }}>
-                                      {!wallet.isWalletConnected ?<>
+                                      {!walletContext.isWalletConnected ?<>
                                       <a onClick={()=>{
-                                          wallet.connectWallet()
+                                          walletContext.connectWallet()
                                         }} style={{
                                           padding:"1rem",
                                           borderBottom: "1px solid rgba(164, 164, 164, 1)"
                                         }}>
                                           Metamask
-                                          {/* <img  src="metamask-icon.svg" alt="phantom" style={{
-                                            width:"10px",
-                                            height:"10px",
-                                            marginLeft:"5px"
-                                          }}/> */}
+                                          
                                         </a>
                                         </> :
                                         <>
                                         <a onClick={
                                           ()=>{
-                                            wallet.disconnect();
+                                            walletContext.disconnect();
                                           }
                                         } style={{
                                           padding:"1rem",
@@ -321,7 +362,35 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                                         </>}
                                       </div>
                                   </div>
-            </div>
+            </div> */}
+              <ConnectButton
+                onConnect = {
+                  (wallet) =>{
+                    const walletAddress = wallet.getAccount()
+                    if(walletAddress.address){
+                      walletContext.setIsWalletConnected(true);
+                      console.log(walletAddress.address);
+                      walletContext.setPublicKey(walletAddress.address);
+                      event.setWalletDetails(walletAddress.address);
+                    }
+                  }
+                }
+            client={client} wallets={wallets} 
+            connectButton={{
+              label: "Connect Wallet",
+              style:{
+                background:"linear-gradient(90.06deg, #FFD700 0%, #8B4513 100%)",
+                color:"black",
+                width:"100px",
+                height:"25px",
+                borderRadius:"100px",
+                border:"none",
+                cursor:"pointer",
+              }
+            }}
+            
+            />
+
           {!isToggled ?   <img className="maunuicon" src="cancel.png"  alt="Close" onClick={handleClickMenu} style={{
             width:"25px",
             height:"25px"
