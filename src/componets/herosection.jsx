@@ -25,7 +25,7 @@ const HeroSection = () =>{
                     letterSpacing:"0.03em",
                     textAlign: "left",
                     color:"#000000CC"
-                }}>Forecasting</p>
+                }}>Forecast</p>
                 <p style={{
                     fontFamily: "Aclonica",
                     fontSize: "72px",
@@ -43,7 +43,7 @@ const HeroSection = () =>{
                     letterSpacing: "0.03em",
                     textAlign: "left",
                     marginTop:"1rem"
-                }}>Welcome to AIRDAO Markets, the premier destination for predictive insights on the AirDao Chain!</p>
+                }}>Welcome to AirDAO Markets, the premier destination for predictive insights on the AirDAO Chain!</p>
                 <button 
                 onClick={() => navigate("/markets")}
                 style={{
@@ -55,7 +55,7 @@ const HeroSection = () =>{
                     color:"white",
                     border:"none",
                     cursor:"pointer"
-                }}>Start Prediction</button>
+                }}>Start</button>
             </div>
             <div className="herosectionSubDiv2">
                

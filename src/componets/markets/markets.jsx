@@ -221,7 +221,7 @@ const Markets = ()=>{
                             }} />
                         </div>
                         <div>
-                            <h1>${0}</h1>
+                            <h1>{0}</h1>
                         </div>
 
                     </div>

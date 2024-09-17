@@ -191,9 +191,9 @@ const Pridtiction = () =>{
                 value={selectedOption}
                 onChange={handleChange}
               >
-                <option value="last10">Last 10 Transactions</option>
-                <option value="allWinning">Last 10 Winning Events</option>
-                <option value="lastLost">Last 10 Losing Events</option>
+                <option value="last10">Recent Transactions</option>
+                <option value="allWinning"> Last 10 Won</option>
+                <option value="lastLost"> Last 10 Lost</option>
               </select>
             </div>
             
@@ -267,13 +267,18 @@ const Pridtiction = () =>{
                                     fontWeight:"500",
                                       width:"97px",
                                       textAlign:"center"
-                                }}>{data.status}</p>
+                                }}>
+                                {data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase()}
+                                </p>
                                 <p style={{
                                     fontSize:"1.1rem",
                                     fontWeight:"500",
                                      width:"150px",
                                      textAlign:"center"
-                                }}>{data.token_staked}</p>
+                                }}>{data.token_staked}
+
+                                
+                                </p>
                                 <p style={{
                                     fontSize:"1.1rem",
                                     fontWeight:"500",
@@ -345,7 +350,7 @@ const Pridtiction = () =>{
                                     fontWeight:"500",
                                       width:"97px",
                                       textAlign:"center"
-                                }}>{data.status}</p>
+                                }}> {data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase()}</p>
                             <p style={{
                               fontSize:"1.1rem",
                               fontWeight:"500",
@@ -424,7 +429,7 @@ const Pridtiction = () =>{
                                     fontWeight:"500",
                                       width:"97px",
                                       textAlign:"center"
-                                }}>{data.status}</p>
+                                }}> {data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase()}</p>
                             <p style={{
                               fontSize:"1.1rem",
                               fontWeight:"500",
@@ -517,7 +522,7 @@ const Pridtiction = () =>{
                                      color: data.status === "WON" ? "GREEN" 
                                      : data.status === "LOST" ? "RED" 
                                      : "BLUE" // For "PENDING"
-                               }}>{data.status}</p>
+                               }}> {data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase()}</p>
                               <button 
                                  onClick={()=>
                                    event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
@@ -581,7 +586,7 @@ const Pridtiction = () =>{
                                  color: data.status === "WON" ? "GREEN" 
                                  : data.status === "LOST" ? "RED" 
                                  : "BLUE" // For "PENDING"
-                           }}>{data.status}</p>
+                           }}> {data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase()}</p>
                           <button 
                              onClick={()=>
                                event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
@@ -658,7 +663,7 @@ const Pridtiction = () =>{
                                      color: data.status === "WON" ? "GREEN" 
                                      : data.status === "LOST" ? "RED" 
                                      : "BLUE" // For "PENDING"
-                               }}>{data.status}</p>
+                               }}> {data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase()}</p>
                               <button 
                                  onClick={()=>
                                    event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
@@ -725,7 +730,7 @@ const Pridtiction = () =>{
                                  color: data.status === "WON" ? "GREEN" 
                                  : data.status === "LOST" ? "RED" 
                                  : "BLUE" // For "PENDING"
-                           }}>{data.status}</p>
+                           }}> {data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase()}</p>
                           <button 
                              onClick={()=>
                                event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)

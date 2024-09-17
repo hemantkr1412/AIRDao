@@ -21,13 +21,13 @@ const Footer = () => {
                             color:'white',
                             fontSize:"1.2rem",
                             fontWeight:"600"
-                        }}>AIRDAO Markets</p>
+                        }}>AirDAO Markets</p>
                         <p style={{
                            color:"white" ,
                            fontSize:"0.8rem",
                            marginTop:"1rem"
                         }}>
-                            The first decentralized prediction Market on AIRDAO Blockchain.
+                            The first decentralized prediction market on AirDAO Blockchain.
                         </p>
                     </div>
                     <div>
@@ -65,7 +65,7 @@ const Footer = () => {
                     textAlign:"center",
                     marginTop:"2rem",
                     
-                }}>AIRDAO Markets © 2024</p>
+                }}>AirDAO Markets © 2024</p>
             </div>
         </div>
     )

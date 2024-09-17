@@ -84,7 +84,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     width:"200px",
                     height:"70px"
                 }}/> */}
-                AIRDAO <span style={{
+                AirDAO <span style={{
                   color:"#838283"
                 }}>Markets</span>
                 </a>
@@ -117,10 +117,15 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     color:"white",
                   }} >Leaderboard</div>
                    <div onClick={()=>{
-                      navigate("/myPridiction")
+                      navigate("/myPrediction")
                     }} style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
                     color:"white",
                   }} >My Predictions</div>
+                  <div onClick={()=>{
+                      window.open('https://airdao-markets.gitbook.io/airdao-markets', '_blank');
+                    }} style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
+                    color:"white",
+                  }} >Docs</div>
                     {/* <div>
                         <button style={{
                             backgroundColor:"white",
@@ -360,10 +365,15 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     }} style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
                     "1rem",cursor:"pointer",marginLeft:"7px"}}>Leaderboard</p>
                     <p onClick={()=>{
-                      navigate("/myPridiction")
+                      navigate("/myPrediction")
                       handleClickMenu()
                     }} style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
                     "1rem",cursor:"pointer",marginLeft:"7px"}}>My Prediction</p>
+                     <p onClick={()=>{
+                       window.open('https://airdao-markets.gitbook.io/airdao-markets', '_blank');
+                      handleClickMenu()
+                    }} style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
+                    "1rem",cursor:"pointer",marginLeft:"7px"}}>Docs</p>
                     {/* <p
                     onClick={() =>  wallet.connectWallet()}
                      style={{fontWeight:"600",fontSize:"1.1rem",marginTop:

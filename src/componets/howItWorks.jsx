@@ -117,7 +117,7 @@ const HowItWorks = ({howItWorksRef}) =>{
                 <div className="howItMainBoxImage">
                     <div className="howItWorksCard">
                         <h1>1</h1>
-                        <p>Listing Event</p>
+                        <p>List Event</p>
                         <img src="cuate.png" />
                     </div>
                     <div className="howItWorksCard">
@@ -205,8 +205,8 @@ const HowItWorks = ({howItWorksRef}) =>{
                             justifyContent:"center",
                             alignItems:"center"
                         }}>
-                            <h2>5%</h2>
-                            <p>Platform</p>
+                            <h2>95%</h2>
+                            <p>Winner Reward Pool</p>
                             
                         </div>
                         <div style={{
@@ -215,8 +215,8 @@ const HowItWorks = ({howItWorksRef}) =>{
                             justifyContent:"center",
                             alignItems:"center"
                         }}>
-                           <h2>95%</h2>
-                           <p>Winner Reward Pool</p>
+                           <h2>05%</h2>
+                           <p>Platform</p>
                         </div>
                     </div>
                     

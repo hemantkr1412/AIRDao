@@ -76,7 +76,7 @@ function App() {
             }
             />
             <Route
-            path="/myPridiction"
+            path="/myPrediction"
             element={
               <Pridtiction
               />
