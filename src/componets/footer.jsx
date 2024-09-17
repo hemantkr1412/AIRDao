@@ -43,7 +43,7 @@ const Footer = () => {
                             
                         }}/>
                         </a>
-                         <a href="https://t.me/airdaomarkets" target="_blank" rel="noreferrer">
+                         <a href="https://t.me/+_NAkxcyCKyg2ZWU1" target="_blank" rel="noreferrer">
                         <img src="Vector8.png" alt="vector" style={{
                             width:"20px",
                             height:"20px",
