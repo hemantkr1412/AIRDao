@@ -67,9 +67,10 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                 </div>
                 {isUpcominng && <p className="startDate" >Start Date:  {formatDate(event.start_date)}</p>}
                 {
-                    !isUpcominng && <p style={{
-                    textAlign:"center",
-                }}>.</p>
+                    !isUpcominng && <div style={{
+                    // textAlign:"center",
+                    height:"21px"
+                }}>.</div>
                 }
                 {
                     event.possible_results.length === 2 &&

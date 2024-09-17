@@ -122,22 +122,22 @@ const HowItWorks = ({howItWorksRef}) =>{
                     </div>
                     <div className="howItWorksCard">
                        <h1>2</h1>
-                        <p>Listing Event</p>
+                        <p>Prediction</p>
                         <img src="bro.png" />
                     </div>
                     <div className="howItWorksCard">
                         <h1>3</h1>
-                        <p>Listing Event</p>
+                        <p>Commit Token</p>
                         <img src="Group 159.png" />
                     </div>
                     <div className="howItWorksCard">
                         <h1>4</h1>
-                        <p>Listing Event</p>
+                        <p>Resolution</p>
                         <img src="cuate.png" />
                     </div>
                     <div className="howItWorksCard">
                         <h1>5</h1>
-                        <p>Listing Event</p>
+                        <p>Distribute Reward Token</p>
                         <img src="amico.png" />
                     </div>
                     {/* <div style={{

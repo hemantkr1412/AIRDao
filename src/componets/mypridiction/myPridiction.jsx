@@ -99,7 +99,7 @@ const Pridtiction = () =>{
           }
       
           const result = await response.json();
-          console.log(result, ">>>>>>>>> Winnig Pridiction >>>>>>>>>");
+          console.error(result.results, ">>>>>>>>> Losing Pridiction >>>>>>>>>");
           setLosingEvent(result.results);
           // setMyprediction(result.results);
         } catch (error) {
@@ -397,6 +397,85 @@ const Pridtiction = () =>{
                 })
                  }
 
+                  {
+                  selectedOption==="lastLost" && losingEvents.map((data,index) =>{
+                    return(
+                        <div key={"data"+data.id} style={divStyle}>
+                           <div style={{
+                            display:"flex",
+                            justifyContent:"space-between",
+                            padding:"0.7rem",
+                            color:"white"
+                        }}>
+                            <p style={{
+                              fontSize:"1.1rem",
+                              fontWeight:"500",
+                              width:"10px",
+                              textAlign:"center"
+                            }}>{index+1}</p>
+                            <p style={{
+                                 fontSize:"1.1rem",
+                                 fontWeight:"500",
+                                  width:"66px",
+                                textAlign:"center"
+                            }}>{data.event_id}</p>
+                              <p style={{
+                                    fontSize:"1.1rem",
+                                    fontWeight:"500",
+                                      width:"97px",
+                                      textAlign:"center"
+                                }}>{data.status}</p>
+                            <p style={{
+                              fontSize:"1.1rem",
+                              fontWeight:"500",
+                              width:"150px",
+                              textAlign:"center"
+                            }}>{data.token_staked}</p>
+                            <p style={{
+                                fontSize:"1.1rem",
+                                fontWeight:"500",
+                                 width:"138px",
+                                 textAlign:"center"
+                            }}>{data.amount_rewarded}</p>
+                               <button 
+                                  onClick={()=>{
+                                    if(!data.is_claimed ){
+                                      if(data.status ==="WON" ){
+                                        event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
+                                      }
+                                    }
+                                  }
+                                  }
+                                  style={{
+                                      backgroundColor:data.is_claimed ?" #00000080":"#DADADA26",
+                                      color:"#FFFFFF",
+                                      width:"120px",
+                                      height:"35px",
+                                      borderRadius:"5px",
+                                      cursor: data.status === "WON" ?"pointer":"",
+                                      border: "2px solid #FFFFFF",
+                                    
+                                  }}>
+                                    {
+                                      data.status === "WON" ? (
+                                        !data.is_claimed ?<span>Claim</span>:<span>Claimed</span>
+                                      ):("N/A")
+                                    }
+                                    {data.is_claimed &&
+
+                                    <img style={{
+                                      marginLeft:"5px",
+                                      position:"absolute"
+                                    }} src="clainmed.svg" alt="Claimed" />
+                                    }
+                                  </button>
+                        </div>
+                            <div style={arrowStyle}></div>
+                        </div>
+                    )
+                })
+                 }
+
                  
             </div>
             <div 
@@ -547,6 +626,7 @@ const Pridtiction = () =>{
                 flexDirection:"column",
                 gap:"2rem"
             }}>
+         
                
                  {
                    selectedOption==="last10" && myPrediction.map((data,index) =>{
@@ -613,7 +693,10 @@ const Pridtiction = () =>{
                     })
                  }
                  {
-                  selectedOption==="lastLost" && losingEvents.map((data,index) =>{
+                  selectedOption==="lastLost" && 
+
+                  losingEvents.map((data,index) =>{
+                    console.log(data);
                     return(
                       <div key={`indi+${data.event_id}`}  style={divStyle}>
                       <div style={{
@@ -673,6 +756,7 @@ const Pridtiction = () =>{
                    </div>
                        <div style={arrowStyle}></div>
                       </div>
+              
                     )
                 })
                  }

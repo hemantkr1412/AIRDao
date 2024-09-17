@@ -60,7 +60,7 @@ const ActiveMarket = ({popularRef,event,title}) =>{
             }
         }else{
             setSelectedCategory(e.target.value);
-            const API_URI = `http://127.0.0.1:8000/api/v1/event/sorted-event?sort_by=${e.target.value}`
+            const API_URI = `https://xenplay.xyz/api/v1/event/sorted-event?sort_by=${e.target.value}`
             const requestOptions = {
                 method: "GET",
                 headers: {
@@ -173,7 +173,7 @@ const ActiveMarket = ({popularRef,event,title}) =>{
                     onChange={(e)=>handleSearchChange(e)}
                     style={{
                     width:isSmallScreen ? "90%" : "200px",
-                    height:"10px",
+                    height:"15px",
                     borderRadius:"5px",
                     border:"1px solid grey",
                     padding:"1rem",
