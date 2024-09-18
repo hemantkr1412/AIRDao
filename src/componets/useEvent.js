@@ -255,7 +255,7 @@ const useEvent = ()=>{
       console.log(voteId);
       const data = {
         vote_id:voteId,
-        account: walletAdress,
+        account: walletAdress.toLowerCase(),
       };
     
       const requestOptions = {
