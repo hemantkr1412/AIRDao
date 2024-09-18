@@ -126,7 +126,8 @@ const useEvent = ()=>{
               return dateB - dateA; // Sort in descending order
             });
             
-            const latestSixItems = sortedRecentList.slice(0, 6);
+            let latestSixItems = sortedRecentList.slice(0, 6);
+            latestSixItems = latestSixItems.slice().reverse();
 
             console.error(latestSixItems)
 

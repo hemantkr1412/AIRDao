@@ -53,8 +53,8 @@ const AnimatedButton = ({data,claimReward}) => {
       </div>
       {isOpen && (
         <div className="button-details">
-          <span>Token Committed: {data.token_staked}</span>
-          <span>Token Rewarded: {data.amount_rewarded===null?"Pending":data.amount_rewarded}</span>
+          <span>Committed: {data.token_staked}</span>
+          <span>Rewarded: {data.amount_rewarded===null?"Pending":data.amount_rewarded}</span>
         </div>
       )}
     </div>
