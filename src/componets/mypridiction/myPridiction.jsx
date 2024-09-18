@@ -146,6 +146,7 @@ const Pridtiction = () =>{
         minHeight:"100vh",
         display:"flex",
         flexDirection:"column",
+         marginBottom:"30px"
         // justifyContent:"center",
         // alignContent:"center"
     }}>
@@ -646,10 +647,11 @@ const Pridtiction = () =>{
                            color:"white"
                        }}>
                            <p style={{
-                         fontSize:"0.8rem",
+                         fontSize:"0.7rem",
                          fontWeight:"500",
                          // width:"10px",
-                         textAlign:"center"
+                         textAlign:"center",
+                          marginTop:"5px"
                        }}>Event ID :{data.event_id}</p>
                        <p style={{
                             fontSize:"0.6rem",
@@ -662,6 +664,7 @@ const Pridtiction = () =>{
                                    fontWeight:"500",
                                      // width:"97px",
                                      textAlign:"center",
+                                     marginTop:"5px",
                                      color: data.status === "WON" ? "GREEN" 
                                      : data.status === "LOST" ? "RED" 
                                      : "BLUE" // For "PENDING"
@@ -714,10 +717,12 @@ const Pridtiction = () =>{
                        color:"white"
                    }}>
                        <p style={{
-                         fontSize:"0.8rem",
+                         fontSize:"0.7rem",
                          fontWeight:"500",
                          // width:"10px",
-                         textAlign:"center"
+                         textAlign:"center",
+                         marginTop:"5px",
+                        
                        }}>Event ID :{data.event_id}</p>
                        <p style={{
                             fontSize:"0.6rem",
@@ -730,6 +735,7 @@ const Pridtiction = () =>{
                                fontWeight:"500",
                                  // width:"97px",
                                  textAlign:"center",
+                                 marginTop:"5px",
                                  color: data.status === "WON" ? "GREEN" 
                                  : data.status === "LOST" ? "RED" 
                                  : "BLUE" // For "PENDING"
@@ -783,10 +789,11 @@ const Pridtiction = () =>{
                        color:"white"
                    }}>
                        <p style={{
-                         fontSize:"0.8rem",
+                         fontSize:"0.7rem",
                          fontWeight:"500",
                          // width:"10px",
-                         textAlign:"center"
+                         textAlign:"center",
+                         marginTop:"5px",
                        }}>Event ID :{data.event_id}</p>
                        <p style={{
                             fontSize:"0.6rem",
@@ -799,6 +806,7 @@ const Pridtiction = () =>{
                                fontWeight:"500",
                                  // width:"97px",
                                  textAlign:"center",
+                                 marginTop:"5px",
                                  color: data.status === "WON" ? "GREEN" 
                                  : data.status === "LOST" ? "RED" 
                                  : "BLUE" // For "PENDING"

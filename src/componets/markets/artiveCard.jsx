@@ -301,7 +301,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                             // color:"rgb(0,0,0,0.8)",
                             color:(isUpcominng || isRecent) ?"rgb(0,0,0,0.8)":"rgb(0,0,0,0.8)",
                             marginTop:"0.5rem",
-                        }}>${Number(event.token_volume_in_doller).toFixed(2)}</p>
+                        }}>${event.token_volume_in_doller}</p>
                 }
                 <p  style={{
                             // color:"rgb(0,0,0,0.8)",

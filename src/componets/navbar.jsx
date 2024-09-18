@@ -443,10 +443,6 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                       handleClickMenu()
                     }} style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
                     "1rem",cursor:"pointer",marginLeft:"7px"}}>Docs</p>
-                    {/* <p
-                    onClick={() =>  wallet.connectWallet()}
-                     style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
-                    "1rem"}}>{wallet.isWalletConnected ? getAddress(): "Connect Wallet"}</p> */}
                     
             </div>
       

@@ -64,11 +64,12 @@ const MyRank = () =>{
 
        <div style={{
         width:"100%",
-        height:"400px",
+        height:"auto",
         display:"flex",
         flexDirection:"column",
         alignItems:"center",
-        color:"black"
+        color:"black",
+        marginBottom:"30px"
        }}>
             <div style={{
                 width:"80%",
