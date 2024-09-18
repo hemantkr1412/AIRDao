@@ -127,8 +127,7 @@ const useEvent = ()=>{
             });
             
             let latestSixItems = sortedRecentList.slice(0, 6);
-            latestSixItems = latestSixItems.slice().reverse();
-
+            latestSixItems = latestSixItems.slice()
             console.error(latestSixItems)
 
 
