@@ -304,7 +304,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                     width:"200px",
                     height:"70px"
                 }}/> */}
-                AIRDAO <span style={{
+                AirDAO <span style={{
                   color:"#838283"
                 }}>Markets</span>
                 </a>
@@ -437,7 +437,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                       navigate("/myPrediction")
                       handleClickMenu()
                     }} style={{fontWeight:"600",fontSize:"1.1rem",marginTop:
-                    "1rem",cursor:"pointer",marginLeft:"7px"}}>My Prediction</p>
+                    "1rem",cursor:"pointer",marginLeft:"7px"}}>My Predictions</p>
                      <p onClick={()=>{
                        window.open('https://airdao-markets.gitbook.io/airdao-markets', '_blank');
                       handleClickMenu()
