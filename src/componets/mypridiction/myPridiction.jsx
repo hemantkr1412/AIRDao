@@ -47,7 +47,7 @@ const Pridtiction = () =>{
       
           const result = await response.json();
           console.error(result, ">>>>>>>>> MY Pridiction >>>>>>>>>");
-          setMyprediction(result.results);
+          setMyprediction(result);
         } catch (error) {
           console.error("Error:", error);
         }
@@ -75,7 +75,7 @@ const Pridtiction = () =>{
       
           const result = await response.json();
           console.log(result, ">>>>>>>>> Winnig Pridiction >>>>>>>>>");
-          setWinningEvent(result.results);
+          setWinningEvent(result);
           // setMyprediction(result.results);
         } catch (error) {
           console.error("Error:", error);
@@ -103,8 +103,8 @@ const Pridtiction = () =>{
           }
       
           const result = await response.json();
-          console.error(result.results, ">>>>>>>>> Losing Pridiction >>>>>>>>>");
-          setLosingEvent(result.results);
+          console.error(result, ">>>>>>>>> Losing Pridiction >>>>>>>>>");
+          setLosingEvent(result);
           // setMyprediction(result.results);
         } catch (error) {
           console.error("Error:", error);

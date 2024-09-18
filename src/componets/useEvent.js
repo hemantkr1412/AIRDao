@@ -100,7 +100,7 @@ const useEvent = ()=>{
       const populatecategories = async () =>{
         await fetch(`${API_URL}/event/categories/`)
         .then((response) => response.json())
-        .then((data)=>setcategories(data.results))
+        .then((data)=>setcategories(data))
         .catch((error)=> console.log(error))
       }
 
@@ -108,12 +108,13 @@ const useEvent = ()=>{
          await fetch(`${API_URL}/event/`)
            .then((response) => response.json())
            .then((data) => {
-            const responseData = data.results;
+            const responseData = data;
              console.log(responseData,"Populate Event form use Event");
 
             const activeEvent = responseData.filter((event) => {
               return event.market === "active";
             })
+
             setActiveEvent(activeEvent);
 
             const recentList = responseData.filter((event) => {
@@ -123,11 +124,10 @@ const useEvent = ()=>{
             const sortedRecentList = recentList.sort((a, b) => {
               const dateA = new Date(a.resolution_date);
               const dateB = new Date(b.resolution_date);
-              return dateB - dateA; // Sort in descending order
+              return dateB - dateA; 
             });
             
             let latestSixItems = sortedRecentList.slice(0, 6);
-            // latestSixItems = latestSixItems.slice()
             console.error(latestSixItems)
 
 

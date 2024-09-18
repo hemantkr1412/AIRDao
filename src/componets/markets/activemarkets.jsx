@@ -76,8 +76,8 @@ const ActiveMarket = ({popularRef,event,title}) =>{
             
                 const result = await response.json();
                 console.log(result, ">>>>>>>>> NEW >>>>>>>>>");
-                setSearchedEvent(result.results);
-                setFilterEvent(result.results);
+                setSearchedEvent(result);
+                setFilterEvent(result);
               } catch (error) {
                 console.error("Error:", error);
               }
