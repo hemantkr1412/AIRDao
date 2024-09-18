@@ -7,6 +7,7 @@ import { createWallet } from "thirdweb/wallets";
 import { client } from "./client";
 import { useAddress } from "@thirdweb-dev/react";
 import useEvent from "./useEvent";
+import { defineChain } from "thirdweb";
 
 
 const wallets = [createWallet("io.metamask")];
@@ -21,6 +22,17 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
     const [isDropdown,setIsDropdown] = useState(false);
 
     const walletContext = useWallet();
+
+
+    const chain = defineChain({
+      id: 22040,
+      rpc: "https://network.ambrosus-test.io",
+      nativeCurrency: {
+        name: "AirDao TestNet",
+        symbol: "AMB",
+        decimals: 18,
+      },
+    });
 
     const event = useEvent();
   
@@ -259,7 +271,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                               boxShadow: "0px 4px 4px 0px rgba(255, 255, 255, 0.4)",
                             }
                           }}
-                      
+                          chain={chain}
                            />
                         {/* </button> */}
                         
@@ -388,7 +400,7 @@ const Navbar = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roa
                 cursor:"pointer",
               }
             }}
-            
+            chain={chain}
             />
 
           {!isToggled ?   <img className="maunuicon" src="cancel.png"  alt="Close" onClick={handleClickMenu} style={{
