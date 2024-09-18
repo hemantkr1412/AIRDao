@@ -70,7 +70,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                     !isUpcominng && <div style={{
                     // textAlign:"center",
                     height:"21px"
-                }}>.</div>
+                }}></div>
                 }
                 {
                     event.possible_results.length === 2 &&

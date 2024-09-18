@@ -120,8 +120,21 @@ const useEvent = ()=>{
               return event.market === "recent";
             })
 
+            const sortedRecentList = recentList.sort((a, b) => {
+              const dateA = new Date(a.resolution_date);
+              const dateB = new Date(b.resolution_date);
+              return dateB - dateA; // Sort in descending order
+            });
+            
+            const latestSixItems = sortedRecentList.slice(0, 6);
+
+            console.error(latestSixItems)
+
+
             // console.log(recentEvent,"recnet")
-            setrecentEvent(recentList);
+            setrecentEvent(latestSixItems);
+
+            
 
             const popularEvent = responseData.filter((event) => {
                 return event.market === "popular";

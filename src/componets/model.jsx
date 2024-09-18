@@ -32,7 +32,7 @@ const Modal = ({ show, onClose,event,voteId,voteIndex }) => {
             <p style={{
               fontSize:"1.5rem",
 
-            }}>Enter Number of Tokens</p>
+            }}>Enter Total number of $AMB tokens</p>
             <input value={ammount} type='text'
             placeholder='Enter Tokens in AMB'
             onChange={(e) =>setAmmount(e.target.value)}

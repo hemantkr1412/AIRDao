@@ -1,0 +1,33 @@
+.button-container {
+  background: linear-gradient(180deg, #1A1A1A -1.47%, #3F3F3F 30.25%, #626262 49.26%, #393939 74.55%, #3F0A4C 100%);
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.button-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button-details {
+  margin-top: 10px;
+  animation: slideDown 0.3s ease;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.dropdown-arrow {
+  font-size: 20px;
+}
+
+@keyframes slideDown {
+  from { max-height: 0; opacity: 0; }
+  to { max-height: 100px; opacity: 1; }
+}
