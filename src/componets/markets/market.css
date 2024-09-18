@@ -105,6 +105,9 @@ width: 25%;
 }
 .startDateMobile{
     display: block;
+    height: 30px;
+    text-align: center;
+    color: rgb(0,0,0,0.8);
 }
 .subNavbar{
     display: none;
