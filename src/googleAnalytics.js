@@ -10,7 +10,7 @@ const GoogleTagManager = () => {
       window.dataLayer.push(arguments);
     }
     gtag('js', new Date());
-    gtag('config', import.meta.env.VITE_ANALYTICS_ID);
+    gtag('config',"https://www.googletagmanager.com/gtag/js?id=G-Z9KMK1MSXW");
     return () => {
       // Clean up the script if necessary
       document.head.removeChild(script);
