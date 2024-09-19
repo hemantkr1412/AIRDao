@@ -14,6 +14,8 @@ import { HashRouter } from "react-router-dom";
 
 import { createContext } from "react";
 
+import GoogleTagManager from "./googleAnalytics";
+
 export const MyContext = createContext("");
 
 
@@ -38,6 +40,7 @@ function App() {
 
   return (
     <WalletProvider>
+      <GoogleTagManager />
     <div
       style={{
         backgroundColor: "#F3F3F3",
