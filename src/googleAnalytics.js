@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 const GoogleTagManager = () => {
   useEffect(() => {
     const script = document.createElement('script');

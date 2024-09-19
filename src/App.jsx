@@ -14,6 +14,7 @@ import { HashRouter } from "react-router-dom";
 
 import { createContext } from "react";
 
+//google
 import GoogleTagManager from "./googleAnalytics";
 
 export const MyContext = createContext("");
