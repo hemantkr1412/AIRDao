@@ -1,9 +1,6 @@
-// import Card from "./card";
-import Card from "./markets/artiveCard";
-import useEvent from "./useEvent";
-import ActiveMarket from "./markets/activemarkets";
-const UpcomingMarkets = ({upComingRef}) =>{
-    const event = useEvent()
+
+import ActiveMarket from "../markets/activemarkets";
+const UpcomingMarkets = ({upComingRef,upcomingEvent}) =>{
     return(
         <div ref={upComingRef} style={{
             backgroundColor: '#F3F3F3',
@@ -12,7 +9,7 @@ const UpcomingMarkets = ({upComingRef}) =>{
             paddingTop:"3rem"
         }}>
             <ActiveMarket
-            event={event.upcomingEvent}
+            event={upcomingEvent}
             title={"Upcoming"}
             
 

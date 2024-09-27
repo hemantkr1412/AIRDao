@@ -12,6 +12,11 @@ module.exports = {
         new webpack.ProvidePlugin({
             process: 'process/browser',
         }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                REACT_APP_BACKEND_URL: JSON.stringify(process.env.REACT_APP_BACKEND_URL),
+            },
+        }),
     ],
     resolve: {
         extensions: [ '.ts', '.js' ],

@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import Card from "./artiveCard";
-import useEvent from "../useEvent";
+import { useSelector } from "react-redux";
+import useMarket from "./useMarkets";
 
 
 
 
-const ActiveMarket = ({popularRef,event,title}) =>{
+const ActiveMarket = ({popularRef,event,title,marketCategory}) =>{
+    const categoriesList = useSelector((state) => state.categories.categoriesList);
+
+    // const {
+    //     handleCommitToken
+    // } = useMarket();
 
 
-    const eventUse = useEvent();
+
+    const API_URL = import.meta.env.VITE_APP_BACKEND_URL;
     
 
     const [searchedEvent,setSearchedEvent] = useState(event);
@@ -24,8 +31,7 @@ const ActiveMarket = ({popularRef,event,title}) =>{
         if (title === "Active") {
             setSelectedCategory('');
         }
-    
-        // Screen size handling
+
         const handleResize = () => {
             if (window.innerWidth <= 750) {
                 setIsSmallScreen(true);
@@ -35,11 +41,9 @@ const ActiveMarket = ({popularRef,event,title}) =>{
         };
     
         window.addEventListener('resize', handleResize);
-    
-        // Run on component mount to set initial screen size
+
         handleResize();
     
-        // Cleanup event listener on component unmount
         return () => {
             window.removeEventListener('resize', handleResize);
         };
@@ -60,7 +64,7 @@ const ActiveMarket = ({popularRef,event,title}) =>{
             }
         }else{
             setSelectedCategory(e.target.value);
-            const API_URI = `https://airdaomarkets.xyz/api/v1/event/sorted-event?sort_by=${e.target.value}`
+            const API_URI = `${API_URL}/event/sorted-event?sort_by=${e.target.value}`
             const requestOptions = {
                 method: "GET",
                 headers: {
@@ -75,9 +79,16 @@ const ActiveMarket = ({popularRef,event,title}) =>{
                 }
             
                 const result = await response.json();
-                console.log(result, ">>>>>>>>> NEW >>>>>>>>>");
-                setSearchedEvent(result);
-                setFilterEvent(result);
+                // console.log(result, ">>>>>>>>> NEW >>>>>>>>>");
+                
+                if(marketCategory === 'All'){
+                    setSearchedEvent(result);
+                    setFilterEvent(result);
+                }else{
+                    const newFilteredEvent = result.filter((event) => event.category.name === marketCategory);
+                    setSearchedEvent(newFilteredEvent);
+                    setFilterEvent(newFilteredEvent);
+                }
               } catch (error) {
                 console.error("Error:", error);
               }
@@ -89,7 +100,6 @@ const ActiveMarket = ({popularRef,event,title}) =>{
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
-        // console.log(filtredEvent,"Handle Search Change");
         const filteredEvents = filtredEvent?.filter(event =>
             event.event_name.toLowerCase().includes((e.target.value).toLowerCase())
         );
@@ -98,43 +108,7 @@ const ActiveMarket = ({popularRef,event,title}) =>{
     };
 
 
-    // const handlePostRequest = async () => {
-    //     console.log("Hit URL");
-    //     const proxyUrl = 'https://api.allorigins.win/get?url=';
-    //     const targetUrl = encodeURIComponent('https://bgms.nodwingaming.com/?fbclid=PAZXh0bgNhZW0CMTEAAabWGkLJiVQzrBJ6cbIJuNdwTTfX0_iDqPejCz8ZMrgGJ1iGm0sQK0Rl_QY_aem_Lyf4-CLS9zFKcJ7k7wiOmg');
-    //     const url = `${proxyUrl}${targetUrl}`;
-        
-        
-    //     const data = [
-    //       {
-    //         team: "6696bce7d2ad22865888ff60",
-    //         whatsappNumber: "919771304639"
-    //       }
-    //     ];
     
-    //     try {
-    //       const response = await fetch(url, {
-    //         method: 'POST',
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(data),
-    //       });
-    
-    //       if (!response.ok) {
-    //         throw new Error('Network response was not ok');
-    //       }
-    
-    //       const result = await response.json();
-    //       console.log(result);
-    //       //   setResponse(result);
-    //     } catch (error) {
-    //       console.error('Error:', error);
-    //       //   setResponse({ error: error.message });
-    //     }
-    //   };
-    
-
     
 
 
@@ -222,7 +196,7 @@ const ActiveMarket = ({popularRef,event,title}) =>{
                         value={selectedCategory}
                         >
                         <option value="All">All Categories</option>
-                        {eventUse?.categories?.map((category) => (
+                        {categoriesList?.map((category) => (
                             <option key={category.name} value={category.name}>
                             {category.name}
                             </option>
@@ -250,6 +224,8 @@ const ActiveMarket = ({popularRef,event,title}) =>{
                                 <div key={index+1}>
                                     <Card isPopular={true}
                                         event={eve}
+                                        isRecent={false}
+                                        // handleCommitToken={handleCommitToken}
                                         // isUpcominng={true}
                                     />
                                 </div>
@@ -265,6 +241,7 @@ const ActiveMarket = ({popularRef,event,title}) =>{
                                     <Card isPopular={true}
                                         event={event}
                                         isRecent={true}
+                                        // handleCommitToken={handleCommitToken}
                                     />
                                 </div>
                             )
@@ -279,6 +256,8 @@ const ActiveMarket = ({popularRef,event,title}) =>{
                                     <Card isPopular={true}
                                         event={event}
                                         isUpcominng={true}
+                                        isRecent={false}
+                                        // handleCommitToken={handleCommitToken}
                                     />
                                 </div>
                             )
@@ -292,6 +271,7 @@ const ActiveMarket = ({popularRef,event,title}) =>{
                                 <div key={index+1}>
                                     <Card isPopular={true}
                                         event={event}
+                                        // handleCommitToken={handleCommitToken}
                                         // isUpcominng={true}
                                     />
                                 </div>

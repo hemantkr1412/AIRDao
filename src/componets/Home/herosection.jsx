@@ -1,6 +1,7 @@
-import BarAnimation from "./barAnimation";
+
+import CardAnimation from "./CardAnimation/cardAnimation";
+import BarAnimation from "./BarAnimation/barAnimation";
 import "./navbar.css";
-import CardAnimation from "./cardAnimation";
 import { useNavigate } from "react-router-dom";
 
 const HeroSection = () =>{

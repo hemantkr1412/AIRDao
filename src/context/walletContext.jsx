@@ -16,6 +16,7 @@ export function useWallet() {
 export function WalletProvider(props) {
   const [publicKey, setPublicKey] = useState(null);
   const [isWalletConnected, setIsWalletConnected] = useState(false);
+  const [accountDetails,setAccountDetails] = useState(null);
 
    useEffect(() => {
    
@@ -51,7 +52,7 @@ export function WalletProvider(props) {
     // Get the signer (the user connected with MetaMask)
     const signer = provider.getSigner();
     // Create a contract instance connected to the signer
-    const contract = new ethers.Contract("0x9F82251d94bD4c2830aEa915fBc6e3D6f0F6004a", abi, signer);
+    const contract = new ethers.Contract("0xA122b7FCA96a661c3a690A43C4e606a7E5D0EF78", abi, signer);
     // Convert the ETH amount to Wei
     console.log(ethAmount);
     // const amountInWei = ethers.utils.parseEther(ethAmount);
@@ -91,7 +92,9 @@ export function WalletProvider(props) {
     isWalletConnected,
     setIsWalletConnected,
     contractAddress,
-    sendEthToContract
+    sendEthToContract,
+    accountDetails,
+    setAccountDetails,
 
   };
 

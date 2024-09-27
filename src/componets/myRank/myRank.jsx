@@ -5,7 +5,7 @@ const MyRank = () =>{
     const [leaderBoard,setLeaderboard ]= useState([]);
 
     // const API_URL = "http://127.0.0.1:8000/api/v1"
-    const API_URL = "https://airdaomarkets.xyz/api/v1"
+    const API_URL = import.meta.env.VITE_APP_BACKEND_URL;
 
     useEffect(()=>{
         populateLeaderBoard()

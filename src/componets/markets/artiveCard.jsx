@@ -1,9 +1,9 @@
 
 import { useState } from "react";
 import "./market.css";
-import Modal from "../model";
+import Modal from "./model";
 
-const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
+const Card = ({isPopular,isRecent,isUpcominng,event,handleCommitToken}) =>{
     const [showModal, setShowModal] = useState(false);
     const [voteId,setVoteId] = useState(null);
     const [voteIndex,setVoteIndex] = useState(null)
@@ -13,9 +13,10 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
     };
     return(
         <div className="cardContainer2" style={{
-            background: (isUpcominng || isRecent) ?"rgba(196, 154, 108, 1)": "linear-gradient(180deg, rgba(247, 147, 26, 0.2) 0%, rgba(45, 40, 255, 0.2) 100%)",
-            boxShadow:(isUpcominng || isRecent) ?"2px 4px 8px 0px rgba(196, 154, 108, 0.8)":"2px 4px 8px 0px #00000040",
-            border:(isUpcominng || isRecent) ?"":"0.5px solid white"
+            background: (isUpcominng) ?"rgba(196, 154, 108, 1)": "linear-gradient(180deg, rgba(247, 147, 26, 0.2) 0%, rgba(45, 40, 255, 0.2) 100%)",
+            boxShadow:(isUpcominng) ?"2px 4px 8px 0px rgba(196, 154, 108, 0.8)":"2px 4px 8px 0px #00000040",
+            border:(isUpcominng ) ?"":"0.5px solid white",
+            borderRadius:"10px"
 
         }}>
             
@@ -74,7 +75,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                 }}></div>
                 }
                 {
-                    event.possible_results.length === 2 &&
+                     event.final_result === null &&(event.possible_results.length === 2 &&
                     (
 
                         <div style={{
@@ -92,7 +93,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                                 {
                                     event.possible_results.map((result,index) =>{
                                         return(
-                                            <div>
+                                            <div key={`${index}+${result.percentage}`}>
                                             {(!isUpcominng && !isRecent) &&
                                             <button  onClick={()=>{
                                                 toggleModal()
@@ -168,6 +169,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                                 show={showModal} onClose={toggleModal} 
                                 voteId={voteId}
                                 voteIndex={voteIndex}
+                                handleCommitToken={handleCommitToken}
                                 />
                                 {/* <div>
                                 <button  onClick={toggleModal} style={{
@@ -192,13 +194,14 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                             
         
                             </div>
-                    )
+                    ))
                     
 
                 }
                 {
-                    event.possible_results.length !== 2 &&
-                    <div style={{
+                    event.final_result === null &&(event.possible_results.length !== 2 &&
+                    <div 
+                    style={{
                     marginTop:"0.5rem",
                     width:"100%",
                     height:"120px",
@@ -211,7 +214,10 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
                   
                     {event.possible_results.map((result,index)=> {
                         return(
-                             <div style={{
+                             <div
+                             key={`${index}+${result.percentage}`}
+                             style={{
+
                         display:"flex",
                         justifyContent:"space-between",
                     }}>
@@ -284,8 +290,68 @@ const Card = ({isPopular,isRecent,isUpcominng,event}) =>{
 
                     />
                         
-                </div>
+                   </div>)
 
+                }
+                {
+                    isRecent &&(
+                        event.final_result !== null &&
+                        <div 
+                      
+                        style={{
+                            marginTop:"0.5rem",
+                            width:"100%",
+                            height:"120px",
+                            display:"flex",
+                            justifyContent:"space-around",
+                            gap:"1rem",
+                            overflowY:"scroll",
+                            scrollbarWidth: "none",
+                       }}>
+                                                        {
+                                    event.possible_results.map((result,index) =>{
+                                        return(
+                                            <>
+                                            {result.id === event.final_result &&
+                                            <div key={`${index}+${result.percentage}`}>
+                                            
+                                            {
+                                            (isUpcominng || isRecent) && 
+                                                    <button 
+                                                // className="votMultiButon"
+                                                style={{
+                                                    // backgroundColor:index === 0 ?"rgb(0, 128, 0,0.6)":"rgb(255, 0, 0,0.6)",
+                                                    // color:"rgb(255, 255, 255,0.7)",
+                                                    backgroundColor:index === 0 ?"rgb(0, 128, 0,0.7)":"rgb(0, 128, 0,0.7)",
+                                                    color:index === 0?"white":"white",
+                                                    width:"120px",
+                                                    height:"35px",
+                                                    borderRadius:"5px",
+                                                    border: index === 0?"1px solid green":"1px solid green",
+                                                    // cursor:"pointer"
+                                                }}
+                                                >{result.result} </button>
+                                                }
+                                                <p  style={{
+                                                    fontSize:"1.1rem",
+                                                    // color:"blue",
+                                                    marginTop:"0.5rem",
+                                                    textAlign:"center",
+                                                    fontWeight:"600",
+                                                    color:(isUpcominng || isRecent) ?"rgb(0,0,0,0.8)":"blue"
+                                                }}>
+                                                    {result.percentage}%
+                                                </p>
+                                            </div>
+                                             }
+                                            </>
+                                            
+                                        )
+                                    })
+                                }
+                        
+                        </div>
+                    )
                 }
                 
             </div>

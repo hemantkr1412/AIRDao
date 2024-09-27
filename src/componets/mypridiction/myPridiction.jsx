@@ -1,128 +1,25 @@
 
 import { useEffect, useState } from "react";
-import { useWallet } from "../../context/walletContext";
-import useEvent from "../useEvent";
 import { ToastContainer, toast } from 'react-toastify';
 import AnimatedButton from "./animatedButton"
 import 'react-toastify/dist/ReactToastify.css';
 import "../markets/market.css";
+import { useSelector } from "react-redux";
+import useMyPrediction from "./useMyPridiction";
 
 
 const Pridtiction = () =>{
-    const event = useEvent();
-    const [myPrediction,setMyprediction] = useState([]);
-    const [winningEvents,setWinningEvent] = useState([]);
-    const [losingEvents,setLosingEvent]=useState([]);
-    const [selectedOption, setSelectedOption] = useState('last10');
-    const [populateAgain,setPopilateAgain] = useState(false)
+  const isConnected = useSelector(state => state.wallet.isConnected);
 
-    // const API_URL = "http://127.0.0.1:8000/api/v1"
-     const API_URL = "https://airdaomarkets.xyz/api/v1";
-     
-
-      // Handle the change in the select dropdown
-    const handleChange = (event) => {
-          setSelectedOption(event.target.value);
-      };
-    const wallet = useWallet();
-    const walletInLowerCase = wallet?.publicKey?.toLowerCase();
-    const populateMyPridiction = async () => {
-        console.log("Enter in my prediction")
-          const url = new URL(`${API_URL}/event/my-predictions/`);
-          url.searchParams.append("wallet_address",walletInLowerCase);
-      
-        const requestOptions = {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-      
-        try {
-          const response = await fetch(url, requestOptions);
-      
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}, Text: ${response.statusText}`);
-          }
-      
-          const result = await response.json();
-          console.error(result, ">>>>>>>>> MY Pridiction >>>>>>>>>");
-          setMyprediction(result);
-        } catch (error) {
-          console.error("Error:", error);
-        }
-        
-    };
-
-      const populateWinnigPridiction = async () => {
-        console.log("Enter in my prediction")
-          const url = new URL(`${API_URL}/event/winning-votes/`);
-        url.searchParams.append("wallet_address",walletInLowerCase);
-      
-        const requestOptions = {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-      
-        try {
-          const response = await fetch(url, requestOptions);
-      
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}, Text: ${response.statusText}`);
-          }
-      
-          const result = await response.json();
-          console.log(result, ">>>>>>>>> Winnig Pridiction >>>>>>>>>");
-          setWinningEvent(result);
-          // setMyprediction(result.results);
-        } catch (error) {
-          console.error("Error:", error);
-        }
-        
-      };
-
-      const populateLosingPridiction = async () => {
-        console.log("Enter in my prediction")
-          const url = new URL(`${API_URL}/event/losing-votes/`);
-        url.searchParams.append("wallet_address",walletInLowerCase);
-      
-        const requestOptions = {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-      
-        try {
-          const response = await fetch(url, requestOptions);
-      
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}, Text: ${response.statusText}`);
-          }
-      
-          const result = await response.json();
-          console.error(result, ">>>>>>>>> Losing Pridiction >>>>>>>>>");
-          setLosingEvent(result);
-          // setMyprediction(result.results);
-        } catch (error) {
-          console.error("Error:", error);
-        }
-        
-      };
-    
-
-
-    useEffect(()=>{
-        if(wallet.publicKey){
-            console.log("My Prediction Effect if");
-            console.log(wallet.publicKey);
-            populateMyPridiction();
-            populateWinnigPridiction();
-            populateLosingPridiction();
-        }
-    },[wallet.publicKey,populateAgain])
+  const {
+    handleChange,
+    selectedOption,
+    winningEvents,
+    losingEvents,
+    myPrediction,
+    claimReward
+}  = useMyPrediction();
+   
    
     const divStyle = {
         background: "linear-gradient(180deg, #1A1A1A -1.47%, #3F3F3F 30.25%, #626262 49.26%, #393939 74.55%, #3F0A4C 100%)",
@@ -149,8 +46,6 @@ const Pridtiction = () =>{
         display:"flex",
         flexDirection:"column",
          marginBottom:"30px"
-        // justifyContent:"center",
-        // alignContent:"center"
     }}>
       <ToastContainer />
        <div style={{
@@ -166,7 +61,7 @@ const Pridtiction = () =>{
     
         
 
-       {wallet.isWalletConnected? <div style={{
+       {isConnected? <div style={{
         width:"100%",
         // height:"400px",
         display:"flex",
@@ -294,7 +189,7 @@ const Pridtiction = () =>{
                                   onClick={()=>{
                                     if(!data.is_claimed ){
                                       if(data.status ==="WON" ){
-                                        event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
+                                        claimReward(data.id)
                                       }
                                     }
                                   }
@@ -372,7 +267,7 @@ const Pridtiction = () =>{
                                   onClick={()=>{
                                     if(!data.is_claimed ){
                                       if(data.status ==="WON" ){
-                                        event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
+                                        claimReward(data.id)
                                       }
                                     }
                                   }
@@ -451,7 +346,7 @@ const Pridtiction = () =>{
                                   onClick={()=>{
                                     if(!data.is_claimed ){
                                       if(data.status ==="WON" ){
-                                        event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
+                                        claimReward(data.id)
                                       }
                                     }
                                   }
@@ -488,146 +383,6 @@ const Pridtiction = () =>{
 
                  
             </div>
-            {/* <div 
-            className="mobileView"
-            style={{
-                width:"80%",
-                // display:"flex",
-                flexDirection:"column",
-                gap:"2rem"
-            }}>
-               
-                 {
-                   selectedOption==="last10" && myPrediction.map((data,index) =>{
-                        return(
-                          <div key={`indi+${data.event_id}`}  style={divStyle}>
-                          <div style={{
-                           display:"flex",
-                           justifyContent:"space-between",
-                           padding:"0.7rem",
-                           color:"white"
-                       }}>
-                           <p style={{
-                             fontSize:"1.4rem",
-                             fontWeight:"500",
-                             // width:"10px",
-                             textAlign:"center"
-                           }}>{index+1}</p>
-                           <p style={{
-                                fontSize:"0.6rem",
-                                fontWeight:"500",
-                                 // width:"66px",
-                               // textAlign:"center"
-                           }}>Event ID :{data.event_id} <br/>Tokens Rewarded: {data.amount_rewarded}</p>
-                             <p style={{
-                                   fontSize:"0.7rem",
-                                   fontWeight:"500",
-                                     // width:"97px",
-                                     textAlign:"center",
-                                     color: data.status === "WON" ? "GREEN" 
-                                     : data.status === "LOST" ? "RED" 
-                                     : "BLUE" // For "PENDING"
-                               }}> {data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase()}</p>
-                              <button 
-                                 onClick={()=>
-                                   event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
-                                 }
-                                 style={{
-                                     backgroundColor:data.is_claimed  ?" #00000080":"#DADADA26",
-                                     color:"#FFFFFF",
-                                     width:"100px",
-                                     height:"25px",
-                                     borderRadius:"5px",
-                                     cursor:true ?"pointer":"",
-                                     border: "2px solid #FFFFFF",
-                                   
-                                 }}>
-                                   {
-                                      data.status === "WON" ? (
-                                        !data.is_claimed ?<span>Claim</span>:<span>Claimed</span>
-                                      ):("N/A")
-                                    }
-                                   {data.is_claimed &&
-
-                                   <img style={{
-                                     marginLeft:"5px",
-                                     position:"absolute"
-                                   }} src="clainmed.svg" alt="Claimed" />
-                                   }
-                                 </button>
-                       </div>
-                           <div style={arrowStyle}></div>
-                          </div>
-                        )
-                    })
-                 }
-                 {
-                  selectedOption==="allWinning" && winningEvents.map((data,index) =>{
-                    return(
-                      <div key={`indi+${data.event_id}`}  style={divStyle}>
-                      <div style={{
-                       display:"flex",
-                       justifyContent:"space-between",
-                       padding:"0.7rem",
-                       color:"white"
-                   }}>
-                       <p style={{
-                         fontSize:"1.4rem",
-                         fontWeight:"500",
-                         // width:"10px",
-                         textAlign:"center"
-                       }}>{index+1}</p>
-                       <p style={{
-                            fontSize:"0.6rem",
-                            fontWeight:"500",
-                             // width:"66px",
-                           // textAlign:"center"
-                       }}>Event ID :{data.event_id} <br/>Tokens Rewarded: {data.amount_rewarded}</p>
-                         <p style={{
-                               fontSize:"0.7rem",
-                               fontWeight:"500",
-                                 // width:"97px",
-                                 textAlign:"center",
-                                 color: data.status === "WON" ? "GREEN" 
-                                 : data.status === "LOST" ? "RED" 
-                                 : "BLUE" // For "PENDING"
-                           }}> {data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase()}</p>
-                          <button 
-                             onClick={()=>
-                               event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
-                             }
-                             style={{
-                                 backgroundColor:data.is_claimed  ?" #00000080":"#DADADA26",
-                                 color:"#FFFFFF",
-                                 width:"100px",
-                                 height:"25px",
-                                 borderRadius:"5px",
-                                 cursor:true ?"pointer":"",
-                                 border: "2px solid #FFFFFF",
-                               
-                             }}>
-                               {
-                                  data.status === "WON" ? (
-                                    !data.is_claimed ?<span>Claim</span>:<span>Claimed</span>
-                                  ):("N/A")
-                                }
-                               {data.is_claimed &&
-
-                               <img style={{
-                                 marginLeft:"5px",
-                                 position:"absolute"
-                               }} src="clainmed.svg" alt="Claimed" />
-                               }
-                             </button>
-                   </div>
-                       <div style={arrowStyle}></div>
-                      </div>
-                    )
-                })
-                 }
-
-                 
-            </div> */}
             <div 
             className="mobileView"
             style={{
@@ -643,71 +398,12 @@ const Pridtiction = () =>{
                  {
                    selectedOption==="last10" && myPrediction.map((data,index) =>{
                         return(
-                      //     <div key={`indi+${data.event_id}`}  style={divStyle}>
-                      //     <div style={{
-                      //      display:"flex",
-                      //      justifyContent:"space-between",
-                      //      padding:"0.7rem",
-                      //      color:"white"
-                      //  }}>
-                      //      <p style={{
-                      //    fontSize:"0.7rem",
-                      //    fontWeight:"500",
-                      //    // width:"10px",
-                      //    textAlign:"center",
-                      //     marginTop:"5px"
-                      //  }}>Event ID :{data.event_id}</p>
-                      //  <p style={{
-                      //       fontSize:"0.6rem",
-                      //       fontWeight:"500",
-                      //        // width:"66px",
-                      //      // textAlign:"center"
-                      //  }}>Committed :{data.token_staked} <br/>Rewarded: {data.amount_rewarded}</p>
-                      //        <p style={{
-                      //              fontSize:"0.7rem",
-                      //              fontWeight:"500",
-                      //                // width:"97px",
-                      //                textAlign:"center",
-                      //                marginTop:"5px",
-                      //                color: data.status === "WON" ? "GREEN" 
-                      //                : data.status === "LOST" ? "RED" 
-                      //                : "BLUE" // For "PENDING"
-                      //          }}> {data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase()}</p>
-                      //         <button 
-                      //            onClick={()=>
-                      //              event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
-                      //            }
-                      //            style={{
-                      //                backgroundColor:data.is_claimed  ?" #00000080":"#DADADA26",
-                      //                color:"#FFFFFF",
-                      //                width:"100px",
-                      //                height:"25px",
-                      //                borderRadius:"5px",
-                      //                cursor:true ?"pointer":"",
-                      //                border: "2px solid #FFFFFF",
-                                   
-                      //            }}>
-                      //              {
-                      //                 data.status === "WON" ? (
-                      //                   !data.is_claimed ?<span>Claim</span>:<span>Claimed</span>
-                      //                 ):("N/A")
-                      //               }
-                      //              {data.is_claimed &&
-
-                      //              <img style={{
-                      //                marginLeft:"5px",
-                      //                position:"absolute"
-                      //              }} src="clainmed.svg" alt="Claimed" />
-                      //              }
-                      //            </button>
-                      //  </div>
-                      //      <div style={arrowStyle}></div>
-                      //     </div>
+                     
                             <AnimatedButton data={data}
                             claimReward= {()=>{
                               if(!data.is_claimed ){
                                 if(data.status ==="WON" ){
-                                  event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
+                                  claimReward(data.id)
                                 }
                               }
                             }}
@@ -722,151 +418,12 @@ const Pridtiction = () =>{
                   winningEvents.map((data,index) =>{
                     console.log(data);
                     return(
-                  //     <div key={`indi+${data.event_id}`}  style={divStyle}>
-                  //     <div style={{
-                  //      display:"flex",
-                  //      justifyContent:"space-between",
-                  //      padding:"0.7rem",
-                  //      color:"white"
-                  //  }}>
-                  //      <p style={{
-                  //        fontSize:"0.7rem",
-                  //        fontWeight:"500",
-                  //        // width:"10px",
-                  //        textAlign:"center",
-                  //        marginTop:"5px",
-                        
-                  //      }}>Event ID :{data.event_id}</p>
-                  //      <p style={{
-                  //           fontSize:"0.6rem",
-                  //           fontWeight:"500",
-                  //            // width:"66px",
-                  //          // textAlign:"center"
-                  //      }}>Committed :{data.token_staked} <br/>Rewarded: {data.amount_rewarded}</p>
-                  //        <p style={{
-                  //              fontSize:"0.7rem",
-                  //              fontWeight:"500",
-                  //                // width:"97px",
-                  //                textAlign:"center",
-                  //                marginTop:"5px",
-                  //                color: data.status === "WON" ? "GREEN" 
-                  //                : data.status === "LOST" ? "RED" 
-                  //                : "BLUE" // For "PENDING"
-                  //          }}> {data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase()}</p>
-                  //         <button 
-                  //            onClick={()=>
-                  //              event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
-                  //            }
-                  //            style={{
-                  //                backgroundColor:data.is_claimed  ?" #00000080":"#DADADA26",
-                  //                color:"#FFFFFF",
-                  //                width:"100px",
-                  //                height:"25px",
-                  //                borderRadius:"5px",
-                  //                cursor:true ?"pointer":"",
-                  //                border: "2px solid #FFFFFF",
-                               
-                  //            }}>
-                  //              {
-                  //                 data.status === "WON" ? (
-                  //                   !data.is_claimed ?<span>Claim</span>:<span>Claimed</span>
-                  //                 ):("N/A")
-                  //               }
-                  //              {data.is_claimed &&
-
-                  //              <img style={{
-                  //                marginLeft:"5px",
-                  //                position:"absolute"
-                  //              }} src="clainmed.svg" alt="Claimed" />
-                  //              }
-                  //            </button>
-                  //  </div>
-                  //      <div style={arrowStyle}></div>
-                  //     </div>
-                        <AnimatedButton data={data} 
-                        claimReward= {()=>{
-                          if(!data.is_claimed ){
-                            if(data.status ==="WON" ){
-                              event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
-                            }
-                          }
-                        }}
-                        />  
-                    )
-                })
-                 }
-
-                 {
-                  selectedOption==="lastLost" && 
-
-                  losingEvents.map((data,index) =>{
-                    console.log(data);
-                    return(
-                  //     <div key={`indi+${data.event_id}`}  style={divStyle}>
-                  //     <div style={{
-                  //      display:"flex",
-                  //      justifyContent:"space-between",
-                  //      padding:"0.7rem",
-                  //      color:"white"
-                  //  }}>
-                  //      <p style={{
-                  //        fontSize:"0.7rem",
-                  //        fontWeight:"500",
-                  //        // width:"10px",
-                  //        textAlign:"center",
-                  //        marginTop:"5px",
-                  //      }}>Event ID :{data.event_id}</p>
-                  //      <p style={{
-                  //           fontSize:"0.6rem",
-                  //           fontWeight:"500",
-                  //            // width:"66px",
-                  //          // textAlign:"center"
-                  //      }}>Committed :{data.token_staked} <br/>Rewarded: {data.amount_rewarded}</p>
-                  //        <p style={{
-                  //              fontSize:"0.7rem",
-                  //              fontWeight:"500",
-                  //                // width:"97px",
-                  //                textAlign:"center",
-                  //                marginTop:"5px",
-                  //                color: data.status === "WON" ? "GREEN" 
-                  //                : data.status === "LOST" ? "RED" 
-                  //                : "BLUE" // For "PENDING"
-                  //          }}> {data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase()}</p>
-                  //         <button 
-                  //            onClick={()=>
-                  //              event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
-                  //            }
-                  //            style={{
-                  //                backgroundColor:data.is_claimed  ?" #00000080":"#DADADA26",
-                  //                color:"#FFFFFF",
-                  //                width:"100px",
-                  //                height:"25px",
-                  //                borderRadius:"5px",
-                  //                cursor:true ?"pointer":"",
-                  //                border: "2px solid #FFFFFF",
-                               
-                  //            }}>
-                  //              {
-                  //                 data.status === "WON" ? (
-                  //                   !data.is_claimed ?<span>Claim</span>:<span>Claimed</span>
-                  //                 ):("N/A")
-                  //               }
-                  //              {data.is_claimed &&
-
-                  //              <img style={{
-                  //                marginLeft:"5px",
-                  //                position:"absolute"
-                  //              }} src="clainmed.svg" alt="Claimed" />
-                  //              }
-                  //            </button>
-                  //  </div>
-                  //      <div style={arrowStyle}></div>
-                  //     </div>
+                 
                        <AnimatedButton data={data} 
                         claimReward= {()=>{
                           if(!data.is_claimed ){
                             if(data.status ==="WON" ){
-                              event.claimReward(data.id,wallet.publicKey,populateAgain,setPopilateAgain)
+                              claimReward(data.id)
                             }
                           }
                         }}
@@ -875,9 +432,6 @@ const Pridtiction = () =>{
                     )
                 })
                  }
-
-                 {/* <AnimatedButton /> */}
-                 {/* <AnimatedButton /> */}
 
                  
             </div>

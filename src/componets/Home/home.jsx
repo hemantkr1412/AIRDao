@@ -4,11 +4,24 @@ import UpcomingMarkets from "./upcomingMarkets";
 import PopularMarkets from "./poppularMarkets";
 import RecentMarkets from "./recentMarkets";
 import HowItWorks from "./howItWorks";
-import RoadMap from "./roadMap";
-import TokenDetails from "./tokenDetails";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import useHome from "./useHome";
 
 const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadMapref,tokenDetailsRef}) => {
+
+    const {
+        upcomingEvent,
+        popularEvent,
+        recentEvent
+
+    } = useHome();
+
+
+    // console.log(popularEvent);
+
+    
+
+
     
     return (
         <div>
@@ -56,27 +69,23 @@ const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadM
                     }} onClick={()=>{
                         handleScroll(howItWorksRef)
                     }}>How it Works</p>
-                    {/* <p style={{
-                    fontWeight:"500",
-                    cursor:"pointer"
-                    }} onClick={()=>{
-                        handleScroll(roadMapref)
-                    }}>RoadMap</p>
-                    <p style={{
-                    fontWeight:"500",
-                    cursor:"pointer"
-                    }} onClick={()=>{
-                        handleScroll(tokenDetailsRef)
-                    }}>Token Details</p> */}
+                  
             </div>
             <ToastContainer />
             <HeroSection  />
-            <UpcomingMarkets upComingRef={upComingRef} />
-            <PopularMarkets popularRef={popularRef} />
-            <RecentMarkets recentRef={recentRef} />
+            <UpcomingMarkets 
+            upComingRef={upComingRef} 
+            upcomingEvent={upcomingEvent}
+            />
+            <PopularMarkets 
+            popularRef={popularRef}
+            popularEvent={popularEvent}
+            />
+            <RecentMarkets 
+            recentRef={recentRef}
+            recentEvent={recentEvent}
+             />
             <HowItWorks howItWorksRef={howItWorksRef} />
-            {/* <RoadMap roadMapref={roadMapref} /> */}
-            {/* <TokenDetails tokenDetailsRef={tokenDetailsRef} /> */}
         </div>
     )
 }

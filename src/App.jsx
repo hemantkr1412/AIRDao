@@ -1,9 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
-import Navbar from "./componets/navbar";
+
 import Footer from "./componets/footer";
 import Markets from "./componets/markets/markets";
-import Home from "./componets/home";
 import { WalletProvider } from "./context/walletContext";
 import Pridtiction from "./componets/mypridiction/myPridiction";
 import MyRank from "./componets/myRank/myRank";
@@ -14,8 +13,13 @@ import { HashRouter } from "react-router-dom";
 
 import { createContext } from "react";
 
+
 //google
 import GoogleTagManager from "./googleAnalytics";
+import Navbar from "./componets/navbar/navbar";
+import Home from "./componets/Home/home";
+import { useDispatch } from "react-redux";
+import { setCategories } from "./componets/store/slice/categoriesSlice";
 
 export const MyContext = createContext("");
 
@@ -30,6 +34,9 @@ function App() {
     const roadMapref = useRef(null)
     const tokenDetailsRef = useRef(null);
 
+
+    const dispatch = useDispatch();
+
      const handleScroll = (ref) => {
       console.log(ref.current.offsetTop);
       window.scrollTo({
@@ -37,6 +44,26 @@ function App() {
         behavior: "smooth",
       });
      };
+
+     useEffect(() => {
+      populateCategories();
+     }, []);
+
+
+    const API_URL = import.meta.env.VITE_APP_BACKEND_URL;
+     
+    const populateCategories = async () => {
+      try {
+          const response = await fetch(`${API_URL}/event/categories/`);
+          const data = await response.json();
+          dispatch(setCategories(data));
+      } catch (error) {
+          console.log("Error fetching categories:", error);
+      }
+  };
+
+
+     
 
 
   return (
@@ -48,15 +75,7 @@ function App() {
       }}
     >
       <HashRouter>
-        <Navbar
-          handleScroll={handleScroll}
-          upComingRef={upComingRef}
-          popularRef={popularRef}
-          recentRef={recentRef}
-          howItWorksRef={howItWorksRef}
-          roadMapref={roadMapref}
-          tokenDetailsRef={tokenDetailsRef}
-        />
+        <Navbar />
         <Routes>
           <Route
             path="/"

@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { useWallet } from "../context/walletContext";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from "react-redux";
 
 
 const useEvent = ()=>{
+  const { id, account } = useSelector(state => state.accountDetails); // Access account details
+
     const [activeEvent, setActiveEvent] = useState([]);
     const [recentEvent,setrecentEvent] = useState([]);
     const [popularEvent,setpopularEvent] = useState([]);
@@ -17,19 +20,19 @@ const useEvent = ()=>{
     const [leaderBoard,setLeaderboard ]= useState([]);
 
     // const API_URL = "http://127.0.0.1:8000/api/v1"
-     const API_URL = "https://airdaomarkets.xyz/api/v1"
+    const API_URL = "https://airdaomarkets.xyz/api/v1";
     
     const wallet = useWallet();
 
        useEffect(() => {
           console.log("Calling Use Effect")
-         populateEvent();
-         populatecategories();
-         populateSortList();
-         populateMyPridiction();
-         populateAccountData();
-         populateKPI();
-         populatePopularMarrket();
+        //  populateEvent();
+        //  populatecategories();
+        //  populateSortList();
+        //  populateMyPridiction();
+        //  populateAccountData();
+        //  populateKPI();
+        //  populatePopularMarrket();
        }, [walletDetails]);
 
 
@@ -156,49 +159,58 @@ const useEvent = ()=>{
        const handleCommitToken = async (event_id, voteId, voteIndex, amount) => {
         console.log("Handle Commit");
         console.log(event_id, voteIndex, amount);
-        
-        const tx = await wallet.sendEthToContract(event_id, voteIndex, amount);
+        console.error("ACCOUNT ID",id)
+
+        if(id){
+          const tx = await wallet.sendEthToContract(event_id, voteIndex, amount);
     
-        console.log("TX>>>", tx);
-        const account = JSON.parse(localStorage.getItem("accountDetails"));
+          console.log("TX>>>", tx);
+           const account = JSON.parse(localStorage.getItem("accountDetails"));
+
+
     
-        if (tx) {
-            toast.success("Transaction Successful", {
-                autoClose: 5000,
-                theme: "colored"
-            });
-    
-            const data = {
-                account: account.id,
-                possible_result: voteId,
-                token_staked: amount,
-                tx_hash: tx
-            };
-    
-            const requestOptions = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            };
-    
-            await fetch(`${API_URL}/event/votes/create/`, requestOptions)
-                .then((response) => response.json())
-                .then((data) => {
-                    // setPopulate(!isPopulate);
-                    console.log(data, "Token Save in DB");
-    
-                    // Call to refresh the events and leaderboard after success
-                    populateEvent();  
-                    populatePopularMarrket();     // Refresh event data
-                    populateLeaderBoard();  // Refresh leaderboard data
-                    populateKPI();          // Refresh KPI data
-                })
-                .catch((error) => console.log(error));
-        } else {
-            toast.error("Something went wrong!");
+          if (tx) {
+              toast.success("Transaction Successful", {
+                  autoClose: 5000,
+                  theme: "colored"
+              });
+      
+              const data = {
+                  account: id,
+                  possible_result: voteId,
+                  token_staked: amount,
+                  tx_hash: tx
+              };
+      
+              const requestOptions = {
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(data),
+              };
+      
+              await fetch(`${API_URL}/event/votes/create/`, requestOptions)
+                  .then((response) => response.json())
+                  .then((data) => {
+                      // setPopulate(!isPopulate);
+                      console.log(data, "Token Save in DB");
+      
+                      // Call to refresh the events and leaderboard after success
+                      // populateEvent();  
+                      // populatePopularMarrket();     // Refresh event data
+                      populateLeaderBoard();  // Refresh leaderboard data
+                      populateKPI();          // Refresh KPI data
+                  })
+                  .catch((error) => console.log(error));
+          } else {
+              toast.error("Something went wrong!");
+          }
+        }else{
+          toast.error("Something went wrong! Please reconnect your wallet");
         }
+        
+        
     };
 
     const createAccount = async (wallet) => {
@@ -223,7 +235,10 @@ const useEvent = ()=>{
     
         const result = await response.json();
         console.log(result, ">>>>>>>>> Account Details >>>>>>>>>");
+        
         localStorage.setItem('accountDetails', JSON.stringify(result));
+        wallet.setAccountDetails(result);
+        updateAccountDetails(result.id,result.account)
       } catch (error) {
         console.error("Error:", error);
       }
@@ -312,7 +327,7 @@ const useEvent = ()=>{
       .then((response) => response.json())
       .then((data)=>{
         
-        console.log(data,"!!!!!!!!!!!!!!!POPILAR MARKET!!!!!!!!!!!!!!")
+        // console.log(data,"!!!!!!!!!!!!!!!POPILAR MARKET!!!!!!!!!!!!!!")
         if(data){
            localStorage.setItem('popularMarket', JSON.stringify(data));
         }
