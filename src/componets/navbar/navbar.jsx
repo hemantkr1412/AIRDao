@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import "./navbar.css";
 import { useNavigate } from "react-router-dom";
-import { useWallet } from "../../context/walletContext";
 import { ConnectButton } from "thirdweb/react";
 import { createWallet } from "thirdweb/wallets";
 import { client } from "../client";
-import { useAddress } from "@thirdweb-dev/react";
-import useEvent from "../useEvent";
 import useNavbar from "./useNavbar";
+import Modal from "./model";
 
 
 
-const wallets = [createWallet("io.metamask")];
+const wallets = [createWallet("io.metamask")
+];
 
 
 const Navbar = () => {
@@ -25,6 +24,7 @@ const Navbar = () => {
 
     const navigate = useNavigate()
     const [isToggled, setToggle] = useState(true);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
     const getDocument = document.querySelector("#menu");
@@ -40,6 +40,13 @@ const Navbar = () => {
  const handleClickMenu = () =>{
     setToggle(!isToggled);
   }
+
+  
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
+
     return (
     <>
         <div className="navbar" >
@@ -135,9 +142,37 @@ const Navbar = () => {
                           }}
                           chain={chain}
                            />
+
+                           {/* <button style={{
+                            background: "linear-gradient(90.06deg, #FFD700 0%, #8B4513 100%)",
+                            color: "black",
+                            width: "140px",
+                            height: "35px",
+                            borderRadius: "100px",
+                            border: "none",
+                            marginRight: "3rem",
+                            cursor: "pointer",
+                            boxShadow: "0px 4px 4px 0px rgba(255, 255, 255, 0.4)",
+                           }} 
+                           onClick={toggleModal}
+                           >
+                            Log in /Sign up
+                           </button> */}
+
+
+
                         
                     </div>
             </div>
+            <Modal 
+            show={showModal} 
+            onClose={toggleModal} 
+            connectWallet={connectWallet}
+            disconnectWallet={disconnectWallet}
+            client={client}
+            chain={chain}
+            />
+
         </div>
         <div className="navmanu" style={{
       position: "fixed",
@@ -205,6 +240,19 @@ const Navbar = () => {
               }
             }}
             chain={chain}
+
+            // auth={{
+            //   // The following methods run on the server (not client)!
+            //   isLoggedIn: async () => {
+            //     const authResult = await isLoggedIn();
+            //     if (!authResult) return false;
+            //     return true;
+            //   },
+            //   doLogin: async (params) => await login(params),
+            //   getLoginPayload: async ({ address }) =>
+            //     generatePayload({ address }),
+            //   doLogout: async () => await logout(),
+            // }}
             />
 
           {!isToggled ?   <img className="maunuicon" src="cancel.png"  alt="Close" onClick={handleClickMenu} style={{

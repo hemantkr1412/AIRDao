@@ -99,6 +99,42 @@ width: 25%;
     font-weight: 600;
 }
 
+
+.vote-button {
+    margin-top: 20px;
+    background-color: red;
+    color: white;
+    width: 120px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+.vote-button.green {
+    background-color: green;
+}
+
+.vote-button.red {
+    background-color: red;
+}
+
+.vote-button:hover.green {
+    background-color: darkgreen;
+}
+
+.vote-button:hover.red {
+    background-color: darkred;
+}
+
+
+
+
+
+
+
+
 @media screen and (max-width: 450px) {
   .startDate{
    display: none;

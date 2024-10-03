@@ -13,7 +13,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event,handleCommitToken}) =>{
     };
     return(
         <div className="cardContainer2" style={{
-            background: (isUpcominng) ?"rgba(196, 154, 108, 1)": "linear-gradient(180deg, rgba(247, 147, 26, 0.2) 0%, rgba(45, 40, 255, 0.2) 100%)",
+            background: (false) ?"rgba(196, 154, 108, 1)": "linear-gradient(180deg, rgba(247, 147, 26, 0.2) 0%, rgba(45, 40, 255, 0.2) 100%)",
             boxShadow:(isUpcominng) ?"2px 4px 8px 0px rgba(196, 154, 108, 0.8)":"2px 4px 8px 0px #00000040",
             border:(isUpcominng ) ?"":"0.5px solid white",
             borderRadius:"10px"
@@ -99,17 +99,25 @@ const Card = ({isPopular,isRecent,isUpcominng,event,handleCommitToken}) =>{
                                                 toggleModal()
                                                 setVoteId(result.id)
                                                 setVoteIndex(index)
-                                            }} style={{
-                                                    marginTop:"20px",
-                                                    backgroundColor:index === 0 ?"green":"red",
-                                                    color:"white",
-                                                    width:"120px",
-                                                    height:"35px",
-                                                    borderRadius:"5px",
-                                                    border:"none",
-                                                    cursor:"pointer"
-                                                }}
-                                                >Vote {result.result} 
+                                            }} 
+                                            // style={{
+                                            //         marginTop:"20px",
+                                            //         backgroundColor:index === 0 ?"green":"red",
+                                            //         color:"white",
+                                            //         width:"120px",
+                                            //         height:"35px",
+                                            //         borderRadius:"5px",
+                                            //         border:"none",
+                                            //         cursor:"pointer"
+                                            //     }}
+                                            className={`vote-button ${index === 0 ? 'green' : 'red'}`}
+                                                >{
+                                                    result.result == "Yes"
+                                                    ? "Vote"
+                                                    : result.result == "No"
+                                                    ? "Vote"
+                                                    : ""
+                                                }  {result.result} 
                                             </button>}
                                             {
                                             (isUpcominng || isRecent) && 
@@ -124,7 +132,13 @@ const Card = ({isPopular,isRecent,isUpcominng,event,handleCommitToken}) =>{
                                                     border:"none",
                                                     // cursor:"pointer"
                                                 }}
-                                                >Vote {result.result} </button>
+                                                >{
+                                                    result.result == "Yes"
+                                                    ? "Vote"
+                                                    : result.result == "No"
+                                                    ? "Vote"
+                                                    : ""
+                                                } {result.result} </button>
                                                 }
                                                 <p  style={{
                                                     fontSize:"1.1rem",
@@ -322,12 +336,21 @@ const Card = ({isPopular,isRecent,isUpcominng,event,handleCommitToken}) =>{
                                                 style={{
                                                     // backgroundColor:index === 0 ?"rgb(0, 128, 0,0.6)":"rgb(255, 0, 0,0.6)",
                                                     // color:"rgb(255, 255, 255,0.7)",
-                                                    backgroundColor:index === 0 ?"rgb(0, 128, 0,0.7)":"rgb(0, 128, 0,0.7)",
+                                                    backgroundColor:
+                                                       result.result == "Yes"
+                                                        ? "rgba(0, 128, 0, 0.7)"
+                                                        : result.result == "No"
+                                                        ? "rgba(255, 0, 0, 0.6)"
+                                                        : "blue",
                                                     color:index === 0?"white":"white",
                                                     width:"120px",
                                                     height:"35px",
                                                     borderRadius:"5px",
-                                                    border: index === 0?"1px solid green":"1px solid green",
+                                                    border:  result.result == "Yes"
+                                                    ? "1px solid green"
+                                                    : result.result == "No"
+                                                    ? "1px solid red"
+                                                    : "1px solid blue",
                                                     // cursor:"pointer"
                                                 }}
                                                 >{result.result} </button>

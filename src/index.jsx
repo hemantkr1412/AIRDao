@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { ThirdwebProvider } from "thirdweb/react";
 import {Provider} from "react-redux";
 import { store } from './componets/store';
+import { GoogleOAuthProvider } from "@react-oauth/google"
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -22,9 +23,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // );
 root.render(
   <ThirdwebProvider>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <GoogleOAuthProvider clientId='804423343303-81f5h6vftb38a5a6hgp1rj990t94c1f1.apps.googleusercontent.com'>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </GoogleOAuthProvider>
   </ThirdwebProvider>
 );
 
