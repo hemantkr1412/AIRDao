@@ -1,1 +1,0 @@
-import{v as n}from"./session-request-B3yK_PuI.js";import"./index-DHJPliKI.js";async function o(e){const{account:s,params:a}=e;return n(s,a[1]),s.signMessage({message:{raw:a[0]}})}export{o as handleSignRequest};

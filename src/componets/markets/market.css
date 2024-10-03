@@ -31,13 +31,13 @@
 }
 
 .votMultiButon{
-    background-color: black;
+    background-color: blue;
     color: white;
 
 }
 
 .votMultiButon:hover{
-    background-color: black;
+    background-color: rgb(0, 0, 138);
     color: white;
     box-shadow: 2px 2px 2px #8a8a8a;
 }
@@ -114,6 +114,7 @@ width: 25%;
 
 .vote-button.green {
     background-color: green;
+    
 }
 
 .vote-button.red {
@@ -122,10 +123,12 @@ width: 25%;
 
 .vote-button:hover.green {
     background-color: darkgreen;
+    box-shadow: 2px 2px 2px #8a8a8a;
 }
 
 .vote-button:hover.red {
     background-color: darkred;
+    box-shadow: 2px 2px 2px #8a8a8a;
 }
 
 
