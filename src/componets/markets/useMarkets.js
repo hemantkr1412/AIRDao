@@ -48,7 +48,7 @@ const useMarket = () => {
             const data = await response.json();
             setActiveEvent(data);
             setFilteredEvent(data); 
-            setIsLoading(true)
+            setIsLoading(false)
         } catch (error) {
             console.error("Error fetching event data:", error);
         }
