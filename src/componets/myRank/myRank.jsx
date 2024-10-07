@@ -8,7 +8,8 @@ const MyRank = () =>{
     const API_URL = import.meta.env.VITE_APP_BACKEND_URL;
 
     useEffect(()=>{
-        populateLeaderBoard()
+        populateLeaderBoard();
+        populateLeaderBoardProfit();
     },[])
 
     const populateLeaderBoard = async () =>{
@@ -16,7 +17,16 @@ const MyRank = () =>{
         .then((response) => response.json())
         .then((data)=>{
           setLeaderboard(data)
-          console.log(data,"??????????????TOP RANK?????????????")
+        //   console.log(data,"??????????????TOP RANK?????????????")
+        })
+        .catch((error)=> console.log(error))
+    }
+
+    const populateLeaderBoardProfit = async () =>{
+        await fetch(`${API_URL}/event/top-profits/`)
+        .then((response) => response.json())
+        .then((data)=>{
+          console.log(data,"??????????????Profit?????????????")
         })
         .catch((error)=> console.log(error))
     }

@@ -1,5 +1,5 @@
 import ActiveMarket from "../markets/activemarkets";
-const PopularMarkets = ({popularRef,popularEvent}) =>{
+const PopularMarkets = ({popularRef,popularEvent,isLoading}) =>{
     // console.log(popularEvent);
     return(
         <div ref={popularRef} style={{
@@ -12,6 +12,7 @@ const PopularMarkets = ({popularRef,popularEvent}) =>{
            <ActiveMarket
             event={popularEvent}
             title={"Popular"}
+            isLoading={isLoading}
             />
 
         </div>

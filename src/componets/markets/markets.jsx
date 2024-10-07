@@ -10,6 +10,7 @@ const Markets = () => {
         categoriesList,
         categoryName,
         handleCategory,
+        isLoading
     } = useMarket();
 
 
@@ -24,13 +25,16 @@ const Markets = () => {
                             justifyContent: 'center',
                             alignItems: 'center',
                             height: '40px',
-                            background: "linear-gradient(90.06deg, #FFD700 0%, #8B4513 100%)",
+                            // background: "linear-gradient(90.06deg, #FFD700 0%, #8B4513 100%)",
+                            // background:"linear-gradient(270deg, rgba(247, 147, 26, 0.4) 0%, rgba(45, 40, 255, 0.4) 100%)",
+                            // backgroundColor:"white",
+                            background: 'white',
                             gap: "2.5rem",
                             marginTop: "5rem",
                             boxShadow: "rgba(0, 0, 0, 0.35) 5px 2px 5px"
                         }}
                     >
-                        <p
+                        <p  className="subNavbarItem"
                             onClick={() => handleCategory("All")}
                             style={{
                                 fontWeight: categoryName === "All" ? "700" : "500",
@@ -40,6 +44,7 @@ const Markets = () => {
                         {
                             categoriesList && categoriesList.map((category) => (
                                 <p key={category.name} onClick={() => handleCategory(category.name)}
+                                    className="subNavbarItem"
                                     style={{
                                         fontWeight: categoryName === category.name ? "700" : "500",
                                         cursor: "pointer",
@@ -83,6 +88,7 @@ const Markets = () => {
                         event={filteredEvent}
                         title={"Active"}
                         marketCategory={categoryName}
+                        isLoading={isLoading}
                     />
                 </div>
             </div>
@@ -92,10 +98,10 @@ const Markets = () => {
 
 const valueContainerStyles = {
     height: "120px",
-    background: "linear-gradient(180deg, #F0E68C 0%, #F5DEB3 100%)",
+    background: "linear-gradient(180deg, rgba(247, 147, 26, 0.2) 0%, rgba(45, 40, 255, 0.2) 100%)",
     borderRadius: "5px",
     padding: "1rem",
-    border: "1px solid rgba(212, 144, 0, 1)",
+    border: "1px solid white",
     color: "black",
     boxShadow: "2px 3px 12px 0px rgba(0, 0, 0, 0.4)"
 };

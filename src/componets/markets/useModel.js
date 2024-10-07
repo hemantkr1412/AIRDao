@@ -19,7 +19,7 @@ const useModel = () =>{
 
 
     async function sendEthToContract(event_id,voteIndex, ethAmount) {
-        toast.info("Please Wait ! Trying to Connect your wallet",{
+        toast.info("Please Wait ! Trying to Open your wallet",{
           theme: "colored",
           })
         // Create a provider using MetaMask
@@ -70,56 +70,119 @@ const useModel = () =>{
 
 
 
-    const handleCommitToken = async (event_id, voteId, voteIndex, amount) => {
-        console.log("Handle Commit");
-        console.log(event_id, voteIndex, amount);
-        // console.error("ACCOUNT ID",id)
+    // const handleCommitToken = async (event_id, voteId, voteIndex, amount) => {
+    //     console.log("Handle Commit");
+    //     console.log(event_id, voteIndex, amount);
+    //     // console.error("ACCOUNT ID",id)
 
-        if(id){
-          const tx = await sendEthToContract(event_id, voteIndex, amount);
+    //     if(id){
+    //       const tx = await sendEthToContract(event_id, voteIndex, amount);
     
+    //       console.log("TX>>>", tx);
+
+
+    //       if(tx=="rejected"){
+    //         toast.error("The transaction was rejected by the user.");
+    //       }else if (tx) {
+    //           toast.success("Transaction Successful", {
+    //               autoClose: 5000,
+    //               theme: "colored"
+    //           });
+      
+    //           const data = {
+    //               account: id,
+    //               possible_result: voteId,
+    //               token_staked: amount,
+    //               tx_hash: tx
+    //           };
+      
+    //           const requestOptions = {
+    //               method: "POST",
+    //               headers: {
+    //                   "Content-Type": "application/json",
+    //               },
+    //               body: JSON.stringify(data),
+    //           };
+      
+    //           await fetch(`${API_URL}/event/votes/create/`, requestOptions)
+    //               .then((response) => response.json())
+    //               .then((data) => {
+    //                   console.log(data, "Token Save in DB");
+    //                   dispatch(reRenderSliceActions.toggleReRender());
+    //               })
+    //               .catch((error) => console.log(error));
+    //       } else {
+    //           toast.error("Something went wrong!");
+    //       }
+    //     }
+    //     else{
+    //       toast.error("Something went wrong! Please reconnect your wallet");
+    //     }
+        
+        
+    // };
+
+
+    const preventRefresh = (e) => {
+      e.preventDefault();
+      e.returnValue = ''; // This is required for Chrome and Firefox
+    };
+  
+
+
+
+    const handleCommitToken = async (event_id, voteId, voteIndex, amount) => {
+      console.log("Handle Commit");
+      console.log(event_id, voteIndex, amount);
+  
+      // Add the event listener to warn user when they try to refresh/close
+      window.addEventListener("beforeunload", preventRefresh);
+  
+      try {
+        if (id) {
+          const tx = await sendEthToContract(event_id, voteIndex, amount);
           console.log("TX>>>", tx);
-
-
-          if(tx=="rejected"){
+  
+          if (tx === "rejected") {
             toast.error("The transaction was rejected by the user.");
-          }else if (tx) {
-              toast.success("Transaction Successful", {
-                  autoClose: 5000,
-                  theme: "colored"
-              });
-      
-              const data = {
-                  account: id,
-                  possible_result: voteId,
-                  token_staked: amount,
-                  tx_hash: tx
-              };
-      
-              const requestOptions = {
-                  method: "POST",
-                  headers: {
-                      "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify(data),
-              };
-      
-              await fetch(`${API_URL}/event/votes/create/`, requestOptions)
-                  .then((response) => response.json())
-                  .then((data) => {
-                      console.log(data, "Token Save in DB");
-                      dispatch(reRenderSliceActions.toggleReRender());
-                  })
-                  .catch((error) => console.log(error));
+          } else if (tx) {
+            toast.success("Transaction Successful", {
+              autoClose: 5000,
+              theme: "colored",
+            });
+  
+            const data = {
+              account: id,
+              possible_result: voteId,
+              token_staked: amount,
+              tx_hash: tx,
+            };
+  
+            const requestOptions = {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            };
+  
+            await fetch(`${API_URL}/event/votes/create/`, requestOptions)
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data, "Token Save in DB");
+                dispatch(reRenderSliceActions.toggleReRender());
+              })
+              .catch((error) => console.log(error));
           } else {
-              toast.error("Something went wrong!");
+            toast.error("Something went wrong!");
           }
-        }
-        else{
+        } else {
           toast.error("Something went wrong! Please reconnect your wallet");
         }
-        
-        
+      } finally {
+        // Remove the event listener after the function completes
+        window.removeEventListener("beforeunload", preventRefresh);
+      }
     };
 
 

@@ -8,8 +8,9 @@ import Pridtiction from "./componets/mypridiction/myPridiction";
 import MyRank from "./componets/myRank/myRank";
 
 // router
-import { Route, Routes } from "react-router-dom";
-import { HashRouter } from "react-router-dom";
+import {HashRouter as Router, Route, Routes } from "react-router-dom";
+// import { HashRouter } from "react-router-dom";
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { createContext } from "react";
 
@@ -20,6 +21,7 @@ import Navbar from "./componets/navbar/navbar";
 import Home from "./componets/Home/home";
 import { useDispatch } from "react-redux";
 import { setCategories } from "./componets/store/slice/categoriesSlice";
+import Event from "./componets/Event/Event";
 
 export const MyContext = createContext("");
 
@@ -74,7 +76,7 @@ function App() {
         backgroundColor: "#F3F3F3",
       }}
     >
-      <HashRouter>
+      <Router>
         <Navbar />
         <Routes>
           <Route
@@ -112,10 +114,11 @@ function App() {
               />
             }
             />
+          <Route path="/event/:id" element={<Event />} />
          
         </Routes>
         <Footer />
-      </HashRouter>
+      </Router>
     </div>
     </WalletProvider>
   );

@@ -2,17 +2,21 @@
 import { useState } from "react";
 import "./market.css";
 import Modal from "./model";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({isPopular,isRecent,isUpcominng,event,handleCommitToken}) =>{
     const [showModal, setShowModal] = useState(false);
     const [voteId,setVoteId] = useState(null);
-    const [voteIndex,setVoteIndex] = useState(null)
+    const [voteIndex,setVoteIndex] = useState(null);
+    const navigate = useNavigate();
 
     const toggleModal = () => {
       setShowModal(!showModal);
     };
     return(
-        <div className="cardContainer2" style={{
+        <div
+        onClick={() => navigate(`/event/${event.id}`)}
+         className="cardContainer2" style={{
             background: (false) ?"rgba(196, 154, 108, 1)": "linear-gradient(180deg, rgba(247, 147, 26, 0.2) 0%, rgba(45, 40, 255, 0.2) 100%)",
             boxShadow:(false) ?"2px 4px 8px 0px rgba(196, 154, 108, 0.8)":"2px 4px 8px 0px #00000040",
             border:(false ) ?"":"0.5px solid white",
@@ -52,24 +56,24 @@ const Card = ({isPopular,isRecent,isUpcominng,event,handleCommitToken}) =>{
                         }}>
                         {event.event_name}
                     </div>
-                    <div
+                    {/* <div
                     className="resulationDate"
                      style={{
                             // color:"rgb(0,0,0,0.8)",
                             color:(isUpcominng || isRecent) ?"rgb(0,0,0,0.8)":"rgb(0,0,0,0.8)",
                             // marginTop:"0.5rem",
                            
-                        }}>Resolution Date : {formatDate(event.resolution_date)}</div>
+                        }}>Resolution Date : {formatDate(event.resolution_date)}</div> */}
                     </div>
                     
                     
                     
                     
                 </div>
-                {isUpcominng && <p className="startDate" >Start Date:  {formatDate(event.start_date)}</p>}
-                {isUpcominng && <p className="startDateMobile" >Start Date:  {formatDate(event.start_date)}</p>}
+                {/* {isUpcominng && <p className="startDate" >Start Date:  {formatDate(event.start_date)}</p>}
+                {isUpcominng && <p className="startDateMobile" >Start Date:  {formatDate(event.start_date)}</p>} */}
                 {
-                    !isUpcominng && <div style={{
+                 <div style={{
                     // textAlign:"center",
                     height:"21px"
                 }}></div>
@@ -346,7 +350,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event,handleCommitToken}) =>{
                                                         ? "rgba(0, 128, 0, 0.7)"
                                                         : result.result == "No"
                                                         ? "rgba(255, 0, 0, 0.6)"
-                                                        : "blue",
+                                                        : "rgba(0, 123, 255, 0.8)",
                                                     color:index === 0?"white":"white",
                                                     width:"120px",
                                                     height:"35px",
@@ -355,7 +359,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event,handleCommitToken}) =>{
                                                     ? "1px solid green"
                                                     : result.result == "No"
                                                     ? "1px solid red"
-                                                    : "1px solid blue",
+                                                    : "1px solid rgba(0, 123, 255, 0.8)",
                                                     // cursor:"pointer"
                                                 }}
                                                 >{result.result} </button>
@@ -398,13 +402,35 @@ const Card = ({isPopular,isRecent,isUpcominng,event,handleCommitToken}) =>{
                             marginTop:"0.5rem",
                         }}>${event.token_volume_in_doller}</p>
                 }
-                <p  style={{
-                            // color:"rgb(0,0,0,0.8)",
-                            color:(isUpcominng || isRecent) ?"rgb(0,0,0,0.8)":"rgb(0,0,0,0.8)",
+                {
+                    isUpcominng &&
+                    <p  style={{
+                        // color:"rgb(0,0,0,0.8)",
+                        color:(isUpcominng || isRecent) ?"rgb(0,0,0,0.8)":"rgb(0,0,0,0.8)",
 
-                            marginTop:"0.5rem",
-                            textAlign:"center"
-                        }}>Last Date:  {formatDate(event.end_date)}</p>
+                        marginTop:"0.5rem",
+                        textAlign:"center"
+                    }}>Start Date:  {formatDate(event.start_date)}</p>
+                }
+                {
+                    isPopular &&
+                    <p  style={{
+                        color:"rgb(0,0,0,0.8)",
+                        marginTop:"0.5rem",
+                        textAlign:"center"
+                    }}>Last Date:  {formatDate(event.start_date)}</p>
+                }
+                {
+                    isRecent && 
+                    <p  style={{
+                        // color:"rgb(0,0,0,0.8)",
+                        color:"rgb(0,0,0,0.8)",
+
+                        marginTop:"0.5rem",
+                        textAlign:"center"
+                    }}>Resolution Date:  {formatDate(event.resolution_date)}</p>
+                }
+      
             </div>
         </div>
     )

@@ -1,0 +1,71 @@
+.skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .skeleton-card {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .skeleton-header {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .skeleton-avatar {
+    width: 50px;
+    height: 50px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+  }
+  
+  .skeleton-info {
+    flex: 1;
+  }
+  
+  .skeleton-text {
+    background-color: #e0e0e0;
+    height: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+  
+  .skeleton-text.short {
+    width: 60px;
+  }
+  
+  .skeleton-text.long {
+    width: 150px;
+  }
+  
+  .skeleton-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .skeleton-button {
+    width: 45%;
+    height: 40px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+  }
+  
+  .skeleton-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .skeleton-footer .skeleton-text.small {
+    width: 70px;
+    height: 15px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+  }
+  

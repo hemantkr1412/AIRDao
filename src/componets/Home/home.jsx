@@ -12,7 +12,8 @@ const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadM
     const {
         upcomingEvent,
         popularEvent,
-        recentEvent
+        recentEvent,
+        isLoading
 
     } = useHome();
 
@@ -25,6 +26,7 @@ const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadM
     
     return (
         <div>
+           
             <div 
 
             className="subNavbar"
@@ -34,8 +36,12 @@ const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadM
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: '40px',
-                // backgroundColor: 'white',
-                background:"linear-gradient(90.06deg, #FFD700 0%, #8B4513 100%)",
+                background: 'white',
+                // background: linear-gradient(270deg, rgba(247, 147, 26, 0.4) 0%, rgba(45, 40, 255, 0.4) 100%);
+
+                // background:"linear-gradient(270deg, rgba(247, 147, 26, 0.4) 0%, rgba(45, 40, 255, 0.4) 100%)",
+                // backgroundColor:"white",
+                // borderBottom: "1px solid",
                 position:"fixed",
                 zIndex: 100,
 
@@ -45,45 +51,58 @@ const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadM
                 top:"5rem"
                 
             }}>
-                    <p style={{
+                    <p
+                    className="subNavbarItem"
+                    style={{
                         fontWeight:"500",
                         cursor:"pointer"
                     }} onClick={()=>{
                         handleScroll(upComingRef)
                     }}>Upcoming Markets</p>
-                    <p style={{
+                    <p 
+                    className="subNavbarItem"
+                    style={{
                     fontWeight:"500",
                     cursor:"pointer"
                     }} onClick={()=>{
                         handleScroll(popularRef)
                     }}>Popular Markets</p>
-                    <p style={{
+                    <p 
+                    className="subNavbarItem"
+                    style={{
                     fontWeight:"500",
                     cursor:"pointer"
                     }} onClick={()=>{
                         handleScroll(recentRef)
                     }}>Recent Markets</p>
-                    <p style={{
+                    <p 
+                    className="subNavbarItem"
+                    style={{
                     fontWeight:"500",
                     cursor:"pointer"
                     }} onClick={()=>{
                         handleScroll(howItWorksRef)
                     }}>How it Works</p>
-                  
-            </div>
+                
+            </div> 
+
+           
             <ToastContainer />
             <HeroSection  />
             <UpcomingMarkets 
             upComingRef={upComingRef} 
             upcomingEvent={upcomingEvent}
+            isLoading={isLoading}
             />
             <PopularMarkets 
             popularRef={popularRef}
             popularEvent={popularEvent}
+            isLoading={isLoading}
             />
             <RecentMarkets 
             recentRef={recentRef}
             recentEvent={recentEvent}
+            isLoading={isLoading}
              />
             <HowItWorks howItWorksRef={howItWorksRef} />
         </div>

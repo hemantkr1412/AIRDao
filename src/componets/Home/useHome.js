@@ -5,6 +5,7 @@ const useHome = () => {
   const [recentEvent, setrecentEvent] = useState([]);
   const [popularEvent, setpopularEvent] = useState([]);
   const [upcomingEvent, setupcomingEvent] = useState([]);
+  const [isLoading,setIsLoading] = useState(true)
   const reRender = useSelector((state) => state.reRender.reRender); 
 
   const API_URL = import.meta.env.VITE_APP_BACKEND_URL;
@@ -43,6 +44,7 @@ const useHome = () => {
         // });
         // console.log(data)
         setupcomingEvent(data);
+        setIsLoading(false)
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -54,6 +56,7 @@ const useHome = () => {
       .then((data) => {
         console.log(data);
         setrecentEvent(data);
+        setIsLoading(false)
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -86,6 +89,7 @@ const populatePopularMarrket = async () => {
   
       // Update the state if data is valid
       setpopularEvent(data);
+      setIsLoading(false)
       // console.log("Updated popularEvent:", data);
   
     } catch (error) {
@@ -104,6 +108,7 @@ const populatePopularMarrket = async () => {
     upcomingEvent,
     popularEvent,
     recentEvent,
+    isLoading
   };
 };
 

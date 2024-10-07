@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import Card from "./artiveCard";
 import { useSelector } from "react-redux";
 import useMarket from "./useMarkets";
+import SkeletonGrid from "./CardSkeleton";
 
 
 
 
-const ActiveMarket = ({popularRef,event,title,marketCategory}) =>{
+const ActiveMarket = ({popularRef,event,title,marketCategory,isLoading}) =>{
     const categoriesList = useSelector((state) => state.categories.categoriesList);
 
     // const {
@@ -207,7 +208,9 @@ const ActiveMarket = ({popularRef,event,title,marketCategory}) =>{
                 </div>
                
             </div> 
-
+            {
+                isLoading ? <SkeletonGrid /> :
+                
             <div
             className="cardMainBox"
              style={{
@@ -226,7 +229,7 @@ const ActiveMarket = ({popularRef,event,title,marketCategory}) =>{
                                         event={eve}
                                         isRecent={false}
                                         // handleCommitToken={handleCommitToken}
-                                        // isUpcominng={true}
+                                        // isUpcominng={false}
                                     />
                                 </div>
                             )
@@ -238,9 +241,11 @@ const ActiveMarket = ({popularRef,event,title,marketCategory}) =>{
                         (event,index)=> {
                             return(
                                 <div key={index+1}>
-                                    <Card isPopular={true}
+                                    <Card 
+                                        isPopular={false}
                                         event={event}
                                         isRecent={true}
+                                        // isPopular={false}
                                         // handleCommitToken={handleCommitToken}
                                     />
                                 </div>
@@ -253,7 +258,8 @@ const ActiveMarket = ({popularRef,event,title,marketCategory}) =>{
                         (event,index)=> {
                             return(
                                 <div key={index+1}>
-                                    <Card isPopular={true}
+                                    <Card 
+                                        isPopular={false}
                                         event={event}
                                         isUpcominng={true}
                                         isRecent={false}
@@ -282,6 +288,7 @@ const ActiveMarket = ({popularRef,event,title,marketCategory}) =>{
              
                 
             </div>
+           }
 
         </div>
     )

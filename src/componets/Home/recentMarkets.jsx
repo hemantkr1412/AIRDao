@@ -1,6 +1,6 @@
 
 import ActiveMarket from "../markets/activemarkets";
-const RecentMarkets = ({recentRef,recentEvent}) =>{
+const RecentMarkets = ({recentRef,recentEvent,isLoading}) =>{
     return(
         <div ref={recentRef} style={{
             backgroundColor: '#F3F3F3',
@@ -13,6 +13,7 @@ const RecentMarkets = ({recentRef,recentEvent}) =>{
            <ActiveMarket
             event={recentEvent}
             title={"Recent"}
+            isLoading={isLoading}
             />
 
         </div>

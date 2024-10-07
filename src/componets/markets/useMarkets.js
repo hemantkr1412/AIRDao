@@ -14,6 +14,7 @@ const useMarket = () => {
     const [activeEvent, setActiveEvent] = useState([]);
     const [filteredEvent, setFilteredEvent] = useState([]);
     const [categoryName, setCategoryName] = useState("All");
+    const [isLoading,setIsLoading] = useState(true)
 
     const API_URL = import.meta.env.VITE_APP_BACKEND_URL;
 
@@ -47,6 +48,7 @@ const useMarket = () => {
             const data = await response.json();
             setActiveEvent(data);
             setFilteredEvent(data); 
+            setIsLoading(true)
         } catch (error) {
             console.error("Error fetching event data:", error);
         }
@@ -119,7 +121,8 @@ const useMarket = () => {
         filteredEvent,
         categoryName,
         handleCategory,
-        handleCommitToken
+        handleCommitToken,
+        isLoading
     };
 };
 

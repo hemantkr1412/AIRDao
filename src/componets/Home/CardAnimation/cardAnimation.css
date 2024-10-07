@@ -12,7 +12,8 @@
     padding: 20px;
     width: 277px;
     height: 182px;
-    background: white;
+    background-color: white;
+    /* background: linear-gradient(180deg, rgba(247, 147, 26, 0.2) 0%, rgba(45, 40, 255, 0.2) 100%); */
     /* box-shadow: 0 4px 8px rgba(236, 1, 1, 0.514); */
     transition: transform 0.3s ease, height 0.3s ease;
     animation: growShrink 2s ease-in-out infinite;

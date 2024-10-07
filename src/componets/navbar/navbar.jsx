@@ -55,15 +55,18 @@ const Navbar = () => {
                 display: 'flex',
                 alignItems: 'center',
                 height: '80px',
-                backgroundColor: 'black',
+                // background:" linear-gradient(180deg, rgba(247, 147, 26, 0.6) 0%, rgba(45, 40, 255, 0.6) 100%)",
+
+                background:"linear-gradient(270.27deg, rgba(247, 147, 26, 0.5) 0%, rgba(45, 40, 255, 0.5) 100%)",
+                backgroundColor: 'white',
                 justifyContent:"space-between"
             }}>
                 <div style={{
                     paddingLeft:"1rem"
                 }}>
 
-                <a href="/" style={{fontWeight:"600",fontSize:"1.1rem" ,cursor:"pointer",
-                    color:"white",
+                <a href="/" style={{fontWeight:"700",fontSize:"1.1rem" ,cursor:"pointer",
+                    color:"black",
                     textDecoration:"none"
                   }} >
                 AirDAO <span style={{
@@ -74,38 +77,38 @@ const Navbar = () => {
                 
                 <div style={{
                     display:"flex",
-                    color:"white",
+                    // color:"white",
                     width:"50%",
                     gap:"4rem",
                     justifyContent:"center",
                     alignItems: 'center',
                 }}>
-                    <div onClick={()=>{
+                    <div className="navbarItem" onClick={()=>{
                       navigate('/')
                     }} 
                     style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
-                    color:"white",
+                    // color:"white",
                   }} 
                     >Home</div>
-                        <div onClick={()=>{
+                        <div className="navbarItem" onClick={()=>{
                       navigate("/markets")
                     }} style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
-                    color:"white",
+                    // color:"white",
                   }} >Markets</div>
-                   <div onClick={()=>{
+                   <div className="navbarItem" onClick={()=>{
                       navigate("/myRank")
                     }} style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
-                    color:"white",
+                    // color:"white",
                   }} >Leaderboard</div>
-                   <div onClick={()=>{
+                   <div className="navbarItem" onClick={()=>{
                       navigate("/myPrediction")
                     }} style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
-                    color:"white",
+                    // color:"white",
                   }} >My Predictions</div>
-                  <div onClick={()=>{
+                  <div className="navbarItem" onClick={()=>{
                       window.open('https://airdao-markets.gitbook.io/airdao-markets', '_blank');
                     }} style={{fontWeight:"500",fontSize:"1rem" ,cursor:"pointer",
-                    color:"white",
+                    // color:"white",
                   }} >Docs</div>
                    
                 </div>
@@ -129,13 +132,15 @@ const Navbar = () => {
                            connectButton={{
                             label: "Connect Wallet",
                             style:{
-                              background: "linear-gradient(90.06deg, #FFD700 0%, #8B4513 100%)",
-                              color: "black",
+                              background: "linear-gradient(274.13deg, #F7931A 1.78%, #2D28FF 102.71%)",
+                              backgroundColor:"white",
+                              color: "white",
                               width: "140px",
-                              height: "35px",
+                              height: "40px",
                               borderRadius: "100px",
                               border: "none",
                               marginRight: "3rem",
+                              paddingBottom:"15px",
                               cursor: "pointer",
                               boxShadow: "0px 4px 4px 0px rgba(255, 255, 255, 0.4)",
                             }
@@ -178,7 +183,8 @@ const Navbar = () => {
       position: "fixed",
       top: 0,
       zIndex: 100,
-      backgroundColor:  "black",
+      background:"linear-gradient(270.27deg, rgba(247, 147, 26, 0.5) 0%, rgba(45, 40, 255, 0.5) 100%)",
+      backgroundColor: 'white',
       width: "100%",
       height: "70px",
       boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
@@ -199,7 +205,7 @@ const Navbar = () => {
           }}>
           
           <a href="/" style={{fontWeight:"600",fontSize:"0.8rem" ,cursor:"pointer",
-                    color:"white",
+                    color:"black",
                     textDecoration:"none",
                     marginTop:"5px"
                   }} >
@@ -230,8 +236,9 @@ const Navbar = () => {
             connectButton={{
               label: "Connect Wallet",
               style:{
-                background:"linear-gradient(90.06deg, #FFD700 0%, #8B4513 100%)",
-                color:"black",
+                background: "linear-gradient(274.13deg, #F7931A 1.78%, #2D28FF 102.71%)",
+                backgroundColor:"white",
+                color:"white",
                 width:"100px",
                 height:"25px",
                 borderRadius:"100px",
