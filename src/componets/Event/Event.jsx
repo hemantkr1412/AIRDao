@@ -4,6 +4,7 @@ import "./Event.css";
 import Modal from '../markets/model';
 import { useSelector } from 'react-redux';
 import SkeletonLoader from './Skeleton';
+import { ToastContainer } from 'react-toastify';
 const Event = () =>{
     // const { id } = useParams(); 
     // const { id, account } = useSelector(state => state.accountDetails);
@@ -115,6 +116,7 @@ const Event = () =>{
                  
             }}>
                 
+                <ToastContainer />
 
                 
 
