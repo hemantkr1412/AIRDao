@@ -1,12 +1,15 @@
 .button-container {
-  background: linear-gradient(180deg, #1A1A1A -1.47%, #3F3F3F 30.25%, #626262 49.26%, #393939 74.55%, #3F0A4C 100%);
-  border-radius: 10px;
+  /* background: linear-gradient(180deg, rgba(247, 147, 26, 0.2) 0%, rgba(45, 40, 255, 0.2) 100%); */
+  /* border-radius: 10px; */
   padding: 10px;
+  /* height: 40px; */
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-bottom: 10px;
   width: 100%;
+  border-bottom: 1px solid #0000004D;
+  /* border: 1px solid #0000004D */
 }
 
 .button-header {
@@ -21,6 +24,7 @@
   font-size: 0.8rem;
   display: flex;
   justify-content: space-around;
+  color: black;
 }
 
 .dropdown-arrow {

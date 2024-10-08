@@ -7,6 +7,8 @@ import "../markets/market.css";
 import { useSelector } from "react-redux";
 import useMyPrediction from "./useMyPridiction";
 
+import CustomTable from './TableComponents';
+import EventList from "./MobileViewTable";
 
 const Pridtiction = () =>{
   const isConnected = useSelector(state => state.wallet.isConnected);
@@ -17,7 +19,8 @@ const Pridtiction = () =>{
     winningEvents,
     losingEvents,
     myPrediction,
-    claimReward
+    claimReward,
+    isLoading
 }  = useMyPrediction();
    
    
@@ -98,7 +101,70 @@ const Pridtiction = () =>{
             </div>
             
 
+
+            <div  className="mobileView" style={{
+              width:"80%",
+            }}>
+                <div className="button-header" style={{
+                  width:"80%",
+                  display:"flex",
+                 justifyContent:"space-between"
+                }}>
+                <span style={{
+                  color:"black"
+                }}>ID</span>
+                <span style={{
+                  // width:"115px"
+                }}><span style={{
+                  color:"black",
+                  marginRight:"25px"
+                  // color: data.status === "WON" ? "GREEN" 
+                  // : data.status === "LOST" ? "RED" 
+                  // : "BLUE" 
+                }}>Status</span></span>
+                 <span style={{
+                  color:"black"
+                }}>Action</span>
+
+                  </div>
+            </div>
+
+
+
+
+
+
+
+
+            
             <div 
+            className="desktopVersion"
+            style={{
+                width:"80%",
+                // display:"flex",
+                flexDirection:"column",
+                gap:"2rem",
+            }}>
+
+         
+            {
+              isLoading &&  <SkeletonLoadingTable />
+            }
+            {
+                   selectedOption==="last10" && <CustomTable myPrediction={myPrediction} claimReward={claimReward}/>
+
+            }
+            {
+                   selectedOption==="allWinning" && <CustomTable myPrediction={winningEvents} claimReward ={claimReward}/>
+
+            }
+             {
+                   selectedOption==="lastLost" && <CustomTable myPrediction={losingEvents} claimReward ={claimReward}/>
+
+            }
+
+            </div>
+            {/* <div 
             className="desktopVersion"
             style={{
                 width:"80%",
@@ -382,17 +448,30 @@ const Pridtiction = () =>{
                  }
 
                  
-            </div>
+            </div> */}
             <div 
             className="mobileView"
             style={{
-                width:"90%",
+                width:"80%",
+                marginTop:"1rem",
                 // display:"flex",
                 flexDirection:"column",
                 justifyContent:"center",
                 alignItems:"center",
-                gap:"2rem"
+                background:"linear-gradient(180deg, rgba(247, 147, 26, 0.2) 0%, rgba(45, 40, 255, 0.2) 100%)",
+                // border:"1px solid black",
+                border: "1px solid",
+
+                borderImageSource:"linear-gradient(106.5deg, #A65A00 0.13%, #3330E9 99.87%)",
+
+
+                borderRadius:"20px",
+                padding:"1rem"
             }}>
+
+              {/* <EventList /> */}
+
+              
          
                
                  {
@@ -450,4 +529,39 @@ const Pridtiction = () =>{
 };
 
 export default Pridtiction;
+
+
+
+const SkeletonLoadingTable = () =>{
+  return(
+    <div style={{
+      width:"100%"
+    }}>
+   {
+    Array(10).fill(0).map((_, index) => (
+      <tr key={index}>
+        <td style={{
+          width:"100%"
+        }}><div className="skeleton skeleton-text"></div></td>
+        <td style={{
+          width:"100%"
+        }}><div className="skeleton skeleton-text"></div></td>
+        <td style={{
+          width:"100%"
+        }}><div className="skeleton skeleton-text"></div></td>
+        <td style={{
+          width:"100%"
+        }}><div className="skeleton skeleton-text"></div></td>
+        <td style={{
+          width:"100%"
+        }}><div className="skeleton skeleton-text"></div></td>
+        <td style={{
+          width:"100%"
+        }}><div className="skeleton skeleton-button"></div></td>
+      </tr>
+    ))
+   }
+    </div>
+  )
+}
 

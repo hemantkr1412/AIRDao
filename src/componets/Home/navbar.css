@@ -57,7 +57,7 @@ padding: 2%;
     justify-content: space-around;
     width: 96%;
     height: 400px;
-    background-color: #f5ebdf; /* Light background color similar to the image */
+    background-color: white; /* Light background color similar to the image */
     border: 2px solid #8B4513;
     /* border-image: linear-gradient(262.61deg, #8B4513 0.18%, #FED600 99.82%); */
     border-image-slice: 1;
@@ -69,7 +69,7 @@ padding: 2%;
 .howItWorksCard{
     width: 17%;
     height: 300px;
-    background: linear-gradient(180deg, #804E0C 0%, #FFC06E 100%);
+    background: linear-gradient(180deg, rgba(247, 147, 26, 0.2) 0%, rgba(45, 40, 255, 0.2) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,10 +79,10 @@ padding: 2%;
 
 }
 .howItWorksCard h1{
-    color: white;
+    color: black;
 }
 .howItWorksCard p{
-    color: white;
+    color: black;
     /* font-family: Inter; */
     font-size: 20px;
     font-weight: 400;
@@ -97,7 +97,7 @@ padding: 2%;
     justify-content: space-around;
     width: 76%;
     height: 200px;
-    background-color: #f5ebdf; /* Light background color similar to the image */
+    background: linear-gradient(180deg, rgba(247, 147, 26, 0.2) 0%, rgba(45, 40, 255, 0.2) 100%); /* Light background color similar to the image */
     border: 2px solid #8B4513;
     /* border-image: linear-gradient(262.61deg, #8B4513 0.18%, #FED600 99.82%); */
     border-image-slice: 1;

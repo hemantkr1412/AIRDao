@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import "../markets/market.css";
+import VolumeProfitCards from "./LeaderBaordComp";
+
 
 const MyRank = () =>{
-    const [leaderBoard,setLeaderboard ]= useState([]);
+    const [leaderBoardVolume,setLeaderboardVolume ]= useState([]);
+    const [leaderBoardProfit,setLeaderboardProfit] = useState([]);
+    const [mobileTab,setMobileTab] = useState("volume");
 
     // const API_URL = "http://127.0.0.1:8000/api/v1"
     const API_URL = import.meta.env.VITE_APP_BACKEND_URL;
@@ -16,7 +20,7 @@ const MyRank = () =>{
         await fetch(`${API_URL}/event/top-votes/`)
         .then((response) => response.json())
         .then((data)=>{
-          setLeaderboard(data)
+          setLeaderboardVolume(data)
         //   console.log(data,"??????????????TOP RANK?????????????")
         })
         .catch((error)=> console.log(error))
@@ -27,6 +31,7 @@ const MyRank = () =>{
         .then((response) => response.json())
         .then((data)=>{
           console.log(data,"??????????????Profit?????????????")
+          setLeaderboardProfit(data)
         })
         .catch((error)=> console.log(error))
     }
@@ -72,72 +77,67 @@ const MyRank = () =>{
          }}>Leaderboard</h1>
        </div>
 
-       <div style={{
-        width:"100%",
-        height:"auto",
-        display:"flex",
-        flexDirection:"column",
-        alignItems:"center",
-        color:"black",
-        marginBottom:"30px"
+
+       <div
+       className="ldr-btn-cls"
+       style={{
+        width:"93%",
+        // backgroundColor:"white",
+        height:"50px",
+        // display:"flex",
+        justifyContent:"space-between",
+        padding:"3%"
        }}>
-            <div style={{
-                width:"80%",
-                display:"flex",
-                flexDirection:"column",
-                gap:"2rem"
-            }}>
-                <div className="leaderBoardHeadings" style={{
-                    display:"flex",
-                    justifyContent:"space-between",
-                    marginTop:"2rem"
-                }}>
-                    <p>Rank</p>
-                    <p>Wallet Address</p>
-                    <p>Amount</p>
-                </div>
-                 
-                {
-                   leaderBoard.map((data,index) =>{
-                        return(
-                            <>
-                            <div key={"data"+data.id} style={divStyle}>
-                               <div style={{
-                                display:"flex",
-                                justifyContent:"space-between",
-                                padding:"0.7rem",
-                                color:"white"
-                            }}>
-                                <p style={{
-                                    fontSize:"1.1rem",
-                                    fontWeight:"500",
-                                }}>{index+1}</p>
-                                <p className="leaderboardAccountDesktop" style={{
-                                    fontSize:"1.1rem",
-                                    fontWeight:"500"
-                                }}>{data.account.account}</p>
-                                <p className="leaderboardAccountMobile"  style={{
-                                    fontSize:"0.9rem",
-                                    fontWeight:"500"
-                                }}>{ `${data.account.account
-                                    .toString()
-                                    .slice(0, 4)}...${data.account.account.toString().slice(39)}`}</p>
-                                <p style={{
-                                    fontSize:"1.1rem",
-                                    fontWeight:"500"
-                                }}>${Number(data.total_reward_usd).toFixed(2)}</p>
-                                
-                            </div>
-                                <div style={arrowStyle}></div>
-                            </div>
-                            
-                            </>
-                        )
-                    })
-                 }
-            </div>
+        <button 
+        onClick={() =>{
+          setMobileTab("volume")
+        }
+        }
+        style={{
+          width:"45%",
+          height:"35px",
+          borderRadius:"50px",
+          background: mobileTab ==="volume"?"linear-gradient(93.79deg, #F7931A 1.62%, #2D28FF 102.43%)":"rgba(0, 0, 0, 0.5)",
+          border:"none",
+          color:"white",
+          cursor:"pointer",
+
+        }}>
+          Volume
+        </button>
+        <button 
+         onClick={() =>{
+          setMobileTab("profit")
+        }
+        }
+        style={{
+          width:"45%",
+          height:"35px",
+          borderRadius:"50px",
+          background: mobileTab ==="profit"?"linear-gradient(93.79deg, #F7931A 1.62%, #2D28FF 102.43%)":"rgba(0, 0, 0, 0.5)",
+          border:"none",
+          color:"white",
+           cursor:"pointer"
+        }}>
+          Profit
+        </button>
+
 
        </div>
+
+       <div style={{
+        width:"100%",
+        margin:"0px auto"
+       }}>
+              {/* <CustomTable /> */}
+              <VolumeProfitCards 
+              leaderBoardVolume={leaderBoardVolume}
+              leaderBoardProfit={leaderBoardProfit}
+              mobileTab={mobileTab}
+              />
+       </div>
+
+       
 
     </div>
     )

@@ -11,29 +11,32 @@ const AnimatedButton = ({data,claimReward}) => {
   return (
     <div key={data.event_id} className={`button-container ${isOpen ? 'open' : ''}`} onClick={handleClick}>
       <div className="button-header">
-        <span>ID: {data.event_id}</span>
         <span style={{
-          width:"115px"
-        }}>Status: <span style={{
-          color: data.status === "WON" ? "GREEN" 
-          : data.status === "LOST" ? "RED" 
-          : "BLUE" // For "PENDING"
+          color:"black"
+        }}>{data.event_id}</span>
+        <span style={{
+          // width:"115px"
+        }}><span style={{
+          color:"black"
+          // color: data.status === "WON" ? "GREEN" 
+          // : data.status === "LOST" ? "RED" 
+          // : "BLUE" 
         }}>{data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase()}</span></span>
         <button 
                            onClick={claimReward}
                              style={{
-                              backgroundColor:data.is_claimed  ?" #00000080":"#DADADA26",
-                                 color:"#FFFFFF",
+                              backgroundColor:data.is_claimed  ?"#F1D1AD":"#DADADA26",
+                                 color:"black",
                                  width:"100px",
                                  height:"25px",
                                  borderRadius:"5px",
                                  cursor:true ?"pointer":"",
-                                 border: "2px solid #FFFFFF",
+                                 border: "2px solid black",
                                
                              }}>
                                {
                                   data.status === "WON" ? (
-                                    false?<span>Claim</span>:<span>Claimed</span>
+                                    !data.is_claimed ?<span>Claim</span>:<span>Claimed</span>
                                   ):("N/A")
                                 }
                                {data.is_claimed  &&
@@ -47,7 +50,8 @@ const AnimatedButton = ({data,claimReward}) => {
         {/* <div className="dropdown-arrow">{isOpen ? '▲' : '▼'}</div> */}
         <img src="downArrow.svg" alt="down-arrow" style={{
               rotate: isOpen ? "180deg" : "0deg",
-              width:"20px"
+              width:"15px",
+              height:"10px"
             }}/>
 
       </div>

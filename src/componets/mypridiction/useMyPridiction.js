@@ -9,6 +9,7 @@ const useMyPrediction = ()=>{
     const [losingEvents,setLosingEvent]=useState([]);
     const [selectedOption, setSelectedOption] = useState('last10');
     const [populateAgain,setPopilateAgain] = useState(false);
+    const [isLoading,setIsloading] = useState(true);
 
 
 
@@ -56,6 +57,7 @@ const useMyPrediction = ()=>{
           const result = await response.json();
           console.error(result, ">>>>>>>>> MY Pridiction >>>>>>>>>");
           setMyprediction(result);
+          setIsloading(false);
         } catch (error) {
           console.error("Error:", error);
         }
@@ -84,6 +86,7 @@ const useMyPrediction = ()=>{
           const result = await response.json();
           console.log(result, ">>>>>>>>> Winnig Pridiction >>>>>>>>>");
           setWinningEvent(result);
+          setIsloading(false);
           // setMyprediction(result.results);
         } catch (error) {
           console.error("Error:", error);
@@ -113,6 +116,7 @@ const useMyPrediction = ()=>{
           const result = await response.json();
           console.error(result, ">>>>>>>>> Losing Pridiction >>>>>>>>>");
           setLosingEvent(result);
+          setIsloading(false);
           // setMyprediction(result.results);
         } catch (error) {
           console.error("Error:", error);
@@ -172,7 +176,8 @@ const useMyPrediction = ()=>{
         winningEvents,
         losingEvents,
         myPrediction,
-        claimReward
+        claimReward,
+        isLoading
     }
     
 

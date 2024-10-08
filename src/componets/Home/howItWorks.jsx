@@ -3,7 +3,7 @@ const HowItWorks = ({howItWorksRef}) =>{
     return (
         <div  ref={howItWorksRef} style={{
             width:"100%",
-            backgroundColor:"white",
+            // backgroundColor:"white",
             // padding:"2%"
            paddingTop:"3rem",
             paddingBottom:"2rem",

@@ -57,7 +57,7 @@ padding: 2%;
     justify-content: space-around;
     width: 96%;
     height: 400px;
-    background-color: #f5ebdf; /* Light background color similar to the image */
+    background-color: white; /* Light background color similar to the image */
     border: 2px solid #8B4513;
     /* border-image: linear-gradient(262.61deg, #8B4513 0.18%, #FED600 99.82%); */
     border-image-slice: 1;

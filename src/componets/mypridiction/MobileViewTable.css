@@ -1,0 +1,67 @@
+.event-row {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background: linear-gradient(120deg, #f8f9fa, #f1f3f5);
+  }
+  
+  .event-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .status.won {
+    color: green;
+  }
+  
+  .status.lost {
+    color: red;
+  }
+  
+  .status.pending {
+    color: orange;
+  }
+  
+  .claim-btn, .claimed-btn, .pending-btn {
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .claim-btn {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .claimed-btn {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  .pending-btn {
+    background-color: #ffc107;
+    color: white;
+  }
+  
+  .toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .event-details {
+    margin-top: 10px;
+    background: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .detail-item {
+    font-size: 14px;
+    color: #495057;
+  }
+  

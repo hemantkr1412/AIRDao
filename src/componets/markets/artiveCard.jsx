@@ -20,7 +20,8 @@ const Card = ({isPopular,isRecent,isUpcominng,event,handleCommitToken}) =>{
             background: (false) ?"rgba(196, 154, 108, 1)": "linear-gradient(180deg, rgba(247, 147, 26, 0.2) 0%, rgba(45, 40, 255, 0.2) 100%)",
             boxShadow:(false) ?"2px 4px 8px 0px rgba(196, 154, 108, 0.8)":"2px 4px 8px 0px #00000040",
             border:(false ) ?"":"0.5px solid white",
-            borderRadius:"10px"
+            borderRadius:"10px",
+            cursor:"pointer"
 
         }}>
             

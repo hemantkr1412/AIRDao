@@ -143,7 +143,7 @@ const Event = () =>{
                             gap:"4rem"
                         }}>
                             <p className='event-subheading'>Event ID : 00{eventData?.id}</p>
-                            <p className='event-subheading'> ${eventData?.token_volume_in_doller} Vol</p>
+                            <p className='event-subheading'>Volume: ${eventData?.token_volume_in_doller}</p>
                         </div>
                         <p className='event-title'>{eventData?.event_name}</p>
                         <div className='event-data-box'>
@@ -322,18 +322,19 @@ const Event = () =>{
                             <div 
                             key={index}
                             style={{
-                                paddingTop:index ===0 ?"":"1rem",
-                                borderTop:index ===0 ?"":"1px solid grey"
+                                paddingTop:index ===0 ?"":"5px",
+                                borderTop:index ===0 ?"":"1px solid grey",
+                                paddingBottom:"8px",
                             }}
                             className='vote-details'> 
                             <div className='vote-details-box'>
                                 <p style={{
                                     fontWeight:"600"
                                 }}>Serial No: {index +1}</p>
-                                <p>Token Committed: <span style={{
+                                <p>Tokens Committed: <span style={{
                                     // fontWeight:"600"
                                 }}>{vote.token_staked}</span></p>
-                                <p>Token Rewarded: <span style={{
+                                <p>Tokens Rewarded: <span style={{
                                     // fontWeight:"600"
                                 }}>{vote.amount_rewarded === null?"N/A":vote.amount_rewarded}</span></p>
                             </div>
