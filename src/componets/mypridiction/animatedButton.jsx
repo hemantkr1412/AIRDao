@@ -15,13 +15,15 @@ const AnimatedButton = ({data,claimReward}) => {
           color:"black"
         }}>{data.event_id}</span>
         <span style={{
-          // width:"115px"
+          width:"60px",
+
         }}><span style={{
           color:"black"
           // color: data.status === "WON" ? "GREEN" 
           // : data.status === "LOST" ? "RED" 
           // : "BLUE" 
         }}>{data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase()}</span></span>
+       
         <button 
                            onClick={claimReward}
                              style={{
@@ -32,7 +34,7 @@ const AnimatedButton = ({data,claimReward}) => {
                                  borderRadius:"5px",
                                  cursor:true ?"pointer":"",
                                  border: "2px solid black",
-                               
+                              
                              }}>
                                {
                                   data.status === "WON" ? (
@@ -46,7 +48,9 @@ const AnimatedButton = ({data,claimReward}) => {
                                  position:"absolute"
                                }} src="clainmed.svg" alt="Claimed" />
                                }
-                             </button>
+        </button>
+
+      
         {/* <div className="dropdown-arrow">{isOpen ? '▲' : '▼'}</div> */}
         <img src="downArrow.svg" alt="down-arrow" style={{
               rotate: isOpen ? "180deg" : "0deg",

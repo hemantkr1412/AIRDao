@@ -12,6 +12,7 @@ const Modal = ({ show, onClose,event,voteId,voteIndex }) => {
   const {handleCommitToken} = useModel();
 
   const [ammount,setAmmount] = useState("");
+  const [isError,setIsError] = useState(false)
   
 
   if (!show) {
@@ -38,6 +39,10 @@ const Modal = ({ show, onClose,event,voteId,voteIndex }) => {
               fontSize:"1.5rem",
 
             }}>Enter Total number of $AMB tokens</p>
+            {isError && <p style={{
+              color:"red",
+              fontSize:"1.1rem"
+            }}>{`Please enter more than ${event.min_token_stake+1} tokens.`}</p>}
             {/* <input value={ammount} type='number'
             placeholder='Enter Tokens in AMB'
             onChange={(e) =>setAmmount(e.target.value)}
@@ -51,7 +56,7 @@ const Modal = ({ show, onClose,event,voteId,voteIndex }) => {
             <input 
               value={ammount} 
               type="text" 
-              placeholder="Enter Tokens in AMB"
+              placeholder={`Please enter a minimum of ${event.min_token_stake+1} AMB tokens.`}
               onChange={(e) => {
                 const value = e.target.value;
                 // Regular expression to allow only numbers and one decimal point, up to two decimal places
@@ -61,6 +66,7 @@ const Modal = ({ show, onClose,event,voteId,voteIndex }) => {
                 if (regex.test(value)) {
                   setAmmount(value);
                 }
+                setIsError(false)
               }} 
               style={{
                 fontSize: "1.1rem",
@@ -76,9 +82,13 @@ const Modal = ({ show, onClose,event,voteId,voteIndex }) => {
               // alert("Enter Valid Number");
               toast.error("Enter Valid Number");
               return;
+            }else if(Number(event.min_token_stake+1) > Number(ammount)){
+              setIsError(true)
+              return;
+            }else{
+              handleCommitToken(event.id,voteId,voteIndex,ammount)
+              onClose()
             }
-            handleCommitToken(event.id,voteId,voteIndex,ammount)
-            onClose()
            }} style={{
                 width:"200px",
                 height:"50px",
@@ -86,6 +96,7 @@ const Modal = ({ show, onClose,event,voteId,voteIndex }) => {
                 color:"white",
                 borderRadius:"5px",
                 fontSize:"1rem",
+                cursor:"pointer"
               }}
               >Submit</button>
           </div>

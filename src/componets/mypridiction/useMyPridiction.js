@@ -7,6 +7,7 @@ const useMyPrediction = ()=>{
     const [myPrediction,setMyprediction] = useState([]);
     const [winningEvents,setWinningEvent] = useState([]);
     const [losingEvents,setLosingEvent]=useState([]);
+    const [pendingVotes,setPendingVotes] = useState([]);
     const [selectedOption, setSelectedOption] = useState('last10');
     const [populateAgain,setPopilateAgain] = useState(false);
     const [isLoading,setIsloading] = useState(true);
@@ -19,6 +20,7 @@ const useMyPrediction = ()=>{
             populateMyPridiction();
             populateWinnigPridiction();
             populateLosingPridiction();
+            populatePendingPridiction();
         }
     },[account,populateAgain])
 
@@ -123,6 +125,37 @@ const useMyPrediction = ()=>{
         }
         
       };
+
+
+      const populatePendingPridiction = async () => {
+        console.log("Enter in my prediction")
+          const url = new URL(`${API_URL}/event/pending-votes/`);
+        url.searchParams.append("wallet_address",walletInLowerCase);
+      
+        const requestOptions = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+      
+        try {
+          const response = await fetch(url, requestOptions);
+      
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}, Text: ${response.statusText}`);
+          }
+      
+          const result = await response.json();
+          console.error(result, ">>>>>>>>> Pending Pridiction >>>>>>>>>");
+          setPendingVotes(result);
+          setIsloading(false);
+          // setMyprediction(result.results);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+        
+      };
       
 
       
@@ -177,7 +210,9 @@ const useMyPrediction = ()=>{
         losingEvents,
         myPrediction,
         claimReward,
-        isLoading
+        isLoading,
+        pendingVotes,
+
     }
     
 

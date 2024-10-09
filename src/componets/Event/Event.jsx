@@ -142,7 +142,7 @@ const Event = () =>{
                             display:"flex",
                             gap:"4rem"
                         }}>
-                            <p className='event-subheading'>Event ID : 00{eventData?.id}</p>
+                            <p className='event-subheading'>Event ID : {eventData?.id}</p>
                             <p className='event-subheading'>Volume: ${eventData?.token_volume_in_doller}</p>
                         </div>
                         <p className='event-title'>{eventData?.event_name}</p>

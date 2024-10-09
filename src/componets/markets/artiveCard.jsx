@@ -48,7 +48,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event,handleCommitToken}) =>{
                             fontSize:"0.9rem",
                            
                         }}>
-                    Event ID : 00{event.id}
+                    Event ID : {event.id}
                     </div> 
                     <div style={{
                             fontSize:"0.9rem",

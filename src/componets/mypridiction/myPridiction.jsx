@@ -20,7 +20,8 @@ const Pridtiction = () =>{
     losingEvents,
     myPrediction,
     claimReward,
-    isLoading
+    isLoading,
+    pendingVotes
 }  = useMyPrediction();
    
    
@@ -95,8 +96,10 @@ const Pridtiction = () =>{
                 onChange={handleChange}
               >
                 <option value="last10">Recent Transactions</option>
+                <option value="lastPending"> Last 10 Pending</option>
                 <option value="allWinning"> Last 10 Won</option>
                 <option value="lastLost"> Last 10 Lost</option>
+                
               </select>
             </div>
             
@@ -158,8 +161,12 @@ const Pridtiction = () =>{
                    selectedOption==="allWinning" && <CustomTable myPrediction={winningEvents} claimReward ={claimReward}/>
 
             }
-             {
+            {
                    selectedOption==="lastLost" && <CustomTable myPrediction={losingEvents} claimReward ={claimReward}/>
+
+            }
+            {
+                   selectedOption==="lastPending" && <CustomTable myPrediction={pendingVotes} claimReward ={claimReward}/>
 
             }
 
@@ -495,6 +502,27 @@ const Pridtiction = () =>{
                   selectedOption==="allWinning" && 
 
                   winningEvents.map((data,index) =>{
+                    console.log(data);
+                    return(
+                 
+                       <AnimatedButton data={data} 
+                        claimReward= {()=>{
+                          if(!data.is_claimed ){
+                            if(data.status ==="WON" ){
+                              claimReward(data.id)
+                            }
+                          }
+                        }}
+                        />
+              
+                    )
+                })
+                 }
+
+                {
+                  selectedOption==="lastPending" && 
+
+                  pendingVotes.map((data,index) =>{
                     console.log(data);
                     return(
                  
