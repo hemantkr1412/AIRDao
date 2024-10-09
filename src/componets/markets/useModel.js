@@ -27,7 +27,7 @@ const useModel = () =>{
         // Get the signer (the user connected with MetaMask)
         const signer = provider.getSigner();
         // Create a contract instance connected to the signer
-        const contract = new ethers.Contract("0x9F82251d94bD4c2830aEa915fBc6e3D6f0F6004a", abi, signer);
+        const contract = new ethers.Contract("0xDA1b75390b9F29F88F839CA94eA9Ce73367c72a0", abi, signer);
         // Convert the ETH amount to Wei
         console.log(ethAmount);
         // const amountInWei = ethers.utils.parseEther(ethAmount);

@@ -1,82 +1,45 @@
-export const contractAddress = "0x9F82251d94bD4c2830aEa915fBc6e3D6f0F6004a";
+export const contractAddress = "0xDA1b75390b9F29F88F839CA94eA9Ce73367c72a0";
 
 
 export const abi = [
   {
-    inputs: [
-      {
-        internalType: "address",
-        name: "admn",
-        type: "address"
-      }
-    ],
-    stateMutability: "nonpayable",
-    type: "constructor"
-  },
-  {
-    inputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string"
-      }
-    ],
+    inputs: [],
     name: "EmptyOutcomes",
     type: "error"
   },
   {
-    inputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string"
-      }
-    ],
+    inputs: [],
     name: "EmptyTitle",
     type: "error"
   },
   {
-    inputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string"
-      }
-    ],
+    inputs: [],
     name: "EventInactive",
     type: "error"
   },
   {
-    inputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string"
-      }
-    ],
+    inputs: [],
     name: "EventNotExist",
     type: "error"
   },
   {
-    inputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string"
-      }
-    ],
+    inputs: [],
     name: "InvalidAmount",
     type: "error"
   },
   {
-    inputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string"
-      }
-    ],
+    inputs: [],
+    name: "InvalidInitialization",
+    type: "error"
+  },
+  {
+    inputs: [],
     name: "InvalidOutcome",
+    type: "error"
+  },
+  {
+    inputs: [],
+    name: "NotInitializing",
     type: "error"
   },
   {
@@ -195,6 +158,19 @@ export const abi = [
     anonymous: false,
     inputs: [
       {
+        indexed: false,
+        internalType: "uint64",
+        name: "version",
+        type: "uint64"
+      }
+    ],
+    name: "Initialized",
+    type: "event"
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
         indexed: true,
         internalType: "uint256",
         name: "eventId",
@@ -227,6 +203,19 @@ export const abi = [
     ],
     name: "PredictionSubmitted",
     type: "event"
+  },
+  {
+    inputs: [],
+    name: "admin",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address"
+      }
+    ],
+    stateMutability: "view",
+    type: "function"
   },
   {
     inputs: [
@@ -265,6 +254,24 @@ export const abi = [
     inputs: [
       {
         internalType: "uint256",
+        name: "amountToSend",
+        type: "uint256"
+      },
+      {
+        internalType: "address payable",
+        name: "winnerAddress",
+        type: "address"
+      }
+    ],
+    name: "claimAmount",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
         name: "eventId",
         type: "uint256"
       },
@@ -282,11 +289,6 @@ export const abi = [
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "eventId",
-        type: "uint256"
-      },
-      {
         internalType: "string",
         name: "title",
         type: "string"
@@ -300,6 +302,19 @@ export const abi = [
     name: "createEvent",
     outputs: [],
     stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    inputs: [],
+    name: "eventCount",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256"
+      }
+    ],
+    stateMutability: "view",
     type: "function"
   },
   {
@@ -361,19 +376,6 @@ export const abi = [
     type: "function"
   },
   {
-    inputs: [],
-    name: "getOwner",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address"
-      }
-    ],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
     inputs: [
       {
         internalType: "uint256",
@@ -400,6 +402,43 @@ export const abi = [
       }
     ],
     stateMutability: "view",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "eventId",
+        type: "uint256"
+      },
+      {
+        internalType: "uint256",
+        name: "outcomeId",
+        type: "uint256"
+      }
+    ],
+    name: "getWeb3Voters",
+    outputs: [
+      {
+        internalType: "address[]",
+        name: "",
+        type: "address[]"
+      }
+    ],
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "admn",
+        type: "address"
+      }
+    ],
+    name: "initialize",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function"
   },
   {
@@ -447,21 +486,16 @@ export const abi = [
     type: "function"
   },
   {
-    inputs: [
+    inputs: [],
+    name: "version",
+    outputs: [
       {
-        internalType: "uint256",
-        name: "amountToSend",
-        type: "uint256"
-      },
-      {
-        internalType: "address payable",
-        name: "receiverAddr",
-        type: "address"
+        internalType: "string",
+        name: "",
+        type: "string"
       }
     ],
-    name: "withdrawAmount",
-    outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "pure",
     type: "function"
   }
 ];
