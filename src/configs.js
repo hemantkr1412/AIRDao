@@ -1,29 +1,59 @@
-export const contractAddress = "0xDA1b75390b9F29F88F839CA94eA9Ce73367c72a0";
+export const contractAddress = "0xaFdb5c21e29806BFC36C7a6F4892d6f21437c0Fa";
 
 
 export const abi = [
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string"
+      }
+    ],
     name: "EmptyOutcomes",
     type: "error"
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string"
+      }
+    ],
     name: "EmptyTitle",
     type: "error"
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string"
+      }
+    ],
     name: "EventInactive",
     type: "error"
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string"
+      }
+    ],
     name: "EventNotExist",
     type: "error"
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string"
+      }
+    ],
     name: "InvalidAmount",
     type: "error"
   },
@@ -33,7 +63,13 @@ export const abi = [
     type: "error"
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string"
+      }
+    ],
     name: "InvalidOutcome",
     type: "error"
   },
@@ -254,24 +290,6 @@ export const abi = [
     inputs: [
       {
         internalType: "uint256",
-        name: "amountToSend",
-        type: "uint256"
-      },
-      {
-        internalType: "address payable",
-        name: "winnerAddress",
-        type: "address"
-      }
-    ],
-    name: "claimAmount",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
         name: "eventId",
         type: "uint256"
       },
@@ -289,6 +307,11 @@ export const abi = [
   {
     inputs: [
       {
+        internalType: "uint256",
+        name: "eventId",
+        type: "uint256"
+      },
+      {
         internalType: "string",
         name: "title",
         type: "string"
@@ -302,19 +325,6 @@ export const abi = [
     name: "createEvent",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [],
-    name: "eventCount",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256"
-      }
-    ],
-    stateMutability: "view",
     type: "function"
   },
   {
@@ -496,6 +506,24 @@ export const abi = [
       }
     ],
     stateMutability: "pure",
+    type: "function"
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "amountToSend",
+        type: "uint256"
+      },
+      {
+        internalType: "address payable",
+        name: "receiverAddr",
+        type: "address"
+      }
+    ],
+    name: "withdrawAmount",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function"
   }
 ];
