@@ -112,7 +112,12 @@ const Navbar = () => {
                   }} >Docs</div>
                    
                 </div>
-                <div>
+                <div style={{
+                  gap:"1rem",
+                  display:"flex"
+                }}>
+
+                          <GradientButton />
                        
                           <ConnectButton
                           onConnect = {
@@ -139,7 +144,7 @@ const Navbar = () => {
                               height: "40px",
                               borderRadius: "100px",
                               border: "none",
-                              marginRight: "3rem",
+                              marginRight: "1.1rem",
                               paddingBottom:"15px",
                               cursor: "pointer",
                               boxShadow: "0px 4px 4px 0px rgba(255, 255, 255, 0.4)",
@@ -327,3 +332,22 @@ const Navbar = () => {
 }
 
 export default Navbar;
+
+
+import React from 'react';
+
+
+const GradientButton = () => {
+  return (
+    <button className="gradient-button" onClick ={() =>{
+      window.open("https://airdoge.xyz",'_blank')
+    }}>
+      Buy $ADOGE
+    </button>
+  );
+};
+
+
+// export {GradientButton};
+
+// export default GradientButton;

@@ -4,6 +4,7 @@ import BarAnimation from "./BarAnimation/barAnimation";
 import "./navbar.css";
 import { useNavigate } from "react-router-dom";
 
+
 const HeroSection = () =>{
     const navigate = useNavigate();
     return (
@@ -45,7 +46,10 @@ const HeroSection = () =>{
                     textAlign: "left",
                     marginTop:"1rem"
                 }}>Welcome to AirDAO Markets, the premier destination for predictive insights on the AirDAO Chain!</p>
+
+
                 <button 
+                className="start-btn"
                 onClick={() => navigate("/markets")}
                 style={{
                     marginTop:"1.5rem",
@@ -58,6 +62,30 @@ const HeroSection = () =>{
                     border:"none",
                     cursor:"pointer"
                 }}>Start</button>
+
+                <div className="start-btn-mob">
+                <button 
+                // className="start-btn"
+                onClick={() => navigate("/markets")}
+                style={{
+                    marginTop:"1.5rem",
+                    width:"120px",
+                    height:"30px",
+                    backgroundColor:"white",
+                    background:"linear-gradient(274.13deg, #F7931A 1.78%, #2D28FF 102.71%)",
+                    borderRadius:"5px",
+                    color:"white",
+                    border:"none",
+                    cursor:"pointer"
+                }}>Start</button>
+
+                <GradientButton />
+
+
+                </div>
+
+               
+                
             </div>
             <div className="herosectionSubDiv2">
                
@@ -99,3 +127,20 @@ const HeroSection = () =>{
 }
 
 export default HeroSection;
+
+
+const GradientButton = () => {
+    return (
+      <button style={{
+        padding:"2px 10px",
+        fontSize:"12px",
+        width:"120px",
+        height:"30px",
+        marginTop:"1.5rem",
+      }} className="gradient-button"  onClick ={() =>{
+        window.open("https://airdoge.xyz",'_blank')
+      }}>
+        Buy $ADOGE
+      </button>
+    );
+};

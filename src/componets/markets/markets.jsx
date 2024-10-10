@@ -73,7 +73,7 @@ const Markets = () => {
                                 <h1>${kpisData.total_platform_fee}</h1>
                             </div>
                         </div>
-                        <div className="valueContainer" style={valueContainerStyles}>
+                        {/* <div className="valueContainer" style={valueContainerStyles}>
                             <div style={valueHeaderStyles}>
                                 <h3>Total Tokens Burnt</h3>
                                 <img src="fire.svg" alt="fire icon" style={iconStyles} />
@@ -81,7 +81,7 @@ const Markets = () => {
                             <div>
                                 <h1>{0}</h1>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
 
                     <ActiveMarket

@@ -300,6 +300,15 @@ padding: 2%;
   } */
 
 
+.start-btn{
+  display: block;
+}
+
+.start-btn-mob{
+  display: none;
+  /* gap:10px; */
+}
+
 
 
 @media screen and (max-width: 450px) {
@@ -550,6 +559,15 @@ padding: 2%;
   }
   .fundDistributionSubDiv{
     gap: 2rem;
+}
+
+
+.start-btn{
+  display: none;
+}
+.start-btn-mob{
+  display: flex;
+  gap:10px;
 }
 
 }
