@@ -140,7 +140,7 @@ const Navbar = () => {
                               background: "linear-gradient(274.13deg, #F7931A 1.78%, #2D28FF 102.71%)",
                               backgroundColor:"white",
                               color: "white",
-                              width: "140px",
+                              minWidth: "140px",
                               height: "40px",
                               borderRadius: "100px",
                               border: "none",
@@ -148,6 +148,7 @@ const Navbar = () => {
                               paddingBottom:"15px",
                               cursor: "pointer",
                               boxShadow: "0px 4px 4px 0px rgba(255, 255, 255, 0.4)",
+                              fontSize:"12px"
                             }
                           }}
                           chain={chain}
@@ -351,3 +352,12 @@ const GradientButton = () => {
 // export {GradientButton};
 
 // export default GradientButton;
+
+
+// const Demo = () =>{
+//   return(
+//     <div>
+//       Hello
+//     </div>
+//   )
+// }

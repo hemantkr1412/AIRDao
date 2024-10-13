@@ -419,7 +419,7 @@ const Card = ({isPopular,isRecent,isUpcominng,event,handleCommitToken}) =>{
                         color:"rgb(0,0,0,0.8)",
                         marginTop:"0.5rem",
                         textAlign:"center"
-                    }}>Last Date:  {formatDate(event.start_date)}</p>
+                    }}>Last Date:  {formatDate(event.end_date)}</p>
                 }
                 {
                     isRecent && 
