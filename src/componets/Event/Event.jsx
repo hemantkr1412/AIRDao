@@ -60,8 +60,7 @@ const Event = () =>{
             setVoteData(result.votes);
             if(result?.event?.market =="upcoming"){
                 setIsRecent(true);  
-            }
-            if (result?.event?.end_date) {
+            }else if (result?.event?.end_date) {
                 
                 // Parse the event end date
                 const eventEndDate = new Date(result.event.end_date);
