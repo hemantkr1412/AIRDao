@@ -55,7 +55,8 @@ const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadM
                     className="subNavbarItem"
                     style={{
                         fontWeight:"500",
-                        cursor:"pointer"
+                        cursor:"pointer",
+                        marginRight:"2.5rem"
                     }} onClick={()=>{
                         handleScroll(upComingRef)
                     }}>Upcoming Markets</p>
@@ -63,7 +64,8 @@ const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadM
                     className="subNavbarItem"
                     style={{
                     fontWeight:"500",
-                    cursor:"pointer"
+                    cursor:"pointer",
+                    marginRight:"2.5rem"
                     }} onClick={()=>{
                         handleScroll(popularRef)
                     }}>Popular Markets</p>
@@ -71,7 +73,8 @@ const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadM
                     className="subNavbarItem"
                     style={{
                     fontWeight:"500",
-                    cursor:"pointer"
+                    cursor:"pointer",
+                     marginRight:"2.5rem"
                     }} onClick={()=>{
                         handleScroll(recentRef)
                     }}>Recent Markets</p>
@@ -79,7 +82,8 @@ const Home = ({handleScroll,upComingRef,popularRef,recentRef,howItWorksRef,roadM
                     className="subNavbarItem"
                     style={{
                     fontWeight:"500",
-                    cursor:"pointer"
+                    cursor:"pointer",
+                     marginRight:"2.5rem"
                     }} onClick={()=>{
                         handleScroll(howItWorksRef)
                     }}>How it Works</p>

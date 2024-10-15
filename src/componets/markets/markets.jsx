@@ -48,6 +48,7 @@ const Markets = () => {
                                     style={{
                                         fontWeight: categoryName === category.name ? "700" : "500",
                                         cursor: "pointer",
+                                        marginRight:"2.5rem"
                                     }}
                                 >{category.name}</p>
                             ))
