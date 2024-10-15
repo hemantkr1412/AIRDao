@@ -24,6 +24,9 @@ const useModel = () =>{
           })
         // Create a provider using MetaMask
         const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+        // console.log(provider);
+
         // Get the signer (the user connected with MetaMask)
         const signer = provider.getSigner();
         // Create a contract instance connected to the signer

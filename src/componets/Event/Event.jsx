@@ -55,9 +55,12 @@ const Event = () =>{
             }
         
             const result = await response.json();
-            console.log(result);
+            // console.log(result);
             setEventData(result.event);
             setVoteData(result.votes);
+            if(result?.event?.market =="upcoming"){
+                setIsRecent(true);  
+            }
             if (result?.event?.end_date) {
                 
                 // Parse the event end date
