@@ -156,7 +156,7 @@ const Event = () =>{
                     <div>
                         <img
                         onClick={() =>
-                            window.open(`https://testnet.airdao.io/explorer/tx/0x${eventData?.create_event_tx_receipt}`)
+                            window.open(`https://airdao.io/explorer/tx/0x${eventData?.create_event_tx_receipt}`)
                         }
                         style={{
                             width:"30px",
@@ -346,7 +346,7 @@ const Event = () =>{
                                 }}>{vote.status}</span></p>
                                 <p>Committed Hash:    <img
                             onClick={() =>
-                            window.open(`https://testnet.airdao.io/explorer/tx/${vote.tx_hash}`)
+                            window.open(`https://airdao.io/explorer/tx/${vote.tx_hash}`)
                             }
                             style={{
                             width:"15px",
@@ -355,7 +355,7 @@ const Event = () =>{
                             }} src='link-svgrepo-com.svg' alt='linkIcon' /></p>
                                 <p>Rewarded Hash: {vote.amount_rewarded === null?"N/A":<img
                             onClick={() =>
-                            window.open(`https://testnet.airdao.io/explorer/tx/${vote.claimed_tx_hash
+                            window.open(`https://airdao.io/explorer/tx/${vote.claimed_tx_hash
                             }`)
                             }
                             style={{
