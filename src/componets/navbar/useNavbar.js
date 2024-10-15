@@ -62,10 +62,10 @@ const useNavbar = () =>{
     
 
     const chain = defineChain({
-        id: 22040,
-        rpc: "https://network.ambrosus-test.io",
+        id: 16718,
+        rpc: "https://network.ambrosus.io",
         nativeCurrency: {
-          name: "AirDao TestNet",
+          name: "AirDAO Mainnet",
           symbol: "AMB",
           decimals: 18,
         },
